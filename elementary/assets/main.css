@@ -383,8 +383,8 @@ body.dark .highlight {
 body.dark .highlight * {
   font-family: monospace, monospace;
   background-color: unset;
-  padding: unset;
-  letter-spacing: unset;
+  margin: 0;
+  padding: 0;
 }
 body.dark .highlight > pre {
   padding: 8px 12px;
