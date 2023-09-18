@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Определение матрицы" />
+  <link rel="canonical" href="/matlab_course/2023-09-11-octave-matrix-algebra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Матричная алгебра в Matlab/Octave &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-11T04:17:05+03:00",
+        "headline": "Матричная алгебра в Matlab/Octave",
+        "url": "/matlab_course/2023-09-11-octave-matrix-algebra.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "Matlab/Octave",
+        "image": "/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "/matlab_course/2023-09-11-octave-matrix-algebra.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Матричная алгебра в Matlab/Octave</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-11T04:17:05+03:00">
+      11 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#Matlab/Octave">Matlab/Octave</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="определение-матрицы">Определение матрицы</h2>
+
+<p>Матрица – это двумерный массив значений упорядоченных в строки и столбцы. Матрицу обычно записывают в квадратных или круглых скобках и разделяют элементы запятыми или пробелами. Например, матрица 2x2:</p>
+
+\[A = 
+\begin{align}
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Здесь \(a, b, c, d\) – это элементы матрицы. Эта матрица имеет две строки и два столбца.</p>
+
+<p>В общем случае, форму матрицы обзначают \(m \times n\), где \(m\) – количество строк, \(n\) – количество столбцов.</p>
+
+<p>\(3 \times 2\):</p>
+
+\[A = 
+\begin{align}
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+    e &amp; f \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>\(2 \times 3\):</p>
+
+\[A = 
+\begin{align}
+  \begin{pmatrix}
+    a &amp; b &amp; c \\
+    d &amp; e &amp; f \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Когда одна из размерностей матрицы равна единице она называется вектором. Если размерность \(m \times 1\), то такой вектор называется <strong><em>вектор-столбец</em></strong>, например:</p>
+
+\[x = 
+\begin{align}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Если размерность \(1 \times n\), то такой вектор называется <strong><em>вектор-строка</em></strong>, например:</p>
+
+\[y = 
+\begin{align}
+  \begin{pmatrix}
+    a &amp; b &amp; c \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>В общем случае матрица \(m \times n\):</p>
+
+\[A = 
+\begin{align}
+  \begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
+    a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Матрица со случайными элементами, равномерно распределенными на интервале (0, 1) размерностью \(2 \times 3\) в Matlab/Octave <code class="language-plaintext highlighter-rouge">&gt;&gt; rand(2, 3)</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    0.8147    0.1270    0.6324
+    0.9058    0.9134    0.0975
+</code></pre></div></div>
+
+<h2 id="сложение-и-умножение-векторов">Сложение и умножение векторов</h2>
+
+<p><strong>Cложение матриц:</strong></p>
+
+\[\begin{align}
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    e &amp; f \\
+    g &amp; h \\
+  \end{pmatrix}  
+  =
+  \begin{pmatrix}
+    a+e &amp; b+f \\
+    c+g &amp; d+h \\
+  \end{pmatrix}  
+\end{align}\]
+
+<p><em>Числовой пример:</em></p>
+
+\[\begin{align}
+  \begin{pmatrix}
+    1 &amp; 2 \\
+    3 &amp; 4 \\
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    5 &amp; 6 \\
+    7 &amp; 8 \\
+  \end{pmatrix}  
+  =
+  \begin{pmatrix}
+    1+5 &amp; 2+6 \\
+    3+7 &amp; 4+8 \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    6 &amp; 8 \\
+    10 &amp; 12 \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; [1 2; 3 4] + [5 6; 7 8]</code></p>
+
+<p><strong>Умножение матрицы на скаляр:</strong></p>
+
+\[k 
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+=
+  \begin{pmatrix}
+    ka &amp; kb \\
+    kc &amp; kd \\
+  \end{pmatrix}\]
+
+<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; 3 * [1 1; 1 1]</code></p>
+
+<p><strong>Умножение двух матриц:</strong></p>
+
+<p>Для того чтобы две матрицы можно было умножить, количество столбцов первой матрицы должно совпадать с количеством строк второй матрицы.</p>
+
+<p>Пусть \(A\) – матрица размера \(m \times n\) (\(m\) строк и \(n\) столбцов), а \(B\) – матрица размера \(n \times p\). Их произведение будет матрицей \(C\) размера \(m \times p\).</p>
+
+<p>Элемент \(c_{ij}\) матрицы \(C\) вычисляется как скалярное произведение \(i\)-й строки матрицы \(A\) на \(j\)-й столбец матрицы \(B\). Формула для \(c_{ij}\) такова:</p>
+
+\[c_{ij} = a_{i1} \cdot b_{1j} + a_{i2} \cdot b_{2j} + \ldots + a_{in} \cdot b_{nj}\]
+
+\[c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}\]
+
+<p>Т.е. каждый элемент \(c_{ij}\)  матрицы \(C\) равен сумме произведений соответствующих элементов \(i\)-й строки матрицы \(A\) и \(j\)-го столбца матрицы B.</p>
+
+<p>Например:</p>
+
+\[\begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    e &amp; f \\
+    g &amp; h \\
+  \end{pmatrix}
+=
+  \begin{pmatrix}
+    ae + bg &amp; af + bh \\
+    ce + dg &amp; cf + dh \\
+  \end{pmatrix}\]
+
+<p>Следует иметь в виду, что <strong>операция перемножения матриц не коммутативна</strong> (\(AB \ne BA\) в общем случае):</p>
+
+\[\begin{pmatrix}
+    e &amp; f \\
+    g &amp; h \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+=
+  \begin{pmatrix}
+    ae + cf &amp; be + df \\
+    ag + ch &amp; bg + dh \\
+  \end{pmatrix}\]
+
+<p><strong><em>Из \(AB=AC\) не следует, что \(B=C\):</em></strong></p>
+
+<p>Пусть:</p>
+
+\[A = 
+  \begin{pmatrix}
+    1 &amp; 2 \\
+    2 &amp; 4 \\
+  \end{pmatrix};
+B = 
+  \begin{pmatrix}
+    2 &amp; 1 \\
+    1 &amp; 3 \\
+  \end{pmatrix};
+C = 
+  \begin{pmatrix}
+    4 &amp; 3 \\
+    0 &amp; 2 \\
+  \end{pmatrix}\]
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">];</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">];</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 1
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 0
+</code></pre></div></div>
+
+<p><em>Умножение матриц разных размерностей:</em></p>
+
+\[A = 
+  \begin{pmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+  \end{pmatrix};
+B = 
+  \begin{pmatrix}
+    7 &amp; 8 &amp; 9 &amp; 10 \\
+    11 &amp; 12 &amp; 13 &amp; 14 \\
+    15 &amp;  16 &amp;  17 &amp;  18 \\
+  \end{pmatrix};
+C = 
+  \begin{pmatrix}
+    19 &amp; 20 \\
+    21 &amp; 22 \\
+    23 &amp; 24 \\
+    25 &amp; 26 \\
+  \end{pmatrix}\]
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="o">*</span><span class="n">B</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    74    80    86    92
+   173   188   203   218
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shape =
+   2   4
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">ans</span> <span class="o">*</span> <span class="n">C</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    7364    7696
+   17354   18136
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shape =
+   2   2
+</code></pre></div></div>
+
+<p><strong>Умножение матриц ассоциативно:</strong></p>
+
+\[(A \times B) \times C = A \times (B \times C)\]
+
+<p>, здесь \(A\), \(B\) и \(C\) – таких размеров, что данные произведения определены (т.е. \(A: m \times n, \space B: n \times p, \space C: p \times q\)).</p>
+
+<p><em>Используя раннее определенные матрицы:</em></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 1
+</code></pre></div></div>
+
+<p><strong>Необходимость помнить о погрешностях вычисления:</strong></p>
+
+<p>Предположим, что мы хотим проверить ассоциативность умножения на случайно сгенерированных матрицах подходящих размерностей. Задав состояние (<em>seed</em>) случайного генератора (для того чтобы точно такой-же результат можно было повторить позже) для Matlab: <code class="language-plaintext highlighter-rouge">rng(1)</code>, для Octave: <code class="language-plaintext highlighter-rouge">rand('seed', 1)</code> (стоит иметь в виду, что одинаковый <em>seed</em> не приведет к одинаковым результатам в разных языках), сгенерируем матрицы \(A: 2 \times 3, \space B: 3 \times 4,\space C: 4 \times 5\) заполненные случайными числами из равномерного распределения (\(0, 1\)):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+   0
+</code></pre></div></div>
+
+<p>→ Неожиданный результат!</p>
+
+<p>Проведем поэлементное сравнение:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> <span class="o">==</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+   1   0   0   1   0
+   0   0   0   1   1
+</code></pre></div></div>
+
+<p>В значительном количестве элементов матрицы не строго равны. Хотя на первый взгляд:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    0.5053    0.6697    0.3570    0.4288    0.5599
+    1.1254    1.4416    0.6967    1.0206    1.2094
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    0.5053    0.6697    0.3570    0.4288    0.5599
+    1.1254    1.4416    0.6967    1.0206    1.2094
+</code></pre></div></div>
+
+<p>Точность проведения различных операций значительно выше точности вывода по умолчанию.</p>
+
+<h2 id="cпециальные-матрицы">Cпециальные матрицы</h2>
+
+<p><strong>Нулевая матрица</strong></p>
+
+<p>Нулевая матрица — это матрица, все элементы которой равны нулю. Обозначается часто как \(O\) или \(0\), хотя это может вызывать путаницу с нулевым скаляром. Размеры нулевой матрицы могут быть любыми, например, \(m \times n\), где \(m\) – количество строк, а \(n\) – количество столбцов.</p>
+
+<p>Примеры нулевых матриц:</p>
+
+\[O_{2 \times 2} = 
+  \begin{pmatrix}
+    0 &amp; 0 \\
+    0 &amp; 0 \\
+  \end{pmatrix};\]
+
+<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(2, 2)</code></p>
+
+\[O_{3 \times 2} = 
+  \begin{pmatrix}
+    0 &amp; 0 \\
+    0 &amp; 0 \\
+    0 &amp; 0 \\
+  \end{pmatrix};\]
+
+<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(3, 2)</code></p>
+
+<p>Нулевая матрица обладает рядом свойств:</p>
+
+<ol>
+  <li>При сложении с любой другой матрицей того же размера результатом будет эта другая матрица;</li>
+  <li>При умножении на нулевую матрицу результатом всегда будет нулевая матрица (при условии, что умножение матриц определено).</li>
+</ol>
+
+<p>Часто нулевая матрица использется в контексте задания СЛАУ (Системы Линейных Алгебраических Уравнений) в матричной форме:</p>
+
+\[Ax = 0\]
+
+<p>, где:</p>
+
+<ul>
+  <li>\(A\) – матрица коэффициентов рамзерностью: $m \times n$;</li>
+  <li>\(x\) – вектор-столбец размерностью $n \times 1$;</li>
+  <li>\(0\) – нулевой вектор-столбец размерностью $m \times 1$.</li>
+</ul>
+
+<p><strong>Единичная матрица:</strong></p>
+
+<p>Единичная матрица – это квадратная матрица, у которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обозначается обычно как \(I\) или \(I_n\), где \(n\) – размер матрицы (количество строк или столбцов, поскольку матрица квадратная).</p>
+
+<p>Например, единичная матрица \(I_2\) размера \(2 \times 2\) выглядит следующим образом:</p>
+
+\[I_{2} = 
+  \begin{pmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1 \\
+  \end{pmatrix};\]
+
+<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(2)</code></p>
+
+<p>Единичная матрица \(I_3\) размера \(3 \times 3\):</p>
+
+\[I_{3} = 
+  \begin{pmatrix}
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1 \\
+  \end{pmatrix};\]
+
+<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(3)</code></p>
+
+<p>Единичная матрица обладает рядом свойств:</p>
+
+<ol>
+  <li>При умножении единичной матрицы на любую другую матрицу подходящего размера результатом будет эта другая матрица: \(IA = A\) и  \(AI = A\), т.е. единичная матрица является нейтральным элементом операции умножения матриц;</li>
+  <li>Обратная матрица к единичной матрице является единичной матрицей;</li>
+</ol>
+
+<p>В Matlab/Octave функция <code class="language-plaintext highlighter-rouge">eye(2, 3)</code> создаст матрицу размером \(2 \times 3\), в которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обратим внимание, что полученная матрица не является квадратной; у неё 2 строки и 3 столбца. Технически это не единичная матрица, которая должна быть квадратной, но принцип похож: единицы на главной диагонали.</p>
+
+<p>Вот как будет выглядеть результат:</p>
+
+\[\begin{pmatrix}
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+  \end{pmatrix}\]
+
+<p>Функция <code class="language-plaintext highlighter-rouge">eye(n, m)</code> в общем случае создаёт матрицу размером \(n \times m\) с единицами на главной диагонали и нулями во всех остальных позициях.</p>
+
+<p><strong>Диагональная матрица</strong></p>
+
+<p>Диагональная матрица – это квадратная матрица, в которой все элементы, не лежащие на главной диагонали, равны нулю. Элементы на главной диагонали могут быть как нулевыми, так и ненулевыми.</p>
+
+<p>Единичная матрица \(D_3\) размера \(3 \times 3\):</p>
+
+\[D_3=
+  \begin{pmatrix}
+    d_1 &amp; 0 &amp; 0 \\
+    0 &amp; d_2 &amp; 0 \\
+    0 &amp; 0 &amp; d_3 \\
+  \end{pmatrix}\]
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+   1   0   0
+   0   2   0
+   0   0   3
+</code></pre></div></div>
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span>  <span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">])</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     1
+     5
+     9
+</code></pre></div></div>
+
+<p><strong>Верхнетреуголная матрица</strong></p>
+
+<p>Верхнетреугольная матрица – это квадратная матрица, у которой все элементы ниже главной диагонали равны нулю. Элементы на главной диагонали и выше не ограничены и могут принимать любые значения, включая ноль.</p>
+
+<p>Верхнетреуголная матрица размера \(3 \times 3\):</p>
+
+\[U = 
+  \begin{pmatrix}
+    a &amp; b &amp; c \\
+    0 &amp; d &amp; e \\
+    0 &amp; 0 &amp; f \\
+  \end{pmatrix}\]
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U =
+   1   2   3
+   0   5   6
+   0   0   9
+</code></pre></div></div>
+
+<p><em>Верхнетреуголная единичная:</em></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="nb">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U =
+   1   1   1
+   0   1   1
+   0   0   1
+</code></pre></div></div>
+
+<p><strong>Нижнетреуголная матрица</strong></p>
+
+<p>Нижнетреугольная матрица – это квадратная матрица, у которой все элементы выше главной диагонали равны нулю. Элементы на главной диагонали и ниже не ограничены и могут принимать любые значения, включая ноль.</p>
+
+<p>Нижнетреугольная матрица размера \(3 \times 3\):</p>
+
+\[L =
+  \begin{pmatrix}
+    a &amp; 0 &amp; 0 \\
+    b &amp; c &amp; 0 \\
+    d &amp; e &amp; f \\
+  \end{pmatrix}\]
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">L</span> <span class="o">=</span> <span class="nb">tril</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>L =
+     1     0     0
+     4     5     0
+     7     8     9
+</code></pre></div></div>
+
+<h2 id="транспонирование-матрицы">Транспонирование матрицы</h2>
+
+<p>Транспонирование матрицы – это операция, при которой строки исходной матрицы преобразуются в столбцы, а столбцы – в строки. Другими словами, элементы матрицы отражаются относительно её главной диагонали.</p>
+
+<p>Пусть дана матрица \(A\) размером \(m \times n\). Транспонированная матрица $A^T$ будет иметь размер \(n \times m\) и определяется следующим образом: \(\forall i,j: A^T_{ij} = A_{ji}\).</p>
+
+<p>В качестве примера рассмотрим матрицу:</p>
+
+\[A =
+  \begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+    e &amp; f \\
+  \end{pmatrix}\]
+
+<p>Результатом транспонирования матрицы $A$, будет:</p>
+
+\[A^T =
+  \begin{pmatrix}
+    a &amp; c &amp; e \\
+    b &amp; d &amp; f \\
+  \end{pmatrix}\]
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="o">'</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     1     4
+     2     5
+     3     6
+</code></pre></div></div>
+
+<p><em>Свойства транспонирования матрицы:</em></p>
+
+<ol>
+  <li>\((A^{T})^{T} = A\);</li>
+  <li>\((\lambda \cdot  A)^T = \lambda \cdot A^{T}\);</li>
+  <li>\((A + B)^T = A^T + B^T\);</li>
+  <li>\((A \cdot B)^T = B^T \cdot A^T\);</li>
+</ol>
+
+<p><strong>Симметричная матрица</strong></p>
+
+<p>Симметричная матрица — это квадратная матрица, которая равна своей транспонированной матрице \(A = A^T\). Элементы симметричной матрицы симметричны относительно главной диагонали.</p>
+
+<p>Пример симметричной матрицы:</p>
+
+\[A =
+  \begin{pmatrix}
+    a &amp; b &amp; c \\
+    b &amp; d &amp; e \\
+    c &amp; e &amp; f \\
+  \end{pmatrix}\]
+
+<p>Проверка на симметрию в Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, A')</code></p>
+
+<p><strong>Кососимметричная матрица</strong></p>
+
+<p>Кососимметричная (или антисимметричная) матрица — это квадратная матрица, которая удовлетворяет условию \(A = -A^T\). Другими словами, транспонированная матрица является аддитивным обратным к исходной матрице. Это также означает, что все элементы на главной диагонали кососимметричной матрицы равны нулю.</p>
+
+<p>Кососимметричная матрица \(3 \times 3\):</p>
+
+\[A =
+  \begin{pmatrix}
+    0 &amp; a &amp; -b \\
+    -a &amp; 0 &amp; c \\
+    b &amp; -c &amp; 0 \\
+  \end{pmatrix}\]
+
+<p>Проверка на кососимметрию в Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, -A')</code></p>
+
+<h2 id="скалярное-векторное-и-тензерное-произведение-векторов">Скалярное, векторное и тензерное произведение векторов</h2>
+
+<p><strong><em>Скалярное произведение</em></strong> (иногда называемое <strong>внутренним произведением</strong>) двух векторов \(\overline{a}\) и \(\overline{b}\) –  это сумма произведений соответствующих компонент этих векторов. Если имеются два вектора \(\overline{a} = (a_1, a_2, \ldots, a_n)\), \(\overline{b} = (b_1, b_2, \ldots, b_n)\), тогда:</p>
+
+\[\overline{a} \cdot \overline{b} = a_1 \cdot b_1 + a_2 \cdot b_2 + \ldots + a_n \cdot b_n\]
+
+<p>Частые обозначения скалярного произведения: \(\overline{a} \cdot \overline{b}\), \(\langle \overline{a}, \overline{b} \rangle\), \((\overline{a}, \overline{b})\).</p>
+
+<p>Геометрически:</p>
+
+\[\langle \overline{a}, \overline{b} \rangle = | \overline{a} | \cdot | \overline{b} | \cdot \cos \phi\]
+
+<p>– произведение длин на косинус угла между ними.</p>
+
+<p>Если \(\langle \overline{a}, \overline{b} \rangle = 0\), то \(\overline{a}\) и \(\overline{b}\) – ортогональны.</p>
+
+<p>В контексте матричной алгебры скалярное произведение представляется как произведение вектора-строки на вектор-столбец, учитывая, что при создании векторов в Matlab/Octave по умолчанию создаются вектора-строки, тогда:</p>
+
+\[\langle \overline{a}, \overline{b} \rangle = \overline{a} \cdot \overline{b}^T\]
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">'</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 32
+</code></pre></div></div>
+
+<p>Также можно использовать специальную функцию:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 32
+</code></pre></div></div>
+
+<p><strong><em>Векторное произведение</em></strong> – это операция над двумя векторами в трехмерном пространстве, результатом которой является новый вектор. Этот новый вектор перпендикулярен плоскости, определяемой исходными векторами, а его длина равна площади параллелограмма, образованного этими векторами.</p>
+
+<p>Если \(\overline{a} = (a_1, a_2, a_3)\), \(\overline{b} = (b_1, b_2, b_3)\) – два вектора в трехмерном пространстве, их векторное произведение \(\overline{a} \times \overline{b}\) определяется следующим образом:</p>
+
+\[\mathbf{A} \times \mathbf{B} = (a_2b_3 - a_3b_2, a_3b_1 - a_1b_3, a_1b_2 - a_2b_1)\]
+
+<p>Частые обозначения векторного произведения: \(A \times B\), \([A, B]\)</p>
+
+<p>Для вычисления вектороного произведения в Matlab/Octave испольузется следующая фукнция:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  -3   6  -3
+</code></pre></div></div>
+
+<p><strong><em>Тензорное произведение</em></strong> двух векторов – это способ комбинирования двух векторов так, чтобы получить новый математический объект, который сохраняет некоторую информацию о структуре каждого из исходных векторов. В контексте евклидовых векторов результатом тензорного произведения двух векторов $\overline{a}$ и $\overline{b}$ является матрица, элементы которой равны произведениям соответствующих элементов исходных векторов.</p>
+
+<p>Пусть \(\overline{a}= (a_1, a_2, \ldots, a_n)\) и \(\overline{b} = (b_1, b_2, \ldots, b_m)\). Тогда тензорное произведение \(\overline{a} \otimes \overline{b}\) будет матрицей размера \(n \times m\) с элементами \(a_i \cdot b_j\):</p>
+
+<p>В контексте матричной алгебры тензерное произведение двух векторов представляется как произведение вектора-столбца на вектор-строки.</p>
+
+<p>Пусть:</p>
+
+\[u  =
+  \begin{pmatrix}
+    u_1 \\
+    u_2 \\
+    u_3 \\
+  \end{pmatrix};
+\space
+v  =
+  \begin{pmatrix}
+    v_1 \\
+    v_2 \\
+    v_3 \\
+  \end{pmatrix};\]
+
+<p>Тогда:</p>
+
+\[u  \otimes v = u \cdot v^T = 
+  \begin{pmatrix}
+    u_1 \\
+    u_2 \\
+    u_3 \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    v_1 &amp; v_2 &amp; v_3\\
+  \end{pmatrix};\]
+
+<p>В Matlab/Octave по умолчанию создаются вектора-строки, поэтому тензерное произведение получается путем транспонирования первого, а не второго вектора \(u \otimes v = u^T \cdot v\). Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">'*</span><span class="n">b</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    4    5    6
+    8   10   12
+   12   15   18
+</code></pre></div></div>
+
+<p>Что то же самое, что:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="s1">' a'</span> <span class="n">a</span><span class="o">'</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">.*</span> <span class="n">B</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    4    5    6
+    8   10   12
+   12   15   18
+</code></pre></div></div>
+
+<h2 id="обратная-матрица">Обратная матрица</h2>
+
+<p>Обратная матрица – это квадратная матрица \(A^{-1}\), которая при умножении на исходную матрицу \(A\) даёт единичную матрицу того же порядка \(I\).</p>
+
+\[AA^{-1} = I = A^{-1}A\]
+
+<p>Некоторые свойства обратной матрицы:</p>
+
+<ul>
+  <li><strong>Единственность:</strong> Для любой невырожденной (определитель которой не равен нулю) квадратной матрицы существует только одна обратная матрица.</li>
+  <li><strong>Существование обратной матрицы</strong>: Матрица имеет обратную тогда и только тогда, когда ее определитель не равен нулю. Если определитель равен нулю, матрица называется вырожденной, и у нее нет обратной матрицы.</li>
+  <li><strong>Обратная матрица произведения:</strong> Если \(A\) и \(B\) — квадратные невырожденные матрицы одного и того же порядка, то: \((AB)^{-1}=B^{-1}A^{-1}\)</li>
+  <li><strong>Транспонирование:</strong> Если \(A\) имеет обратную матрицу, то обратная для транспонированной матрицы \(A^T\) будет равна транспонированной матрице от \(A^-1\): \((A^T)^{-1} = (A^{-1})^T\)</li>
+  <li><strong>Умножение на скаляр:</strong> Если \(A\) и \(B\) — обратимые матрицы (имеют обратные), и \(c\) - скаляр, то: \((cA)^{-1} = \frac{1}{c} A^{-1}\) (где \(c\) не равно нулю)</li>
+  <li><strong>Обратная матрица суммы</strong>: В общем случае, сумма обратных матриц не равна обратной матрице суммы, т.е.: \((A + B)^{-1} \neq A^{-1} + B^{-1}\).</li>
+</ul>
+
+<p>Рассмотрим пример нахождения обратной матрицы для \(A_{2 \times 2}\):</p>
+
+\[\begin{pmatrix}
+    a &amp; b \\
+    c &amp; d \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1 &amp; x_2 \\
+    y_1 &amp; y_2 \\
+  \end{pmatrix}
+\\=
+  \begin{pmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1 \\
+  \end{pmatrix}\]
+
+<p>, здесь вторая матрица – обратная матрица, которую необходимо найти.</p>
+
+<p>Представим матричное умножение в виде системы уравнений:</p>
+
+\[\begin{equation}
+\begin{cases}
+ax_1 + by_1 = 1 \\
+ax_2 + by_2 = 0 \\
+cx_1 + dy_1 = 0 \\
+cx_2 + dy_2 = 1 \\
+\end{cases}
+\end{equation}\]
+
+<p>Имеются 4 уравнения и 4 неизвестных → постараемся найти решение системы.</p>
+
+<p>Выражая из <em>однородных уравнений</em><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> \(y_1\) и \(y_2\), а затем подставляя в первое и четвертое получим решение:</p>
+
+\[\begin{equation}
+\begin{cases}
+x_1 = \frac{d}{ad - bc} \\
+y_1 = \frac{-c}{ad - bc}\\
+x_2 = \frac{-b}{ad - bc} \\
+y_2 = \frac{a}{ad - bc} \\
+\end{cases}
+\end{equation}\]
+
+<p>В иной форме:</p>
+
+\[A^{-1} = 
+\frac{1}{ad - bc}
+  \begin{pmatrix}
+    d &amp; -b \\
+    -c &amp; a \\
+  \end{pmatrix}\]
+
+<p>Заметим, что решение существует тогда, когда \(ad - bc \ne 0\), что является определителем матрицы \(A_{2 \times 2}\).</p>
+
+<p>В общем случае обратную матрицу можно определить как:</p>
+
+<p>\(A^{-1} = \frac{\text{adj} A}{|A|}\)
+, где \(\text{adj} A\) – соответсвующая присоединенная матрица,
+\(|A|\) – определитель матрицы \(A\).</p>
+
+<p>Из этого определения следует критерий обратимости: матрица обратима тогда и только тогда, когда она невырождена, то есть её определитель не равен нулю. Для неквадратных матриц и вырожденных матриц обратных матриц не существует.</p>
+
+<p>В Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<p>Теперь, матрица $B$ будет содержать обратную матрицу для $A$:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>B =
+  -2.0000   1.0000
+   1.5000  -0.5000
+</code></pre></div></div>
+
+<p>Однако стоит быть осторожным при использовании <code class="language-plaintext highlighter-rouge">inv()</code>. В некоторых случаях, особенно когда матрица \(A\) близка к вырожденной, использование <code class="language-plaintext highlighter-rouge">inv(A)</code> может привести к численным неточностям. Во многих приложениях, вместо явного вычисления обратной матрицы, лучше решать систему уравнений напрямую с помощью оператора <code class="language-plaintext highlighter-rouge">\</code>.</p>
+
+<h2 id="ортогональная-матрица">Ортогональная матрица</h2>
+
+<p>Ортогональная матрица — это квадратная матрица \(Q\), которая удовлетворяет условию:</p>
+
+\[Q \cdot Q^T = Q^T \cdot Q = I\]
+
+<p>где \(Q^T\) — это транспонированная матрица \(Q\), а \(I\) — это единичная матрица того же порядка, что и \(Q\).</p>
+
+<p>Иначе говоря, столбцы ортогональной матрицы образуют ортонормированный базис в евклидовом пространстве: все столбцы имеют длину 1 и они попарно ортогональны друг другу.</p>
+
+<p>Одно из полезных свойств ортогональных матриц заключается в том, что их обратная матрица совпадает с транспонированной матрицей, т.е. \(A^{-1} = A^T\).</p>
+
+<p>Ещё одно важное свойство ортогнальной матрицы – это то, что она сохраняет длину. Предположим, что имеется вектор \(v\) в некотором евклидовом пространстве. Если умножите этот вектор на ортогональную матрицу \(A\), то получившийся вектор \(Av\) будет иметь ту же длину, что и исходный вектор \(v\). Т.е. <strong>ортогональная матрица позволяет проводить преобразование без искажения длин векторов</strong>:</p>
+
+\[(Qv)^T (Qv) = ||Qv||^2 = v^T Q^T Q v = v^T v = ||v||^2\]
+
+<p><strong>Получение ортогональной матрицы в Matlab/Octave:</strong></p>
+
+<p>Имея матрицу можно воспользоваться функцией <code class="language-plaintext highlighter-rouge">qr</code> проводящую QR - факторизацию (разложение матрицы на ортогональную и верхнетреугольную).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">% 3x3 random matrix</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="nb">qr</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c1">% QR decomposition</span></code></pre></figure>
+
+<p>В этом примере <code class="language-plaintext highlighter-rouge">Q</code> – \(3 \times 3\) ортогональная матрица.</p>
+
+<p><strong>Проверка на ортогональность матрицы в Matlab/Octave:</strong></p>
+
+<p>Можно проверить, является ли матрица ортогональной, проверив, совпадает ли её транспонированная матрица с её обратной матрицей.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">isOrthogonal</span> <span class="o">=</span> <span class="nb">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">'*</span><span class="n">Q</span> <span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-10</span><span class="p">;</span></code></pre></figure>
+
+<p>Здесь рассчитывается фробениусова (евклидова) норма разницы \(Q^TQ - I\). Если эта норма очень близка к нулю (меньше некоторой маленькой погрешности, скажем, \(1^{-10}\), то пологаем, что матрица является ортогональной.</p>
+
+<p><strong>Определитель ортогональной матрицы</strong> равен \(-1\) или \(1\), если \(Q\) - ортогональная матрица, тогда <code class="language-plaintext highlighter-rouge">&gt;&gt; det(Q)</code> \(\sim\) <code class="language-plaintext highlighter-rouge">-1</code> или <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h2 id="матрица-вращения">Матрица вращения</h2>
+
+<p>Примером ортогональной матрицы служит матрица вращения.</p>
+
+<p>Матрица вращения (матрица поворота) - это матрица, используемая для для выполнения вращения на заданный угол и в заданном направлении. В частности, для 2D и 3D пространств матрицы вращения часто используются в компьютерной графике (например компьютерных играх) и систем управления (например робототехнике).</p>
+
+<p>Матрица поворота, исходя из правил матричной алгебры, может трансформировать как вектор, так и матрицу.</p>
+
+<p>Рассмотрим сначала задачу поворота вектора. Представим, что над гладью воды зависла удочка рыбака под углом \(\phi = 45^{\circ}\). Вдруг - поклёв! Рыбак потянул удочку, и она стала быстро набирать высоту, длина лески (катет А) стала расти, а расстояние от рыбака до самой лески стало уменьшаться (катет B). <strong><em>Длина самой удочки совсем не изменилась</em></strong>, даже когда она описала в воздухе дугу и оказалась почти над головой рыбака, под углом \(\phi = 90^{\circ}\). Длина лески сравнялась с длиной удочки, а расстояние между рыбаком и леской изменилось до 0, леска оказалась в руках рыбака.</p>
+
+<p><img src="/assets/images/matlab_course/01-fisherman-animation.gif" alt="Fisherman animation" /></p>
+
+<p>Пусть: длина удочки – \(r\), длина лески – \(y\), а \(x\) - расстояние между рыбаком и тем местом, где леска погружена в воду. Тогда, вспоминая теорему Пифагора: \(r^2 = y^2 + x^2\).</p>
+
+<ul>
+  <li>Отношение длины лески к длине удочки – \(\sin \phi\)</li>
+  <li>Отношение длины отрезка между рыбаком и местом погружения лески с длиной удочки — \(\cos \phi\)</li>
+</ul>
+
+\[\begin{equation}
+\begin{cases}
+x \cdot \cos \phi = x \cdot \frac{x}{r} \\
+y \cdot \sin \phi = y \cdot \frac{y}{r} \\
+\end{cases}
+\end{equation}\]
+
+<p>→</p>
+
+\[r = \frac{x^2}{r} + \frac{y^2}{r} = x \cdot \cos \phi + y \cdot \sin \phi\]
+
+<p>Пусть вектор-удочка - это радиус вектор, тогда его начальный координаты \((x, y)\), а координаты после поворота \((x', y')\). Измененный угол наклона к глади воды: \(\phi' = \phi + \theta\), где \(\theta\) угол поворота.</p>
+
+<p>Так как длина удочки не меняется \(r\) можно выразить через новые углы и катеты:</p>
+
+\[r = x' \cos(\phi + \theta) + y' \sin(\phi + \theta) = \\
+x' (\cos \phi \cos \theta - \sin \phi \sin \theta) + y' (\sin \phi \cos \theta + \cos \phi \sin \theta) = \\
+\frac{x'x}{r} \cos \theta - \frac{x'y}{r} \sin \theta + \frac{y' y}{r} \cos \theta + \frac{y' x}{r} \sin \theta\]
+
+<p>Домножив результат на \(r\):</p>
+
+\[x'x \cos \theta - x'y \sin \theta + y' y \cos \theta + y' x \sin \theta = \\
+x' (x \cos \theta - y \sin \theta) + y' (y \cos \theta + x \sin \theta) = r^2\]
+
+<p>Учитывая, что \(r^2 = x'^2 + y'^2\):</p>
+
+\[\begin{equation}
+\begin{cases}
+x' = x \cos \theta - y \sin \theta \\
+y' = y \cos \theta + x \sin \theta \\
+\end{cases}
+\end{equation}\]
+
+<p>Принимая тригонометрические функции от угла поворота за коэффициенты, можно представить новые координаты как результат перемножения на матрицу вращения \(R_{\theta}\):</p>
+
+\[R_{\theta} = 
+  \begin{pmatrix}
+    \cos \theta &amp; -\sin \theta \\
+    \sin \theta &amp; \cos \theta \\
+  \end{pmatrix}\]
+
+<p>Тогда для того чтобы получить новые координаты вектора имея старые и угол вращения:</p>
+
+\[R_{\theta} 
+\begin{align}
+  \begin{pmatrix}
+    x \\
+    y \\
+  \end{pmatrix}
+=
+  \begin{pmatrix}
+    x' \\
+    y' \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Матрица от обратного угла \(R_{-\theta}\), равна обратной матрицы \(R_{\theta}^{-1}\), а так как матрица ортогональна, то:</p>
+
+\[R_{-\theta} = R_{\theta}^T\]
+
+<p>Поворот на \(\frac{\pi}{4}\) в Matlab/Octave:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">theta</span> <span class="o">=</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">;</span> <span class="c1">% Example: 45-degree rotation in radians</span>
+<span class="n">R2D</span> <span class="o">=</span> <span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span> <span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)];</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span> <span class="c1">% Example 2D vector</span>
+<span class="n">v_rotated</span> <span class="o">=</span> <span class="n">R2D</span> <span class="o">*</span> <span class="n">v</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v_rotated =
+    0.7071
+    0.7071
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Однородное уравнение – это уравнение, которое можно записать в виде \(P(x) = 0\), где \(P(x)\) – полином, в каждом из слагаемых которого наблюдается одинаковая сумма степеней. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-04-octave-vectors-matrices.html">&laquo; Вектора и матрицы в Matlab/Octave</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-18-octave-basic-plotting.html">Основы построения графиков в Matlab/Octave &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2023
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>
