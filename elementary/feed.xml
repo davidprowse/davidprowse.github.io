@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>David Prowse</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 18 Sep 2023 04:51:46 +0300</pubDate>
-    <lastBuildDate>Mon, 18 Sep 2023 04:51:46 +0300</lastBuildDate>
+    <description>Welcome to my Blog. I write on technical subjects.</description>
+    <link>https://davidprowse.github.io/</link>
+    <atom:link href="https://davidprowse.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 18 Sep 2023 04:58:51 +0300</pubDate>
+    <lastBuildDate>Mon, 18 Sep 2023 04:58:51 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
   </channel>
