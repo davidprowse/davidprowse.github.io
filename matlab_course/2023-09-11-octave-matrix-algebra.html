@@ -160,7 +160,7 @@
 
 <h2 id="сложение-и-умножение-векторов">Сложение и умножение векторов</h2>
 
-<p><strong>Cложение матриц:</strong></p>
+<p><strong>Сложение матриц:</strong></p>
 
 \[\begin{align}
   \begin{pmatrix}
@@ -359,7 +359,7 @@ C =
 
 <p><strong>Необходимость помнить о погрешностях вычисления:</strong></p>
 
-<p>Предположим, что мы хотим проверить ассоциативность умножения на случайно сгенерированных матрицах подходящих размерностей. Задав состояние (<em>seed</em>) случайного генератора (для того чтобы точно такой-же результат можно было повторить позже) для Matlab: <code class="language-plaintext highlighter-rouge">rng(1)</code>, для Octave: <code class="language-plaintext highlighter-rouge">rand('seed', 1)</code> (стоит иметь в виду, что одинаковый <em>seed</em> не приведет к одинаковым результатам в разных языках), сгенерируем матрицы \(A: 2 \times 3, \space B: 3 \times 4,\space C: 4 \times 5\) заполненные случайными числами из равномерного распределения (\(0, 1\)):</p>
+<p>Предположим, что мы хотим проверить ассоциативность умножения на случайно сгенерированных матрицах подходящих размерностей. Задав состояние <em>(seed)</em> случайного генератора (для того чтобы точно такой-же результат можно было повторить позже) для Matlab: <code class="language-plaintext highlighter-rouge">rng(1)</code>, для Octave: <code class="language-plaintext highlighter-rouge">rand('seed', 1)</code> (стоит иметь в виду, что одинаковый <em>seed</em> не приведет к одинаковым результатам в разных языках), сгенерируем матрицы \(A: 2 \times 3, \space B: 3 \times 4,\space C: 4 \times 5\) заполненные случайными числами из равномерного распределения (\(0, 1\)):</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
@@ -398,7 +398,7 @@ C =
 
 <p>Точность проведения различных операций значительно выше точности вывода по умолчанию.</p>
 
-<h2 id="cпециальные-матрицы">Cпециальные матрицы</h2>
+<h2 id="специальные-матрицы">Специальные матрицы</h2>
 
 <p><strong>Нулевая матрица</strong></p>
 
@@ -437,9 +437,9 @@ C =
 <p>, где:</p>
 
 <ul>
-  <li>\(A\) – матрица коэффициентов рамзерностью: $m \times n$;</li>
-  <li>\(x\) – вектор-столбец размерностью $n \times 1$;</li>
-  <li>\(0\) – нулевой вектор-столбец размерностью $m \times 1$.</li>
+  <li>\(A\) – матрица коэффициентов рамзерностью: \(m \times n\);</li>
+  <li>\(x\) – вектор-столбец размерностью \(n \times 1\);</li>
+  <li>\(0\) – нулевой вектор-столбец размерностью \(m \times 1\).</li>
 </ul>
 
 <p><strong>Единичная матрица:</strong></p>
@@ -474,7 +474,7 @@ C =
   <li>Обратная матрица к единичной матрице является единичной матрицей;</li>
 </ol>
 
-<p>В Matlab/Octave функция <code class="language-plaintext highlighter-rouge">eye(2, 3)</code> создаст матрицу размером \(2 \times 3\), в которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обратим внимание, что полученная матрица не является квадратной; у неё 2 строки и 3 столбца. Технически это не единичная матрица, которая должна быть квадратной, но принцип похож: единицы на главной диагонали.</p>
+<p>В Matlab/Octave функция <code class="language-plaintext highlighter-rouge">eye(2, 3)</code> создаст матрицу размером \(2 \times 3\), в которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обратим внимание, что полученная матрица не является квадратной; у неё 2 строки и 3 столбца. Строго говоря это не единичная матрица, которая должна быть квадратной, но принцип похож: единицы на главной диагонали.</p>
 
 <p>Вот как будет выглядеть результат:</p>
 
@@ -581,7 +581,7 @@ C =
 
 <p>Транспонирование матрицы – это операция, при которой строки исходной матрицы преобразуются в столбцы, а столбцы – в строки. Другими словами, элементы матрицы отражаются относительно её главной диагонали.</p>
 
-<p>Пусть дана матрица \(A\) размером \(m \times n\). Транспонированная матрица $A^T$ будет иметь размер \(n \times m\) и определяется следующим образом: \(\forall i,j: A^T_{ij} = A_{ji}\).</p>
+<p>Пусть дана матрица \(A\) размером \(m \times n\). Транспонированная матрица \(A^T\) будет иметь размер \(n \times m\) и определяется следующим образом: \(\forall i,j: A^T_{ij} = A_{ji}\).</p>
 
 <p>В качестве примера рассмотрим матрицу:</p>
 
@@ -592,7 +592,7 @@ C =
     e &amp; f \\
   \end{pmatrix}\]
 
-<p>Результатом транспонирования матрицы $A$, будет:</p>
+<p>Результатом транспонирования матрицы \(A\), будет:</p>
 
 \[A^T =
   \begin{pmatrix}
@@ -700,7 +700,7 @@ C =
   -3   6  -3
 </code></pre></div></div>
 
-<p><strong><em>Тензорное произведение</em></strong> двух векторов – это способ комбинирования двух векторов так, чтобы получить новый математический объект, который сохраняет некоторую информацию о структуре каждого из исходных векторов. В контексте евклидовых векторов результатом тензорного произведения двух векторов $\overline{a}$ и $\overline{b}$ является матрица, элементы которой равны произведениям соответствующих элементов исходных векторов.</p>
+<p><strong><em>Тензорное произведение</em></strong> двух векторов – это способ комбинирования двух векторов так, чтобы получить новый математический объект, который сохраняет некоторую информацию о структуре каждого из исходных векторов. В контексте евклидовых векторов результатом тензорного произведения двух векторов \(\overline{a}\) и \(\overline{b}\) является матрица, элементы которой равны произведениям соответствующих элементов исходных векторов.</p>
 
 <p>Пусть \(\overline{a}= (a_1, a_2, \ldots, a_n)\) и \(\overline{b} = (b_1, b_2, \ldots, b_m)\). Тогда тензорное произведение \(\overline{a} \otimes \overline{b}\) будет матрицей размера \(n \times m\) с элементами \(a_i \cdot b_j\):</p>
 
@@ -840,7 +840,7 @@ y_2 = \frac{a}{ad - bc} \\
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
 <span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
 
-<p>Теперь, матрица $B$ будет содержать обратную матрицу для $A$:</p>
+<p>Теперь, матрица \(B\) будет содержать обратную матрицу для \(A\):</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>B =
   -2.0000   1.0000
