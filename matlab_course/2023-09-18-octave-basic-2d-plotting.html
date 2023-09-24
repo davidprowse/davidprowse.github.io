@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Простой пример" />
+  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-09-18-octave-basic-2d-plotting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Основы построения двумерных графиков в Matlab/Octave &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-18T03:00:00+03:00",
+        "headline": "Основы построения двумерных графиков в Matlab/Octave",
+        "url": "https://davidprowse.github.io/matlab_course/2023-09-18-octave-basic-2d-plotting.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "Matlab/Octave",
+        "image": "https://davidprowse.github.io/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://davidprowse.github.io/matlab_course/2023-09-18-octave-basic-2d-plotting.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Основы построения двумерных графиков в Matlab/Octave</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-18T03:00:00+03:00">
+      18 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#Matlab/Octave">Matlab/Octave</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="простой-пример">Простой пример</h2>
+
+<p>Основная команда для отрисовки «x-y графиков» выглядит так: <code class="language-plaintext highlighter-rouge">plot(x,y)</code>, где <code class="language-plaintext highlighter-rouge">x</code> и <code class="language-plaintext highlighter-rouge">y</code> — это координаты. Если задать всего одну пару чисел, то будет отмечена одна точка. Но чаще всего передают векторы (должны быть одинаковой длины), и тогда команда отображает все указанные точки из этих векторов, соединяя их между собой прямыми. Например построим график \(y = \sin(x)\) на диапазоне от \(-\pi\) до \(\pi\):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="nb">pi</span><span class="p">:</span><span class="nb">pi</span><span class="p">/</span><span class="mi">10</span><span class="p">:</span><span class="nb">pi</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s2">"sin(x)"</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s2">"Простой 2-D График"</span><span class="p">);</span></code></pre></figure>
+
+<p>Пошагово:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">x = -pi:pi/10:pi;</code>: Создаёт вектор <code class="language-plaintext highlighter-rouge">x</code>, который начинается с \(-π\), заканчивается \(π\), и увеличивается на \(\frac{\pi}{10}\) на каждом шаге. В итоге будет создано <code class="language-plaintext highlighter-rouge">length(x)</code> → <code class="language-plaintext highlighter-rouge">21</code> точек.</li>
+  <li><code class="language-plaintext highlighter-rouge">plot(x, sin(x));</code>: Строит график функции sin(x) в зависимости от <code class="language-plaintext highlighter-rouge">x</code>. График будет представлять собой кривую синусоиды на заданном интервале <code class="language-plaintext highlighter-rouge">x</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">xlabel("x");</code>: Устанавливает название для оси абсцисс (горизонтальной оси) как “x”.</li>
+  <li><code class="language-plaintext highlighter-rouge">ylabel("sin (x)");</code>: Устанавливает название для оси ординат (вертикальной оси) как “sin (x)”.</li>
+  <li><code class="language-plaintext highlighter-rouge">title("Простой 2-D График");</code>: Устанавливает заголовок графика как “Простой 2-D График”.</li>
+</ol>
+
+<p>В итоге, будет создан двумерный график функции \(\sin(x)\) на интервале от \(-\pi\) до \(\pi\) (радианы), с подписями осей и заголовком. На большинстве систем команда <code class="language-plaintext highlighter-rouge">plot</code> откроет новое окно с графиком:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/01-basic-2d-sin(x)-plot.png" alt="simple-2d-sin(x)-plot" /></p>
+
+<h2 id="базовые-улучшения-в-построении">Базовые улучшения в построении</h2>
+
+<p>При создании графиков в Matlab/Octave у пользователя есть множество способов сделать их более понятными, читаемыми и красивыми. Вот несколько советов и методов, которые помогут улучшить предыдущий график:</p>
+
+<ol>
+  <li><strong>Использование функции <code class="language-plaintext highlighter-rouge">linspace</code></strong>. Может быть полезно использовать функцию <code class="language-plaintext highlighter-rouge">linspace(start, end, n);</code> вместо <code class="language-plaintext highlighter-rouge">start:increment:end;</code> для генерации независмого вектора <code class="language-plaintext highlighter-rouge">x</code>, что позволяет контролировать “разрешение” оси x, задавая нужное количество точек напрямую. Для примера выше, экспериментальным путем, выясним удовлетворяющее число <code class="language-plaintext highlighter-rouge">n = 100</code>.</li>
+  <li><strong>Толщина линии</strong>. Для более ясного отображения линии следует увеличить её толщину передав соответсвующую пару <code class="language-plaintext highlighter-rouge">&lt;свойство&gt;, &lt;значение&gt;</code> функции <code class="language-plaintext highlighter-rouge">plot</code>: <code class="language-plaintext highlighter-rouge">plot(..., 'LineWidth', 2, ...);</code>.</li>
+  <li><strong>Настройка размеров шрифта подписей осей и заголовка графика</strong>. Команды <code class="language-plaintext highlighter-rouge">xlabel</code>, <code class="language-plaintext highlighter-rouge">ylabel</code> - отвечающие за метки осей а также <code class="language-plaintext highlighter-rouge">title</code> - отвечающий за заголовок графика принимают опциональный список пар <code class="language-plaintext highlighter-rouge">&lt;свойство&gt;, &lt;значение&gt;</code> для изменения свойств объекта. Таким образом, передавая дополнительный аргумент <code class="language-plaintext highlighter-rouge">'Fontsize'</code> и его значение, например <code class="language-plaintext highlighter-rouge">14</code> в случаи подписей осей: <code class="language-plaintext highlighter-rouge">x/ylabel(..., 'Fontsize', 14, ...)</code> и <code class="language-plaintext highlighter-rouge">'16'</code> в случае заголовка: <code class="language-plaintext highlighter-rouge">title(..., 'Fontsize', 16, ...)</code>, мы можем увеличить размер текста повысив читаемость.</li>
+  <li><strong>Поля вокруг данных</strong>. Границы графика не должны касаться границы холста, этого можно избежать добавив простанство вокруг максимальных и минимальных значений x-y и осей:
+    <ul>
+      <li>Добавление полей по оси абсцисс: <code class="language-plaintext highlighter-rouge">xlim([min(x) - x_margin, max(x) + x_margin]);</code>. Для примера выше подходящим будет: <code class="language-plaintext highlighter-rouge">x_margin = 1</code></li>
+      <li>Добавление полей по оси ординат: <code class="language-plaintext highlighter-rouge">ylim([min(y) - y_margin, max(y) + y_margin]);</code>. Для примера выше подходящим будет: <code class="language-plaintext highlighter-rouge">y_margin = .5</code></li>
+    </ul>
+  </li>
+  <li><strong>Форматирование LaTeX</strong>. Имея дело с математическимим сущностями, часто небходимо их аннотировать правильным математическим форматированием. В Matlab/Octave для этого можно использовать стандартное форматирование LaTeX. Для вставки текста в формате LaTeX в заголовок, метки осей или другие части графика, следует использовать свойство <code class="language-plaintext highlighter-rouge">'Interpreter'</code> и установить его значение в <code class="language-plaintext highlighter-rouge">'latex'</code>. Это позволяет корректно отображать сложные математические выражения и уравнения прямо на графиках. В нашем случае: <code class="language-plaintext highlighter-rouge">title("Graph $y = \sin(x), x \in [-\pi; \pi]$", 'Interpreter', 'latex', ...);</code>. Стоит иметь в виду, замена <code class="language-plaintext highlighter-rouge">Graph</code> на русскоязычное слово <code class="language-plaintext highlighter-rouge">График</code> приведет к ошибки в связи не возможности обработки интерпретатора не ascii символов.</li>
+  <li><strong>Сетка</strong>. Сетка поможет в точном чтении значений графика, для её добавления: <code class="language-plaintext highlighter-rouge">grid on;</code></li>
+  <li><strong>Более информативное представление радиан</strong>. Чтобы установить деления по оси x в радианах в более информативном виде: \(\frac{\pi}{2}, \frac{\pi}{4}\) и т.д. необходим сделать следующее:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">xticks([-pi, -3*pi/4, -pi/2, -pi/4, 0, pi/4, pi/2, 3*pi/4, pi]);</code> - устанавливает позиции делений (или меток) на оси x графика;</li>
+      <li><code class="language-plaintext highlighter-rouge">xticklabels({'$-\pi$', '$-\frac{3\pi}{4}$', '$-\frac{\pi}{2}$', '$-\frac{\pi}{4}$', '$0$', '$\frac{\pi}{4}$', '$\frac{\pi}{2}$', '$\frac{3\pi}{4}$', '$\pi$'});</code> - устанавливает текстовые метки для делений на оси x графика. В данном случае эта команда заменяет стандартные метки делений на оси x на указанные в списке математические выражения в формате LaTeX.</li>
+      <li><code class="language-plaintext highlighter-rouge">set(gca, 'TickLabelInterpreter', 'latex');</code> - устанавливает интерпретатор для текстовых меток делений текущих осей графика на значение ‘latex’. Когда интерпретатор установлен на ‘latex’, Matlab будет интерпретировать текстовые метки как код LaTeX. Это позволяет отображать математические символы и выражения в формате LaTeX на графике.</li>
+      <li>Для увеличения размера подписей необходимо изменить соответсвующие свойство текущих осей: <code class="language-plaintext highlighter-rouge">ax = gca; ax.XAxis.FontSize = 14;</code>. <em>Более подробно</em><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
+    </ul>
+  </li>
+  <li><strong>Увеличение отметок оси y</strong> → <code class="language-plaintext highlighter-rouge">ax.YAxis.FontSize = 14;</code></li>
+</ol>
+
+<p>Итоговый код генерации улучшенного графика:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Define the x and y data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">% x values ranging from -pi to pi</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                 <span class="c1">% y values as the sine of x</span>
+
+<span class="c1">% Plot the graph</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'Linewidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>   <span class="c1">% Plot y = sin(x) with a line width of 2</span>
+
+<span class="c1">% Set title and axis labels with their font sizes</span>
+<span class="nb">title</span><span class="p">(</span><span class="s2">"Graph: $y = \sin(x), x \in [-\pi; \pi]$"</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'Interpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">% Title using LaTeX for mathematical notation</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>                 <span class="c1">% x-axis label</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>                 <span class="c1">% y-axis label</span>
+
+<span class="c1">% Adjust the x and y axis limits</span>
+<span class="n">x_margin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y_margin</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_margin</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_margin</span><span class="p">]);</span> <span class="c1">% Set x-axis limits with margins</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_margin</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_margin</span><span class="p">]);</span> <span class="c1">% Set y-axis limits with margins</span>
+
+<span class="c1">% Add grid to the graph</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Set x-ticks and their labels using LaTeX</span>
+<span class="nb">xticks</span><span class="p">([</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">]);</span>
+<span class="nb">xticklabels</span><span class="p">({</span> <span class="k">...</span>
+    <span class="s1">'$-\pi$'</span><span class="p">,</span> <span class="s1">'$-\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$-\frac{\pi}{2}$'</span><span class="p">,</span> <span class="s1">'$-\frac{\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'0'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{2}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\pi$'</span> <span class="k">...</span>
+    <span class="p">});</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span> <span class="s1">'TickLabelInterpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">);</span> <span class="c1">% Use LaTeX interpreter for the tick labels</span>
+
+<span class="c1">% Set the font size of the x and y axes</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="nb">gca</span><span class="p">();</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">XAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span> <span class="c1">% Font size for x-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">YAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span> <span class="c1">% Font size for y-axis</span></code></pre></figure>
+
+<p>Изображение улучшенного графика:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/02-basic-2d-sin(x)-plot-better.png" alt="simple-2d-sin(x)-plot-better" /></p>
+
+<h2 id="инкапсуляция-оформления-графика">Инкапсуляция оформления графика</h2>
+
+<p><em>Инкапсулируем</em><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> настройки по оформлению графика в отдельную функцию <code class="language-plaintext highlighter-rouge">buildPrettyPlot</code> с задаваемыми параметрами <code class="language-plaintext highlighter-rouge">x</code> - список значений аргумента, <code class="language-plaintext highlighter-rouge">y</code> - список значений функции, <code class="language-plaintext highlighter-rouge">xTicks</code> - позиции меток OX, <code class="language-plaintext highlighter-rouge">xTickLabels</code> - наименования меток OX, <code class="language-plaintext highlighter-rouge">titleStr</code> - заголовок графика.</p>
+
+<p>Заменим ранее более тонкую настройку полей вокруг данных:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x_margin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y_margin</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_margin</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_margin</span><span class="p">]);</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_margin</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_margin</span><span class="p">]);</span></code></pre></figure>
+
+<p>На более простую встроенную <em>настройку <code class="language-plaintext highlighter-rouge">axis padded;</code></em><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>, которая в дальнейшим может быть использована и к нескольким графиком построенных на одной оси.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">buildPrettyPlot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xTicks</span><span class="p">,</span> <span class="n">xTickLabels</span><span class="p">,</span> <span class="n">titleStr</span><span class="p">)</span>
+    <span class="c1">% Построение графика</span>
+    <span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'Linewidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> 
+    
+    <span class="c1">% Установка названия графика и осей с указанием размера шрифта</span>
+    <span class="nb">title</span><span class="p">(</span><span class="n">titleStr</span><span class="p">,</span> <span class="s1">'Interpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+    <span class="nb">xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>                             
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>  
+    
+    <span class="c1">% Корректировка пределов осей x и y</span>
+    <span class="nb">axis</span> <span class="n">padded</span><span class="p">;</span>
+    
+    <span class="c1">% Добавление сетки на график</span>
+    <span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+    
+    <span class="c1">% Установка делений и их меток на оси x с использованием LaTeX</span>
+    <span class="nb">xticks</span><span class="p">(</span><span class="n">xTicks</span><span class="p">);</span>
+    <span class="nb">xticklabels</span><span class="p">(</span><span class="n">xTickLabels</span><span class="p">);</span>
+    <span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span> <span class="s1">'TickLabelInterpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">);</span>
+    
+    <span class="c1">% Установка размера шрифта для осей x и y</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="nb">gca</span><span class="p">();</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">XAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">YAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Проверим нашу функцию <code class="language-plaintext highlighter-rouge">buildPrettyPlot</code> и заодно отобразим график \(\cos(x)\):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Задаем точки для делений на оси x</span>
+<span class="n">xTicks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">];</span>
+
+<span class="c1">% Задаем подписи к точкам делений на оси x</span>
+<span class="n">xTickLabels</span> <span class="o">=</span> <span class="p">{</span> <span class="k">...</span>
+    <span class="s1">'$-\pi$'</span><span class="p">,</span> <span class="s1">'$-\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$-\frac{\pi}{2}$'</span><span class="p">,</span> <span class="s1">'$-\frac{\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'0'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{2}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\pi$'</span> <span class="k">...</span>
+    <span class="p">};</span>
+
+<span class="c1">% Заголовок графика</span>
+<span class="n">titleStr</span> <span class="o">=</span> <span class="s2">"График функций $\sin(x)$ и $\cos(x)$ для $x \in [-\pi; \pi]$"</span><span class="p">;</span>
+
+<span class="c1">% Создаем новое окно для графика</span>
+<span class="nb">figure</span><span class="p">;</span>
+
+<span class="c1">% Удерживаем текущий график, чтобы нарисовать на нем несколько функций</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+<span class="c1">% Строим красивый график для функции sin(x)</span>
+<span class="n">buildPrettyPlot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">xTicks</span><span class="p">,</span> <span class="n">xTickLabels</span><span class="p">,</span> <span class="n">titleStr</span><span class="p">);</span>
+
+<span class="c1">% Строим красивый график для функции cos(x)</span>
+<span class="n">buildPrettyPlot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">xTicks</span><span class="p">,</span> <span class="n">xTickLabels</span><span class="p">,</span> <span class="n">titleStr</span><span class="p">);</span>
+
+<span class="c1">% Добавляем легенду к графику</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'$y_1 = \sin(x)$'</span><span class="p">,</span> <span class="s1">'$y_2 = \cos(x)$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'Interpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">'Location'</span><span class="p">,</span> <span class="s1">'northwest'</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/assets/images/matlab_course/basic-plots/04-encapsulated-basic-2d-sin(x)-cos(x).png" alt="encapsulated-basic-2d-sin(x)-cos(x)" /></p>
+
+<h2 id="изображение-точек-интереса">Изображение точек интереса</h2>
+
+<p>Часто может потребоваться нахождение и изображение определенных точек интереса на графике, например точек минимума и максимума или корней.</p>
+
+<p><strong>Нахождение и изображение точек минимума и максимума</strong></p>
+
+<p><strong>1) Создание анонимной функции</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span></code></pre></figure>
+
+<p>Здесь:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">f</code>: Это имя, данное анонимной функции. После её определения её можно использовать, как и любое другое имя функции;</li>
+  <li><code class="language-plaintext highlighter-rouge">@(...)</code>: Обозначает входные аргументы функции. В этом контексте анонимная функция принимает один аргумент, <code class="language-plaintext highlighter-rouge">x</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">sin(x)</code>: Это выражение функции. Оно указывает, что функция возвращает. В этом случае возвращается \(\sin x\).</li>
+</ul>
+
+<p><strong>2) Нахождение минимума функции</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">[</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">]</span> <span class="o">=</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">);</span></code></pre></figure>
+
+<p>Здесь:</p>
+
+<ul>
+  <li>Функция <code class="language-plaintext highlighter-rouge">fminbnd</code> в Matlab используется для поиска значения x (<code class="language-plaintext highlighter-rouge">x_min_val</code>) унимодальной функции <code class="language-plaintext highlighter-rouge">f</code> (функции, у которой есть один локальный и глобальный минимум) на указанном интервале при котором достигается минимальное значение y (<code class="language-plaintext highlighter-rouge">y_min_val</code>);</li>
+  <li><code class="language-plaintext highlighter-rouge">f</code> - это функция, минимум которой мы хотим найти. В данном контексте это может быть анонимной функцией (например, <code class="language-plaintext highlighter-rouge">f = @(x) sin(x);</code>) или любой другой определенной функцией;</li>
+  <li><code class="language-plaintext highlighter-rouge">-pi</code> и <code class="language-plaintext highlighter-rouge">pi</code> - это границы интервала, на котором мы хотим найти минимум. В этом случае мы ищем минимум функции <code class="language-plaintext highlighter-rouge">f</code> на интервале \([-\pi, \pi]\);</li>
+  <li><code class="language-plaintext highlighter-rouge">[x_min_val, y_min_val]</code> - это результаты работы функции <code class="language-plaintext highlighter-rouge">fminbnd</code>. В частности:
+<code class="language-plaintext highlighter-rouge">x_min_val</code>: значение x в пределах интервала \([-\pi, \pi]\), при котором функция <code class="language-plaintext highlighter-rouge">f</code> достигает своего минимума;
+<code class="language-plaintext highlighter-rouge">y_min_val</code>: соответствующее минимальное значение функции <code class="language-plaintext highlighter-rouge">f</code>. Используя синтаксис квадратных скобок: <code class="language-plaintext highlighter-rouge">[x_min_val, y_min_val]</code> - в некотором смысле производится распаковка значений: функция <code class="language-plaintext highlighter-rouge">fminbnd</code> возвращает два значения, и мы одновременно присваиваем каждое из этих возвращаемых значений отдельным переменным (<code class="language-plaintext highlighter-rouge">x_min_val</code> и <code class="language-plaintext highlighter-rouge">y_min_val</code>). В отличии от других языков программирования при предоставлении только одной переменную для вывода, Matlab, как правило, вернет только первое значение (в других же чаще всего вернется «не распакованная» коллекция).</li>
+</ul>
+
+<p><strong>3) Накладывание графических элементов</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">hold</span> <span class="n">on</span><span class="p">;</span></code></pre></figure>
+
+<p>Команда используется для того, чтобы на текущем графике или окне отображения можно было наносить последующие графические данные без стирания или замены предыдущих.</p>
+
+<p>При завершении добавление всех графиков чтобы вернуться к стандартному режиму (где каждый новый график заменяет предыдущий), следует использовать команду: <code class="language-plaintext highlighter-rouge">hold off;</code>.</p>
+
+<p>В общем случае применение команды:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">);</span>  <span class="c1">% Первый график</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>      <span class="c1">% Включаем режим "удержания" графика</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">);</span>  <span class="c1">% Второй график будет нарисован поверх первого, а не заменит его</span></code></pre></figure>
+
+<p><strong>4) Отметка минимальной точки на графике</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">plot</span><span class="p">(</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'ro'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Min Point'</span><span class="p">);</span></code></pre></figure>
+
+<p>Здесь:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">plot</code>: Это функция Matlab, предназначенная для создания 2D графических элементов;</li>
+  <li><code class="language-plaintext highlighter-rouge">x_min_val, y_min_val</code>: Это координаты \(x\) и \(y\) точки, которую нужно отобразить на графике. В данном случае, <code class="language-plaintext highlighter-rouge">x_min_val</code> — это координата по оси \(x\), а <code class="language-plaintext highlighter-rouge">y_min_val</code> — это соответствующее значение функции в этой точке (или координата по оси \(y\);</li>
+  <li><code class="language-plaintext highlighter-rouge">'ro'</code>: Этот код стиля описывает, как будет выглядеть точка на графике. Символ <code class="language-plaintext highlighter-rouge">'r'</code> означает красный цвет, а символ <code class="language-plaintext highlighter-rouge">'o'</code> указывает, что точка будет представлена в виде круга;</li>
+  <li><code class="language-plaintext highlighter-rouge">'MarkerSize', 8</code>: Это параметр определяет размер маркера на графике. В данном контексте размер маркера установлен равным 8;</li>
+  <li><code class="language-plaintext highlighter-rouge">'LineWidth', 2</code>: Этот параметр задаёт толщину линии маркера. Если маркер имеет контур, это будет определять его толщину. Здесь установлено значение 2;</li>
+  <li><code class="language-plaintext highlighter-rouge">'DisplayName', 'Min Point'</code>: Этот параметр задаёт имя или метку для данного графического объекта, которое будет отображено в легенде графика (если легенда активирована). В этом примере маркер будет представлен в легенде под названием <code class="language-plaintext highlighter-rouge">"Min Point"</code>.</li>
+</ul>
+
+<p><strong>5) Итоговый код для изображения точки минимума</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">[</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">]</span> <span class="o">=</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'ro'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Min Point'</span><span class="p">);</span></code></pre></figure>
+
+<p><strong>6) Нахождения точки максимума</strong></p>
+
+<p>Для поиска и отображения максимума функции \(\sin(x)\) на интервале \([- \pi, \pi]\) можно использовать функцию <code class="language-plaintext highlighter-rouge">fminbnd</code>, но с отрицательной версией функции, так как <code class="language-plaintext highlighter-rouge">fminbnd</code> ищет минимум. Искать максимум функции <code class="language-plaintext highlighter-rouge">f</code> это то же самое, что искать минимум функции <code class="language-plaintext highlighter-rouge">-f</code>.</p>
+
+<p>После модификации кода для отображения минмума, итоговый код отображения точки максимума следующий:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">g</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">% Отрицательное значение функции sin</span>
+
+<span class="p">[</span><span class="n">x_max_val</span><span class="p">,</span> <span class="n">y_neg_max_val</span><span class="p">]</span> <span class="o">=</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">);</span> 
+<span class="n">y_max_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_neg_max_val</span><span class="p">;</span> <span class="c1">% Возвращаем значение обратно в положительную версию</span>
+
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_max_val</span><span class="p">,</span> <span class="n">y_max_val</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'bo'</span><span class="p">,</span> <span class="k">...</span><span class="c"> % Используем синий цвет для точки максимума</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Max Point'</span><span class="p">);</span></code></pre></figure>
+
+<p>Таким образом, код выше найдет и отобразит точку максимума функции \(\sin(x)\) на заданном интервале в виде синей точки.</p>
+
+<p><strong>Отображение корней</strong></p>
+
+<p>Для нахождения корней можно воспользоваться функцией <code class="language-plaintext highlighter-rouge">fzero</code>, требующая начальные приближения. В нашем случае: <code class="language-plaintext highlighter-rouge">initial_guesses = [-2.5, 0, 2.5];</code> - приближения корней \([-pi, 0, \pi]\).</p>
+
+<p>Итоговый код отображения корней на графике:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Определение функции</span>
+<span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c1">% Начальные приближения для корней (близкие к ожидаемым корням)</span>
+<span class="n">initial_guesses</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">];</span>  <span class="c1">% Это приближения возле -pi, 0 и pi</span>
+
+<span class="c1">% Ищем корни функции, используя начальные приближения</span>
+<span class="n">roots_x</span> <span class="o">=</span> <span class="nb">arrayfun</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="nb">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">guess</span><span class="p">),</span> <span class="n">initial_guesses</span><span class="p">);</span>
+
+<span class="c1">% Вычисляем соответствующие y-значения для корней (которые все будут равны нулю)</span>
+<span class="n">roots_y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">roots_x</span><span class="p">);</span>
+
+<span class="c1">% Отображаем корни на графике</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>  <span class="c1">% Это позволяет нам наложить эти точки на существующий график</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">roots_x</span><span class="p">,</span> <span class="n">roots_y</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'k+'</span><span class="p">,</span> <span class="k">...</span><span class="c"> % Метки в виде черных плюсов</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Roots'</span><span class="p">);</span></code></pre></figure>
+
+<p>Функция <code class="language-plaintext highlighter-rouge">arrayfun</code> применяет заданную функцию к каждому элементу массива. В данном случае к массиву <code class="language-plaintext highlighter-rouge">initial_guesses</code>.</p>
+
+<p>Подробнее разберем, что делает следующий код: <code class="language-plaintext highlighter-rouge">arrayfun(@(guess) fzero(f, guess), initial_guesses);</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fzero(f, guess)</code>: Это функция для поиска корня (или нуля) функции. Она пытается найти значение <code class="language-plaintext highlighter-rouge">x</code>, такое что <code class="language-plaintext highlighter-rouge">f(x) = 0</code>. Функция <code class="language-plaintext highlighter-rouge">fzero</code> требует двух аргументов: функции, корень которой вы хотите найти (в этом контексте <code class="language-plaintext highlighter-rouge">f</code>), и начального приближения для корня (<code class="language-plaintext highlighter-rouge">guess</code>);</li>
+  <li><code class="language-plaintext highlighter-rouge">@(guess) fzero(f, guess)</code> - создание анонимной функциn. Это способ определения простой функции в строке, без необходимости именования или определения ее в другом месте. Эта конкретная анонимная функция принимает один аргумент, <code class="language-plaintext highlighter-rouge">guess</code>, и возвращает результат <code class="language-plaintext highlighter-rouge">fzero(f, guess)</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">arrayfun(...)</code>: Это <em>функция высшего порядка</em><sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>, которая применяет данную функцию (в данном случае нашу анонимную функцию из предыдущего пункта) к каждому элементу предоставленного массива (<code class="language-plaintext highlighter-rouge">initial_guesses</code>). Таким образом, для каждого значения в <code class="language-plaintext highlighter-rouge">initial_guesses</code> она будет искать корень функции <code class="language-plaintext highlighter-rouge">f</code>, используя это значение как начальное приближение.</li>
+</ul>
+
+<p>В итоге, строка <code class="language-plaintext highlighter-rouge">arrayfun(@(guess) fzero(f, guess), initial_guesses)</code>; находит корни функции <code class="language-plaintext highlighter-rouge">f</code>, используя каждое из значений в <code class="language-plaintext highlighter-rouge">initial_guesses</code> в качестве начальных приближений. Результатом является массив корней, соответствующих каждому начальному приближению.</p>
+
+<p><strong>Добавление легенды</strong></p>
+
+<p>Добавление легенды с подписями графических объектов:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">legend</span><span class="p">(</span><span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">'Location'</span><span class="p">,</span> <span class="s1">'southeast'</span><span class="p">);</span></code></pre></figure>
+
+<p>Так как линия графика одна его подпись является излишней, исключим её из списка легенды при создании передав следующие параметры: <code class="language-plaintext highlighter-rouge">plot(..., HandleVisibility', 'off')</code></p>
+
+<p><strong>Отображение изначального графика + нахождение и изображение точек экстремумов и корней</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Создаем новое окно для графика</span>
+<span class="nb">figure</span><span class="p">;</span>
+
+<span class="c1">% Удерживаем текущий график, чтобы нарисовать на нем несколько функций</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% ОТОБРАЖЕНИЕ ГРАФИКА Ф-ИИ SIN(X)</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функции</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'Linewidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span> 
+
+<span class="c1">% ОТОБРАЖЕНИЕ ТОЧЕК ЭКСТРЕМУМА</span>
+
+<span class="c1">% Созданиние и присвоение f анонимной функции,</span>
+<span class="c1">% возвращяющей значение sin(x)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c1">% Нахождение точки минимума ф-ии</span>
+<span class="p">[</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">]</span> <span class="o">=</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">);</span>
+
+<span class="c1">% Отображение точки минимума ф-ии</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_min_val</span><span class="p">,</span> <span class="n">y_min_val</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'ro'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Min Point'</span><span class="p">);</span>
+
+<span class="c1">% Созданиние и присвоение g анонимной функции,</span>
+<span class="c1">% возвращяющей отрицательное значение sin(x)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> 
+
+<span class="c1">% Нахождение точки максимума</span>
+<span class="p">[</span><span class="n">x_max_val</span><span class="p">,</span> <span class="n">y_neg_max_val</span><span class="p">]</span> <span class="o">=</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="nb">pi</span><span class="p">);</span> 
+<span class="n">y_max_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_neg_max_val</span><span class="p">;</span> <span class="c1">% Возвращаем значение обратно в положительную версию</span>
+
+<span class="c1">% Отображение точки максимума</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_max_val</span><span class="p">,</span> <span class="n">y_max_val</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'bo'</span><span class="p">,</span> <span class="k">...</span><span class="c"> % Используем синий цвет для точки максимума</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Max Point'</span><span class="p">);</span>
+
+<span class="c1">% Начальные приближения для корней (близкие к ожидаемым корням)</span>
+<span class="n">initial_guesses</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">];</span>  <span class="c1">% Это приближения возле -pi, 0 и pi</span>
+
+<span class="c1">% Ищем корни функции, используя начальные приближения</span>
+<span class="n">roots_x</span> <span class="o">=</span> <span class="nb">arrayfun</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="nb">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">guess</span><span class="p">),</span> <span class="n">initial_guesses</span><span class="p">);</span>
+
+<span class="c1">% Вычисляем соответствующие y-значения для корней (которые все будут равны нулю)</span>
+<span class="n">roots_y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">roots_x</span><span class="p">);</span>
+
+<span class="c1">% Отображаем корни на графике</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">roots_x</span><span class="p">,</span> <span class="n">roots_y</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'k+'</span><span class="p">,</span> <span class="k">...</span><span class="c"> % Метки в виде черных плюсов</span>
+    <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'Roots'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика и осей с указанием размера шрифта</span>
+<span class="nb">title</span><span class="p">(</span><span class="s2">"Graph of $\sin(x)$ for $x \in [-\pi; \pi]$ with points of interest"</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'Interpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span> <span class="k">...</span>
+    <span class="p">);</span> 
+<span class="nb">xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>                             
+<span class="nb">ylabel</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>  
+
+<span class="c1">% Корректировка пределов осей x и y</span>
+<span class="nb">axis</span> <span class="n">padded</span><span class="p">;</span>
+
+<span class="c1">% Включить отображение рамки</span>
+<span class="nb">box</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Добавление сетки на график</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Задаем точки для делений на оси x</span>
+<span class="n">xTicks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">];</span>
+
+<span class="c1">% Задаем подписи к точкам делений на оси x</span>
+<span class="n">xTickLabels</span> <span class="o">=</span> <span class="p">{</span> <span class="k">...</span>
+    <span class="s1">'$-\pi$'</span><span class="p">,</span> <span class="s1">'$-\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$-\frac{\pi}{2}$'</span><span class="p">,</span> <span class="s1">'$-\frac{\pi}{4}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'0'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{2}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\pi$'</span> <span class="k">...</span>
+    <span class="p">};</span>
+
+<span class="c1">% Установка делений и их меток на оси x с использованием LaTeX</span>
+<span class="nb">xticks</span><span class="p">(</span><span class="n">xTicks</span><span class="p">);</span>
+<span class="nb">xticklabels</span><span class="p">(</span><span class="n">xTickLabels</span><span class="p">);</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span> <span class="s1">'TickLabelInterpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">);</span>
+    
+<span class="c1">% Установка размера шрифта для осей x и y</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="nb">gca</span><span class="p">();</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">XAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">YAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+
+<span class="c1">% Отображение легенды на графике</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">'Location'</span><span class="p">,</span> <span class="s1">'southeast'</span><span class="p">);</span></code></pre></figure>
+
+<p><em>Итоговое изображение графика:</em></p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/03-basic-2d-sin(x)-plot-better-points.png" alt="simple-2d-sin(x)-plot-better-points" /></p>
+
+<h2 id="отображение-нескольких-графиков-на-одной-оси-тонкая-настройка">Отображение нескольких графиков на одной оси. Тонкая настройка</h2>
+
+<p>Рассмотрим одновременное отображение нескольких графиков на примере стандартных преобразований функций.</p>
+
+<p><strong>Растяжение и сжатие по оси OX:</strong></p>
+
+<p>При сравнении графиков двух функций</p>
+
+\[y_1 = f(x), y_2 = f(px), p &gt; 1\]
+
+<p>график второй функции <strong><em>сжимается</em></strong> в \(p\) раз по оси OX по сравнению с графиком первой функции. В частности для тригонометрических функций период второй функции уменьшается в \(p\) раз: \(T_2 = \frac{T_1}{p}\).</p>
+
+<p>При сравнении графиков двух функций</p>
+
+\[y_1 = f(x), y_2 = f(\frac{x}{p}), p &gt; 1\]
+
+<p>график второй функции <strong><em>растягивается</em></strong> в \(p\) раз по оси OX по сравнению с графиком первой функции. В частности для тригонометрических функций период второй функции увеличивается в \(p\) раз: \(T_2 = pT_1\).</p>
+
+<p>Построим в одной системе координат три графика на интервале \(x \in [0; 2\pi]\):</p>
+
+\[f(x) = \sin(x), \space\space g(x) = \sin(2x), \space\space h(x) = \sin(\frac{x}{2})\]
+
+<p>Наибольшую гибкость и легкость в настройки нескольких графиков позволяет достичь последовательное декларирования графиков одним за другим используя <code class="language-plaintext highlighter-rouge">plot();</code> заранее выставив опцию <code class="language-plaintext highlighter-rouge">hold on;</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Создаем новое окно для графика</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="nb">figure</span><span class="p">;</span>
+
+<span class="c1">% Выставление для всех линий ширину по умолчанию</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">'DefaultLineLineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">% Удерживаем текущий график, чтобы нарисовать на нем несколько функций</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                
+<span class="n">g</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+<span class="n">h</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">/</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">% Отображение кривых функций</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$y = \sin(x)$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s1">'-.r'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$y = \sin(2x)$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">':g'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$y = \sin(\frac{x}{2})$'</span><span class="p">);</span>
+
+<span class="c1">% Ображение оси OX </span>
+<span class="nb">yline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+<span class="c1">% Отображение точек интереса</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика и осей с указанием размера шрифта</span>
+<span class="nb">title</span><span class="p">(</span><span class="s1">'Растяжение и сжатие по оси OX'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+<span class="nb">xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>                             
+<span class="nb">ylabel</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
+
+<span class="c1">% Корректировка пределов осей x и y</span>
+<span class="nb">axis</span> <span class="n">padded</span><span class="p">;</span>
+
+<span class="c1">% Включить отображение рамки</span>
+<span class="nb">box</span> <span class="n">on</span><span class="p">;</span>
+    
+<span class="c1">% Добавление сетки на график</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="c1">% Задаем точки для делений на оси x</span>
+<span class="n">xTicks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="nb">pi</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">];</span>
+
+<span class="c1">% Задаем подписи к точкам делений на оси x</span>
+<span class="n">xTickLabels</span> <span class="o">=</span> <span class="p">{</span> <span class="k">...</span>
+    <span class="s1">'0'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\frac{\pi}{2}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{3\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\pi$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{5\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$\frac{3\pi}{2}$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'$\frac{7\pi}{4}$'</span><span class="p">,</span> <span class="s1">'$2\pi$'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="p">};</span>
+
+<span class="c1">% Установка делений и их меток на оси x с использованием LaTeX</span>
+<span class="nb">xticks</span><span class="p">(</span><span class="n">xTicks</span><span class="p">);</span>
+<span class="nb">xticklabels</span><span class="p">(</span><span class="n">xTickLabels</span><span class="p">);</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span> <span class="s1">'TickLabelInterpreter'</span><span class="p">,</span> <span class="s1">'latex'</span><span class="p">);</span>
+
+<span class="c1">% Установка размера шрифта для осей x и y</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="nb">gca</span><span class="p">();</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">XAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">YAxis</span><span class="o">.</span><span class="n">FontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+
+<span class="c1">% Отображение легенды на графике</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'Interpreter'</span><span class="p">,</span> <span class="s1">'Latex'</span><span class="p">,</span> <span class="s1">'FontSize'</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+
+<span class="k">function</span> <span class="n">plotLabelledPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    <span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'ok'</span><span class="p">,</span> <span class="k">...</span><span class="c"> </span>
+        <span class="s1">'MarkerSize'</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+    <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="c1">% смещение, чтобы текст не накладывался на точку</span>
+    <span class="nb">text</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">label</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><img src="/assets/images/matlab_course/basic-plots/05-ox-stretch.png" alt="ox-stretch" /></p>
+
+<ul>
+  <li>Период колебания функции \(g(x) = \sin 2x\) в два раза меньше: \(T_g = \frac{2 \pi}{2} = \pi\)</li>
+  <li>Период колебания функции \(h(x) = \sin \frac{x}{2}\) в два раза больше: \(T_h = 2 \cdot 2 \pi = 4\pi\)</li>
+</ul>
+
+<p><strong>Растяжение и сжатие по оси OY</strong></p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = Af(x), A &gt; 1\]
+
+<p>график второй функции <strong><em>растягивается</em></strong> в A раз по оси OY по сравнению с графиком первой функции.</p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = \frac{1}{A} f(x), A &gt; 1\]
+
+<p>график второй функции <strong><em>сжимается</em></strong> в A раз по оси OY по сравнению с графиком первой функции.</p>
+
+<p>В контексте синусоиды и косинусоиды говорят, что:</p>
+<ul>
+  <li>умножение на параметр \(A &gt; 1\) увеличивает амплитуду колебаний в \(A\) раз;</li>
+  <li>деление на параметр \(A &gt; 1\) уменьшает амплитуду колебаний в \(A\) раз.</li>
+</ul>
+
+<p>Построим в одной системе координат три графика на интервале \(x \in [0; 2\pi]\):</p>
+
+\[f(x) = \sin(x), \space\space g(x) = 2\sin(x), \space\space h(x) = \frac{1}{2} \sin(x)\]
+
+<p>Изменив соответсвующую часть предыдущего кода:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% [... Предыдущая часть кода ...]</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                
+<span class="n">g</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">/</span><span class="mi">2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c1">% Отображение кривых функций</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$f(x) = \sin x$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s1">'-.r'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$g(x) = 2\sin x$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">':g'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$h(x) = \frac{1}{2} \sin x$'</span><span class="p">);</span>
+
+<span class="c1">% Ображение оси OX </span>
+<span class="nb">yline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+<span class="c1">% Ображение оси OY </span>
+<span class="nb">xline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+<span class="c1">% Отображение точек интереса</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика</span>
+<span class="nb">title</span><span class="p">(</span><span class="s1">'Растяжение и сжатие по оси OY'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+
+<span class="c1">% [... Последующая часть кода ...]</span></code></pre></figure>
+
+<p>Получим следующий график:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/06-oy-stretch.png" alt="oy-stretch" /></p>
+
+<p><strong>Параллельный перенос по оси OX</strong></p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = f(x + a), a &gt; 0\]
+
+<p>график второй функции <strong><em>смещается влево</em></strong> на \(a\) по оси OX по сравнению с графиком первой функции.</p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = f(x-a), a &gt; 0\]
+
+<p>график второй функции <strong>смещается вправо</strong> на \(a\) по оси OX по сравнению с графиком перовй функции.</p>
+
+<p>При работе с тригонометрическими функциями параметр \(x\) называют <strong><em>начальной фазой колебания</em></strong>. При сравнении двух тригонометрических функций \(y_1 = f(x)\) и \(y_2 = f(x \pm a)\) говорят, что у второй функции <strong><em>сдвиг по фазе</em></strong> равен \(\pm a\).</p>
+
+<p>Построим в одной системе координат три графика на интервале \(x \in [0; 2\pi]\):</p>
+
+\[f(x) = \sin(x), \space\space g(x) = \sin(x + \frac{\pi}{4}), \space\space h(x) = \sin(x - \frac{\pi}{4})\]
+
+<p>Изменив соответсвующую часть имеющегося кода:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% [... Предыдущая часть кода ...]</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                
+<span class="n">g</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">h</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="c1">% Отображение кривых функций</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$f(x) = \sin x$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s1">'-.r'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$g(x) = \sin(x+\frac{\pi}{4})$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">':g'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$h(x) = \sin(x-\frac{\pi}{4})$'</span><span class="p">);</span>
+
+<span class="c1">% Ображение оси OX </span>
+<span class="nb">yline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+<span class="nb">xline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+<span class="c1">% Отображение точек интереса</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика</span>
+<span class="nb">title</span><span class="p">(</span><span class="s1">'Параллельный перенос по оси OX'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+
+<span class="c1">% [... Последующая часть кода ...]</span></code></pre></figure>
+
+<p>Получим следующий график:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/07-ox-parallel-move.png" alt="ox-parallel-move" /></p>
+
+<p><strong>Параллельный перенос по оси OY</strong></p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = f(x) + a, a &gt; 0\]
+
+<p>график второй функции <strong><em>смещается вверх</em></strong> на \(a\) по оси OY по сравнению м графиком первой функции.</p>
+
+<p>При сравнении графиков двух функций:</p>
+
+\[y_1 = f(x), y_2 = f(x) - a, a &gt; 0\]
+
+<p>график второй функции <strong><em>смещается вниз</em></strong> на \(a\) по оси OY по сравнению с графиком первой функции.</p>
+
+<p>Построим в одной системе координат три графика на интервале \(x \in [0; 2\pi]\):</p>
+
+\[f(x) = \sin(x), \space\space g(x) = \sin(x) + 1, \space\space h(x) = \sin(x) - 1\]
+
+<p>Изменив соответсвующую часть имеющегося кода:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% [... Предыдущая часть кода ...]</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                
+<span class="n">g</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">h</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">% Отображение кривых функций</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$f(x) = \sin x$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s1">'-.r'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$g(x) = \sin x + 1$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">':g'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$h(x) = \sin x - 1$'</span><span class="p">);</span>
+
+<span class="c1">% Ображение оси OX </span>
+<span class="nb">yline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+<span class="nb">xline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+<span class="c1">% Отображение точек интереса</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">);</span>
+<span class="n">plotLabelledPoint</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика</span>
+<span class="nb">title</span><span class="p">(</span><span class="s1">'Параллельный перенос по оси OY'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+
+<span class="c1">% [... Последующая часть кода ...]</span></code></pre></figure>
+
+<p>Получим следующий график:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/08-oy-parallel-move.png" alt="oy-parallel-move" /></p>
+
+<p><strong>Общее уравнение синусоиды</strong></p>
+
+\[y(x) = A \sin(cx + d) + B\]
+
+<p>где:</p>
+
+<ul>
+  <li>\(A\) - амплитуда, характеризует растяжение графика по оси OY</li>
+  <li>\(B\) - вертикальный сдвиг, характеризует сдвиг графика по оси OY (вверх/вниз)</li>
+  <li>\(c\) - циклическая частота, характеризует период колебаний и растяжение графика по оси OX</li>
+  <li>\(d\) - начальная фаза, характеризует сдвиг графика по оси OX (влево/вправо)</li>
+</ul>
+
+<p>График \(y(x) = A cos(cx + d) + B\) также называется синусоидой. Термин «косинусоида» употребляется относительно редко. Поскольку график косинуса получается из графика синуса сдвигом по фазе на π/2 влево, вводить термин «косинусоида» излишне.</p>
+
+<p>Построим график \(g(x) = 3 \sin (2x + \frac{\pi}{2}) - 1\)</p>
+
+<p>По сравнению с \(f(x) = \sin(x)\):</p>
+<ul>
+  <li>\(A = 3\) - график растянут по оси OY в 3 раза</li>
+  <li>\(c = 2\) - период меньше в 2 раза \(T = \pi\), график сжат в 2 раза по оси OX</li>
+  <li>\(d = \frac{\pi}{2}\) - начальная фаза положительная, график сдвинут на \(\frac{\pi}{2}\) влево</li>
+  <li>\(B = -1\) - график сдвинут по оси OY на 1 вниз</li>
+</ul>
+
+<p>Изменив соответсвующую часть имеющегося кода:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% [... Предыдущая часть кода ...]</span>
+
+<span class="c1">% Задаем значения x и вычисляем соответствующие значения функций</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                
+<span class="n">g</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="nb">pi</span><span class="p">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">% Отображение кривых функций</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$f(x) = \sin x$'</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s1">'-.r'</span><span class="p">,</span> <span class="s1">'DisplayName'</span><span class="p">,</span> <span class="s1">'$g(x) = 3\sin(2x+\frac{\pi}{2})-1$'</span><span class="p">);</span>
+
+<span class="c1">% Ображение оси OX </span>
+<span class="nb">yline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+<span class="nb">xline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'--k'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'HandleVisibility'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">);</span>
+
+<span class="c1">% НАСТРОЙКИ ГРАФИКА</span>
+
+<span class="c1">% Установка названия графика</span>
+<span class="nb">title</span><span class="p">(</span><span class="s1">'Изменение параметров синусоиды'</span><span class="p">,</span> <span class="s1">'Fontsize'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> 
+
+<span class="c1">% [... Последующая часть кода ...]</span></code></pre></figure>
+
+<p>Получим следующий график:</p>
+
+<p><img src="/assets/images/matlab_course/basic-plots/09-sine-wave-params.png" alt="sine-wave-params" /></p>
+
+<p><br /></p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><em>Более подробное объяснение <code class="language-plaintext highlighter-rouge">ax = gca; ax.XAxis.FontSize = 14;</code></em></p>
+      <ul>
+        <li><code class="language-plaintext highlighter-rouge">gca()</code> или <code class="language-plaintext highlighter-rouge">gca</code> - это вызов функции которая возвращает текущие оси графика, при отсутсвии она их создаст.</li>
+        <li><code class="language-plaintext highlighter-rouge">ax = gca;</code> - присваивается ссылка на текущие оси переменной под названием <code class="language-plaintext highlighter-rouge">ax</code>. Это позволяет использовать <code class="language-plaintext highlighter-rouge">ax</code> в последующих операциях для обращения к этим осям. Matlab\Octave не поддерживает цепочную точечную нотацию (<em>англ: chained dot notation</em>) на результате функции:
+          <ul>
+            <li><strong><em>Неправильно:</em></strong> <code class="language-plaintext highlighter-rouge">gca().XAxis.FontSize = 14;</code> вернет ошибку <code class="language-plaintext highlighter-rouge">error: invalid empty index list</code>, Matlab воспринимает это как попытку доступа к некоторым элементам результата функции <code class="language-plaintext highlighter-rouge">gca</code>, ведь функцию <code class="language-plaintext highlighter-rouge">gca</code> можно вызвать и без скобок, если она не принимает аргумент: <code class="language-plaintext highlighter-rouge">gca()</code> \(\equiv\) <code class="language-plaintext highlighter-rouge">gca</code>.</li>
+            <li><strong><em>Неправильно:</em></strong>  <code class="language-plaintext highlighter-rouge">gca.XAxis.FontSize = 14;</code> - здесь Matlab не выполняет вызов функции, а воспринимает нотацию как создание структуры. Matlab создаст структуру с именем <code class="language-plaintext highlighter-rouge">gca</code> с полем <code class="language-plaintext highlighter-rouge">XAxis</code>, которое в свою очередь является структурой с полем <code class="language-plaintext highlighter-rouge">FontSize</code>, установленным в 14. Последнее поведение особенно коварно так как в памяти запишется новое значение <code class="language-plaintext highlighter-rouge">gca</code>, и предыдующие настройки графики будут уже обращаться к новой переменной <code class="language-plaintext highlighter-rouge">gca</code> при перезапуске скрипта, в таком случае необходимо удалить переменную из памяти окружения: <code class="language-plaintext highlighter-rouge">&gt;&gt; clear gca;</code>.</li>
+          </ul>
+        </li>
+        <li><code class="language-plaintext highlighter-rouge">ax.XAxis</code>: Этот код обращается к свойству <code class="language-plaintext highlighter-rouge">XAxis</code> ссылки на оси (<code class="language-plaintext highlighter-rouge">ax</code>). Свойство <code class="language-plaintext highlighter-rouge">XAxis</code> возвращает объект, представляющий ось X текущих осей, у которого есть свой набор свойств, которые можно изменить или запросить.</li>
+        <li><code class="language-plaintext highlighter-rouge">.FontSize</code>: Это свойство объекта <code class="language-plaintext highlighter-rouge">XAxis</code>. Оно определяет размер шрифта меток на оси X.</li>
+        <li><code class="language-plaintext highlighter-rouge">ax.XAxis.FontSize = 14;</code>: С помощью этой команды устанавливается размер шрифта меток на оси X текущих осей равным 14.</li>
+      </ul>
+      <p><a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><em>Инкапсуляция</em> в данном контексте означает выделение и скрытие деталей настройки графика внутри отдельной функции. Инкапсуляция — это один из основных принципов объектно-ориентированного программирования (ООП). Инкапсуляция подразумевает инструменты скрытия и прдоставления доступа данных, что обеспечивает защиту от непреднамеренного изменения, а группировка данных и методов позволяет организовать и абстрагировать код. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><em>Настройка <code class="language-plaintext highlighter-rouge">axis padded;</code></em> - к рамке вокруг осей добавляется небольшой отступ со всех сторон. Отступ примерно равен 7% от общего диапазона данных. Более подробно можно почитать в официальной документации <a href="https://au.mathworks.com/help/matlab/ref/axis.html#buk989s-1-style">в разделе axis style</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><em>Функция высшего порядка</em> — это функция, которая принимает одну или несколько функций в качестве аргументов и/или возвращает функцию в качестве результата. Это понятие из области функционального программирования, и такие функции позволяют создавать более абстрактные и мощные программные конструкции. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-11-octave-matrix-algebra.html">&laquo; Матричная алгебра в Matlab/Octave</a>
+      
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2023
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>
