@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="До сих пор мы использовали Matlab как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программиров..." />
+  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Пользовательские функции в Matlab/Octave &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-10-22T01:30:00+03:00",
+        "headline": "Пользовательские функции в Matlab/Octave",
+        "url": "https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "Matlab/Octave",
+        "image": "https://davidprowse.github.io/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Пользовательские функции в Matlab/Octave</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-10-22T01:30:00+03:00">
+      22 октября, 2023. Это  было воскресенье.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#Matlab/Octave">Matlab/Octave</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>До сих пор мы использовали Matlab как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программирования, они:</p>
+
+<ul>
+  <li>позволяют нам разбивать сложные задачи на более мелкие управляемые части;</li>
+  <li>позволяют нам создавать повторно используемые программные компоненты, которые могут быть применены во множестве различных программах;</li>
+  <li>позволяют отделить внутреннюю среду от внешней с помощью четко определенного стандартизированного интерфейса, через который происходит взаимодействие с «внешним миром».</li>
+</ul>
+
+<p>У Matlab существует много полезных встроенных функций: функции для отрисовки и настройки графиков, математические функции, такие как расчет значение корня и синуса. Существует огромное множество встроенных функций, которые мы могли бы вызввать для решения тех или иных задач. Тем не менее, часто возникает ситуация, когда необходимо создать свою функцию и использовать её так как будто она была встроена в Matlab. Рассмотрим как можно создать пользовательские функции.</p>
+
+<p>Пример. Встроенная функция <code class="language-plaintext highlighter-rouge">rand</code> возвращает случайные числа взятые из равномерного распределения с интервала \((0, 1)\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    0.9572    0.1419    0.7922    0.0357
+    0.4854    0.4218    0.9595    0.8491
+    0.8003    0.9157    0.6557    0.9340
+</code></pre></div></div>
+
+<p>Пример выше создаёт матрицу 3x4 случайных чисел от нуля до единицы. Первый аргумент переданный фунции (<code class="language-plaintext highlighter-rouge">3</code>) отвечает за количество строк, второй (<code class="language-plaintext highlighter-rouge">4</code>) отвечает за количество столбцов.</p>
+
+<p>Представим, что нам понадобились случайные числа в диапазоне от 1 до 10:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="mi">1</span><span class="o">+</span><span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="mi">9</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    7.2535    1.3100    7.8897    5.4079
+    3.8539    4.9487    8.1568    5.0103
+    9.5520    4.4340    2.6819    6.8168
+</code></pre></div></div>
+
+<p>Умножение на <code class="language-plaintext highlighter-rouge">9</code> «растягивает» диапазон до \((0, 9)\), добавление <code class="language-plaintext highlighter-rouge">1</code> смещает диапазон до \((1, 10)\).</p>
+
+<p>Представим, что нам необходимо пользоваться данной функциональностью многократно. Дублирование соответсвующего выражения с необходимыми изменениями каждый раз как минимум повышает вероятность совершения ошибки (достаточно сложно обнаруживаемую), если и не вызывает раздражения.</p>
+
+<p>Давайте создадим собственную функцию с необходимой функциональность, а затем будем её вызывать в случае необходимости.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">myRand</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Для того, чтобы использовать функции в Matlab до версии R2016b необходимо их сохранять в отдельный файл. После и включительно версии R2016b можно их размещать в том же файле с основным исполняемым кодом, разместив их в самом низу «кодовой базы».</p>
+
+<p>После сохранения функции (хорошая практика называть файл и фукнцию одинаково) в файл <code class="language-plaintext highlighter-rouge">&lt;названиеФункции&gt;.m</code> в рабочей директории можно вызвать фукнцию из командного окна:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">()</span></code></pre></figure>
+
+<p>или <code class="language-plaintext highlighter-rouge">&gt;&gt; myRand</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a =
+
+    7.7614    7.2917    5.9249    3.3176
+    3.2959    9.0181    2.2476    8.5665
+    5.5536    9.6336    2.3436    3.2885
+</code></pre></div></div>
+
+<p>Что произошло? Наша функция состоит лищь из одного выражения <code class="language-plaintext highlighter-rouge">a = 1 + rand(3, 4) * 9</code>, а отсуствующая <code class="language-plaintext highlighter-rouge">;</code> приводит к тому, что выражение выводится в командном окне. Если же мы добавим <code class="language-plaintext highlighter-rouge">;</code> к концу нашего выражения мы потеряем вывод наших значений.</p>
+
+<h2 id="область-видимости-переменных">Область видимости переменных</h2>
+
+<p>В любом случае (при добавлении <code class="language-plaintext highlighter-rouge">;</code> или же его отсуствии) при обращении к <code class="language-plaintext highlighter-rouge">a</code> возвращается ошибка <code class="language-plaintext highlighter-rouge">Unrecognized function or variable 'a'.</code> → «Нераспознанная функция или переменная “a”.» – <code class="language-plaintext highlighter-rouge">a</code> отсутвует в нашей области переменных (глобальной области видимости).</p>
+
+<p>«Что происходит в Вегасе, остается в Вегасе» – у каждой функции есть своя область переменных, своя область видимости. Для нас, находящихся вне области видимости (<em>англ. scope</em>) функции, значения стали недоступны. Область переменных, которая доступна только в рамках функции называют локальной областью видимости этой функции. Переменные принадлежащие локальной области видимости функции инициализиурются (первично присваиваются) внутри соответсвующей функции и могут использоваться лишь там.</p>
+
+<p><strong><em>Локальная переменная</em></strong> – переменная, доступная в рамках выражений только внутри соответсвующей единственной функции и существует только во время вызова функции.</p>
+
+<p>Вернемся к нашему примеру. Часто, как и в нашем случае, функция производит некоторые вычисления и необходим механизм передачи локальной информации (локальной переменной) в пространство вызова функции. Передача информации изнутри функции во вне происходит с помощью выходного аргумента.</p>
+
+<p>Обозначим <code class="language-plaintext highlighter-rouge">a</code> нашим выходным аргументом. Достигается это путем добавления <code class="language-plaintext highlighter-rouge">a =</code> между ключевым словом <code class="language-plaintext highlighter-rouge">function</code> и именем функции <code class="language-plaintext highlighter-rouge">myRand</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">a</span> <span class="o">=</span> <span class="n">myRand</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><em>Заметим, что мы добавили <code class="language-plaintext highlighter-rouge">;</code> к концу выражения. Во избежания в некотором смысле дублирования выходного значения в командном окне</em>.</p>
+
+<p>Вызвав нашу функцию:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">()</span></code></pre></figure>
+
+<p>Получаем:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    2.6366    2.2246    5.9487    6.5985
+    3.3742    8.8236    2.3046    4.1586
+    2.3099    6.2173    8.6773    5.6192
+</code></pre></div></div>
+
+<p>Напомним, что <code class="language-plaintext highlighter-rouge">ans</code> - автоматически созданная переменная чье значение равняется результату исполнения выражения, который не был явно присвоен пременной.</p>
+
+<p>Результат работы функции можно присвоить переменной:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">()</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b =
+
+    4.6163    2.1099    4.7554    9.5031
+    1.6837    2.6552    1.4469    5.4178
+    3.1592    3.1596    9.1244    5.4033
+</code></pre></div></div>
+
+<p>Предположим, что мы хотим получить случайные числа в диапазоне \((2, 5)\):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="mi">2</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    3.0132    2.3336    2.7251    2.3959
+    4.7002    4.3408    3.2117    4.8262
+    3.1077    3.1692    2.2894    4.8684
+</code></pre></div></div>
+
+<p>Не стоит создавать новую функцию для достижения схожей функциональности с нашей уже созданной функцией <code class="language-plaintext highlighter-rouge">myRand</code>, следует её модифицировать, чтобы она была более общей.</p>
+
+<p>Более общая функция <code class="language-plaintext highlighter-rouge">myRand</code> должна быть способна вернуть матрицу 3x4 со случайными числами заданными в любом диапазоне. Это можно достичь предоставляя два входных аргумента нашей функции, один отвечающий за начало диапазона, другой за конец.</p>
+
+<h2 id="передача-входных-аргументов-функции">Передача входных аргументов функции</h2>
+
+<p>Обозначим <code class="language-plaintext highlighter-rouge">low</code> и <code class="language-plaintext highlighter-rouge">high</code> нашими входными аргументами начала и конца диапазона соотвественно . Достигается это путем добавления входных аргументов через запятую в круглые скобки после названия функции:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">a</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Вызвав нашу функцию:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span></code></pre></figure>
+
+<p>Получаем:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    3.7256    3.0595    2.1291    4.1952
+    2.1793    4.4636    2.5070    3.9432
+    2.7043    2.0462    3.9473    3.3528
+</code></pre></div></div>
+
+<p><strong><em>Стоит помнить: входные и выходные аргументы функции, как и переменные инициализорованные в теле функции принадлежат локальной области видимости функции и не доступны извне.</em></strong></p>
+
+<p>При попытке обратиться к значению одного из входных аргументов функции, мы получим ошибку:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">low</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unrecognized function or variable 'low'.
+ 
+Did you mean:
+&gt;&gt; flow
+</code></pre></div></div>
+
+<p>Наша функция получилась достаточно универсальна и без изменений работает и для отрицательных диапазонов:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+   -0.3590   -1.4331   -0.8945   -1.7566
+   -1.1110    0.0603   -0.1231    0.7882
+    0.2341   -1.4495    0.3407    0.3271
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+   -3.0264   -3.3873   -2.3647   -3.2428
+   -3.1283   -2.9830   -2.4103   -2.3768
+   -3.1064   -2.9785   -2.7114   -2.9343
+</code></pre></div></div>
+
+<h2 id="возвращение-нескольких-значений-из-функции">Возвращение нескольких значений из функции</h2>
+
+<p>Представим ситуацию когда функции необходимо вернуть несколько значений. Например не только матрицу заполненную случайными числами, но и сумму всех элементов.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">);</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">(:));</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Интерес представляет <code class="language-plaintext highlighter-rouge">a(:)</code>.</p>
+
+<p>Когда мы передаем одно значение в качестве индекса матрице: <code class="language-plaintext highlighter-rouge">a(i)</code> Matlab воспринимает матрицу как вектор столбец, состоящий из столбцов исходной матрицы поставленных друг за другом.</p>
+
+<p>В нашем случае единственное двоеточее <code class="language-plaintext highlighter-rouge">:</code> в качества индекса, означает, что мы хотим извлечь все элементы.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    2.2259    2.4357    2.4302    2.9797
+    2.1707    2.3111    2.1848    2.4389
+    2.2277    2.9234    2.9049    2.1111
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">X</span><span class="p">,</span> <span class="n">ss</span><span class="p">]</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>X =
+
+    2.0855    2.0292    2.4886    2.4588
+    2.2625    2.9289    2.5785    2.9631
+    2.8010    2.7303    2.2373    2.5468
+
+
+ss =
+
+   30.1106
+</code></pre></div></div>
+
+<p>Стоит заметить, что если не использовать множественное присвоение, как в <code class="language-plaintext highlighter-rouge">[X, ss] = ...</code>, Matlab вернет только первый выходной аргумент функции:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">X</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>X =
+
+    2.8147    2.9134    2.2785    2.9649
+    2.9058    2.6324    2.5469    2.1576
+    2.1270    2.0975    2.9575    2.9706
+
+</code></pre></div></div>
+
+<h2 id="формальное-определение-функций">Формальное определение функций</h2>
+
+<p>Интрерфейс функции с внешним миром определяется через заголовок функции. Этот заголовок называется декларацией функцией (сигнатура функции).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function [out_arg1, out_arg2, ...] = function_name (in_arg1, in_arg2)
+</code></pre></div></div>
+
+<p>Пошагово:</p>
+
+<ol>
+  <li>Декларация функции начинается с ключевого слова <code class="language-plaintext highlighter-rouge">function</code>;</li>
+  <li>После следуют выходные аргументы, если они имеются. Если имеются несколько выходных значений, небходимо их заключать в квадратные скобки через запятую;</li>
+  <li>Если имеются выходные значения, даже одно, тогда необходим знак равно <code class="language-plaintext highlighter-rouge">=</code> после их перечисления;</li>
+  <li>Далее следует название функции (правила наименования функций совпадают с правилами наименования переменных);</li>
+  <li>Затем следуют входные аргументы, если они есть. Если у нет входных аргументов, то скобки являются необязательными, в противном случае между скобками располагается список имен входных аргументов, разделенных запятыми.</li>
+</ol>
+
+<p>Примеры декларации функций:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">func</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">func</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">)</span></code></pre></figure>
+
+<p><strong>Именование функций</strong></p>
+
+<ul>
+  <li>Давайте названия, которые отражают суть вашей функции. Например, если вы создаете функцию для вычисления ряда Фибоначчи, не стоит называть её <code class="language-plaintext highlighter-rouge">F</code> или <code class="language-plaintext highlighter-rouge">X</code>. Лучше выбрать имя <code class="language-plaintext highlighter-rouge">Fibonacci</code>, <code class="language-plaintext highlighter-rouge">Fibo</code> или что-то подобное, что отражает её предназначение.</li>
+  <li>Избегайте использования имен встроенных функций, таких как <code class="language-plaintext highlighter-rouge">sqrt</code>, <code class="language-plaintext highlighter-rouge">plot</code>, <code class="language-plaintext highlighter-rouge">sin</code> и так далее.
+    <ul>
+      <li>Это быстро приведёт к путанице.</li>
+      <li>К тому же, если вы дадите своей функции такое имя, то не сможете использовать оригинальную встроенную функцию с таким же именем.</li>
+      <li>Чтобы проверить, занято ли уже какое-то имя, используйте встроенную функцию <code class="language-plaintext highlighter-rouge">exist</code>. Узнать, как она работает, можно с помощью команды помощи: <code class="language-plaintext highlighter-rouge">help exist</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="взаимная-комуникация-функций">Взаимная комуникация функций</h2>
+
+<p>Как мы уже видели, функции могут вызывать другие функции. Например, <code class="language-plaintext highlighter-rouge">myRand</code> обращается к встроенным функциям <code class="language-plaintext highlighter-rouge">rand</code> и <code class="language-plaintext highlighter-rouge">sum</code>. Но можно обойтись и без встроенных функций. Наши собственные функции тоже могут обращаться друг к другу.</p>
+
+<p>Допустим, у нас есть функция <code class="language-plaintext highlighter-rouge">bob</code>, которую мы сохраняем в файл <code class="language-plaintext highlighter-rouge">bob.m</code>, и функция <code class="language-plaintext highlighter-rouge">mary</code>, сохранённая в файле <code class="language-plaintext highlighter-rouge">mary.m</code>. <code class="language-plaintext highlighter-rouge">bob</code> может вызвать <code class="language-plaintext highlighter-rouge">mary</code>, а <code class="language-plaintext highlighter-rouge">mary</code> – <code class="language-plaintext highlighter-rouge">bob</code>.</p>
+
+<p>К тому же, можно определить несколько функций в одном и том же M-файле и сделать так, чтобы они вызывали друг друга.</p>
+
+<p>Зачем же помещать две функции в один файл? Если проблема, которую мы решаем, довольно сложная, разумно разделить её решение на несколько функций. В то же время, если эти функции скорее всего не пригодятся для решения других задач, логично оставить их все в одном M-файле.</p>
+
+<p>Рассмотрим пример. Давайте перепишем последнюю версию нашей функции <code class="language-plaintext highlighter-rouge">myRand</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">);</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+<span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
+    <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
+
+<p><em>Замечание</em>: Если в файле несколько функций, то либо у всех должны быть закрывающие ключевые слова <code class="language-plaintext highlighter-rouge">end</code>, либо у ни одной. Если мы не используем <code class="language-plaintext highlighter-rouge">end</code>, то начало следующей функции автоматически обозначает конец предыдущей.</p>
+
+<p>Мы создали отдельную функцию для подсчёта суммы всех элементов матрицы. Это, конечно, простой пример, и здесь в этом нет особого смысла, но есть случаи где это более важно.</p>
+
+<p>Функции, определённые в одном файле (как в примере выше), в целом ведут себя так же, как и любые другие функции. Единственное отличие - только первую функцию (называемая основной (англ: <em>main</em>)) можно вызвать из других файлов.</p>
+
+<p>Другие функции (в данном случае у нас только одна: <code class="language-plaintext highlighter-rouge">sumAllElements</code>) называются локальными функциями (или функциями помощниками) и могут быть вызваны только функциями внутри файла. Как и другие функции, все их переменные являются локальными, и это означает, что переменные в функции недоступны всем другим функциям, независимо от того находятся они в том же файле или нет.</p>
+
+<p>Так, переменная <code class="language-plaintext highlighter-rouge">v</code> недоступна внутри <code class="language-plaintext highlighter-rouge">myRand</code>, переменная <code class="language-plaintext highlighter-rouge">a</code> недоступна в <code class="language-plaintext highlighter-rouge">sumAllElements</code>, и ни одна из переменных не доступна в командном окне.</p>
+
+<p>Передача данных между функциями возможна только с помощью входных и выходных аргументов (не говоря о вложенных функциях, но о них речь пойдет ниже).</p>
+
+<p>Мы передаем <code class="language-plaintext highlighter-rouge">a</code> в качестве входного аргумента в <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Это значение, которое является матрицей 3 на 4, копируется из <code class="language-plaintext highlighter-rouge">a</code> во входной аргумент <code class="language-plaintext highlighter-rouge">m</code> функции <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Сумма всех элементов матрицы <code class="language-plaintext highlighter-rouge">m</code> считается так же, как и раньше, но теперь вычисления происходит внутри <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Обратите внимание, что мы не можем получить доступ к данным через переменную <code class="language-plaintext highlighter-rouge">a</code>, так как она находится вне области видимости <code class="language-plaintext highlighter-rouge">sumAllElements</code>.</p>
+
+<p>После того как <code class="language-plaintext highlighter-rouge">sumAllElements</code> вычислит сумму, информация возвращается в <code class="language-plaintext highlighter-rouge">myRand</code> через выходной аргумент. В нашем случае локальная переменная <code class="language-plaintext highlighter-rouge">summa</code> ф-ии <code class="language-plaintext highlighter-rouge">sumAllElements</code> объявляется выходным аргументом (в заголовке: <code class="language-plaintext highlighter-rouge">function summa = ...</code>).</p>
+
+<p>Как только функция <code class="language-plaintext highlighter-rouge">sumAllElements</code> завершает работу, ее выходной аргумент возвращается в точку вызова: <code class="language-plaintext highlighter-rouge">s = sumAllElements(a);</code>, и будет скопирован в <code class="language-plaintext highlighter-rouge">s</code>, который, в свою очередь, является выходным аргументом <code class="language-plaintext highlighter-rouge">myRand</code>.</p>
+
+<p><em>Примечание</em>: в M-файле можно иметь сколько угодно локальных функций, но важно помнить, что именно первая функция вызывается извне.</p>
+
+<h2 id="более-подробно-об-области-видимости">Более подробно об области видимости</h2>
+
+<p>Область видимости определяется как множество выражений, имеющих доступ к переменной. В случае функций область фидимости любой её переменной есть множество выражений принадлежащих телу функции.</p>
+
+<p>Концепция области видимости является полезной поскольку способствует упрощению кода и накладывает автоматическое ограничение доступа в то же время держа свободным множество пространства имен (если бы все переменные были бы глобальными то скоро бы столкнулись с проблемой именования при росте кодовой базы).</p>
+
+<p>Ограничение области видимости, характерное для функций, в программировании принято называть локальной областью видимости.</p>
+
+<p>Существуют ситуации, когда, например, нескольким функциям требуется доступ к одной переменной, или командное окно и функция должны иметь общий доступ к переменной. Это можно реализовать с помощью создания переменной, область видимости которой выходит за рамки функции. Такие переменные называются глобальными.</p>
+
+<p>Возьмем для примера функцию нашу функцию <code class="language-plaintext highlighter-rouge">sumAllElements</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
+    <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
+
+<p>И предположим, мы хотим сделать переменную <code class="language-plaintext highlighter-rouge">v</code> глобальной, чтобы иметь возможность обращаться к ней из командного окна. Это можно осуществить, добавив ключевое слово <code class="language-plaintext highlighter-rouge">global</code> при её объявлении:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
+    <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
+
+<p><em>Замечание</em>: Нельзя объединять объявление глобальной переменной с присваиванием. То есть, запись вида global <code class="language-plaintext highlighter-rouge">v = M(:);</code> не допустима.</p>
+
+<p>Теперь переменная <code class="language-plaintext highlighter-rouge">v</code> доступна в области видимости всех остальных функций, командных строк и скриптов (если мы объявим переменную <code class="language-plaintext highlighter-rouge">v</code> в соответствующих областях видимости, используя <code class="language-plaintext highlighter-rouge">global v;</code>).</p>
+
+<p>Если в текущем рабочем пространстве уже существует переменная с таким же именем, что и у глобальной переменной, Matlab выдаст предупреждение и изменит значение и область видимости этой переменной в соответствии с глобальной переменной.</p>
+
+<p>Чтобы удалить глобальную переменную из всех рабочих пространств, используйте: <code class="language-plaintext highlighter-rouge">clear global variable</code>.</p>
+
+<p>Чтобы удалить глобальную переменную только из текущего рабочего пространства используйте: <code class="language-plaintext highlighter-rouge">clear variable</code>.</p>
+
+<p>Теперь имея следующий код:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">);</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+<span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
+    <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
+
+<p>Вызвав функцию <code class="language-plaintext highlighter-rouge">myRand</code>, например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span></code></pre></figure>
+
+<p>Мы имеем доступ к глобальной переменной <code class="language-plaintext highlighter-rouge">v</code> из командного окна:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="k">global</span> <span class="n">v</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">v</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+
+    5.9572
+    5.4854
+    5.8003
+    5.1419
+    5.4218
+    5.9157
+    5.7922
+    5.9595
+    5.6557
+    5.0357
+    5.8491
+    5.9340
+</code></pre></div></div>
+
+<p>Чтобы сделать глобальную переменную видимую из другой функции необходимо декларировать её использование, например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">);</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="k">global</span> <span class="n">v</span><span class="p">;</span>
+    <span class="nb">display</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+
+<span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
+    <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
+
+<p>Таким образом после вызова функции <code class="language-plaintext highlighter-rouge">myRand</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">();</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+
+    5.8143
+    5.2435
+    5.9293
+    5.3500
+    5.1966
+    5.2511
+    5.6160
+    5.4733
+    5.3517
+    5.8308
+    5.5853
+    5.5497
+
+
+ans =
+
+    5.8143    5.3500    5.6160    5.8308
+    5.2435    5.1966    5.4733    5.5853
+    5.9293    5.2511    5.3517    5.5497
+</code></pre></div></div>
+
+<p>Как правило, настоятельно рекомендуется избегать использование глобальных переменных. Они могут быть причиной ошибок, которые очень сложно диагностировать, так как одна функция может внезапно изменить значения переменных, используемых в другой функции, будто барабашка передвигает предметы в доме. Глобальные переменные являются источником хаоса.</p>
+
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-18-octave-basic-2d-plotting.html">&laquo; Основы построения двумерных графиков в Matlab/Octave</a>
+      
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2023
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>
