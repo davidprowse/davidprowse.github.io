@@ -126,9 +126,9 @@
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span>
 <span class="k">end</span></code></pre></figure>
 
-<p>Для того, чтобы использовать функции в Matlab до версии R2016b необходимо их сохранять в отдельный файл. После и включительно версии R2016b можно их размещать в том же файле с основным исполняемым кодом, разместив их в самом низу «кодовой базы».</p>
+<p>Для того, чтобы использовать функции в Matlab до версии R2016b необходимо их сохранять в отдельный файл. После и включительно версии R2016b можно их размещать в том же файле с основным исполняемым кодом, разместив их в самом низу файла.</p>
 
-<p>После сохранения функции (хорошая практика называть файл и фукнцию одинаково) в файл <code class="language-plaintext highlighter-rouge">&lt;названиеФункции&gt;.m</code> в рабочей директории можно вызвать фукнцию из командного окна:</p>
+<p>После сохранения функции (хорошая практика называть файл и функцию одинаково) в файл <code class="language-plaintext highlighter-rouge">&lt;названиеФункции&gt;.m</code> в рабочей директории можно вызвать фукнцию из командного окна:</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">myRand</span><span class="p">()</span></code></pre></figure>
 
@@ -141,7 +141,7 @@
     5.5536    9.6336    2.3436    3.2885
 </code></pre></div></div>
 
-<p>Что произошло? Наша функция состоит лищь из одного выражения <code class="language-plaintext highlighter-rouge">a = 1 + rand(3, 4) * 9</code>, а отсуствующая <code class="language-plaintext highlighter-rouge">;</code> приводит к тому, что выражение выводится в командном окне. Если же мы добавим <code class="language-plaintext highlighter-rouge">;</code> к концу нашего выражения мы потеряем вывод наших значений.</p>
+<p>Что произошло? Наша функция состоит лишь из одного выражения <code class="language-plaintext highlighter-rouge">a = 1 + rand(3, 4) * 9</code>, а отсуствующая <code class="language-plaintext highlighter-rouge">;</code> приводит к тому, что выражение выводится в командном окне. Если же мы добавим <code class="language-plaintext highlighter-rouge">;</code> к концу нашего выражения мы потеряем вывод наших значений.</p>
 
 <h2 id="область-видимости-переменных">Область видимости переменных</h2>
 
@@ -223,7 +223,7 @@
     2.7043    2.0462    3.9473    3.3528
 </code></pre></div></div>
 
-<p><strong><em>Стоит помнить: входные и выходные аргументы функции, как и переменные инициализорованные в теле функции принадлежат локальной области видимости функции и не доступны извне.</em></strong></p>
+<p><strong><em>Стоит помнить: входные и выходные аргументы функции, как и переменные инициализорованные в теле функции принадлежат локальной области видимости функции и недоступны извне.</em></strong></p>
 
 <p>При попытке обратиться к значению одного из входных аргументов функции, мы получим ошибку:</p>
 
@@ -309,7 +309,7 @@ ss =
 
 <p>Интрерфейс функции с внешним миром определяется через заголовок функции. Этот заголовок называется декларацией функцией (сигнатура функции).</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function [out_arg1, out_arg2, ...] = function_name (in_arg1, in_arg2)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function [out_arg1, out_arg2, ...] = function_name(in_arg1, in_arg2)
 </code></pre></div></div>
 
 <p>Пошагово:</p>
@@ -355,7 +355,7 @@ ss =
   </li>
 </ul>
 
-<h2 id="взаимная-комуникация-функций">Взаимная комуникация функций</h2>
+<h2 id="взаимная-коммуникация-функций">Взаимная коммуникация функций</h2>
 
 <p>Как мы уже видели, функции могут вызывать другие функции. Например, <code class="language-plaintext highlighter-rouge">myRand</code> обращается к встроенным функциям <code class="language-plaintext highlighter-rouge">rand</code> и <code class="language-plaintext highlighter-rouge">sum</code>. Но можно обойтись и без встроенных функций. Наши собственные функции тоже могут обращаться друг к другу.</p>
 
@@ -375,21 +375,21 @@ ss =
     <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
     <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
 
-<p><em>Замечание</em>: Если в файле несколько функций, то либо у всех должны быть закрывающие ключевые слова <code class="language-plaintext highlighter-rouge">end</code>, либо у ни одной. Если мы не используем <code class="language-plaintext highlighter-rouge">end</code>, то начало следующей функции автоматически обозначает конец предыдущей.</p>
+<p><em>Замечание</em>: Если в файле несколько функций, то либо у всех должны быть закрывающие ключевые слова <code class="language-plaintext highlighter-rouge">end</code>, либо ни у одной. Если мы не используем <code class="language-plaintext highlighter-rouge">end</code>, то начало следующей функции автоматически обозначает конец предыдущей.</p>
 
 <p>Мы создали отдельную функцию для подсчёта суммы всех элементов матрицы. Это, конечно, простой пример, и здесь в этом нет особого смысла, но есть случаи где это более важно.</p>
 
-<p>Функции, определённые в одном файле (как в примере выше), в целом ведут себя так же, как и любые другие функции. Единственное отличие - только первую функцию (называемая основной (англ: <em>main</em>)) можно вызвать из других файлов.</p>
+<p>Функции, определённые в одном файле (как в примере выше), в целом ведут себя так же, как и любые другие функции. Единственное отличие - только первую функцию (называемою основной) можно вызвать из других файлов.</p>
 
-<p>Другие функции (в данном случае у нас только одна: <code class="language-plaintext highlighter-rouge">sumAllElements</code>) называются локальными функциями (или функциями помощниками) и могут быть вызваны только функциями внутри файла. Как и другие функции, все их переменные являются локальными, и это означает, что переменные в функции недоступны всем другим функциям, независимо от того находятся они в том же файле или нет.</p>
+<p>Другие функции (в данном случае у нас только одна: <code class="language-plaintext highlighter-rouge">sumAllElements</code>) называются локальными функциями (или функциями помощниками) и могут быть вызваны только функциями внутри того же файла. Как и другие функции, все их переменные являются локальными, и это означает, что переменные в функции недоступны всем другим функциям, независимо от того находятся они в том же файле или нет.</p>
 
 <p>Так, переменная <code class="language-plaintext highlighter-rouge">v</code> недоступна внутри <code class="language-plaintext highlighter-rouge">myRand</code>, переменная <code class="language-plaintext highlighter-rouge">a</code> недоступна в <code class="language-plaintext highlighter-rouge">sumAllElements</code>, и ни одна из переменных не доступна в командном окне.</p>
 
-<p>Передача данных между функциями возможна только с помощью входных и выходных аргументов (не говоря о вложенных функциях, но о них речь пойдет ниже).</p>
+<p>Передача данных между функциями возможна только с помощью входных и выходных аргументов (не говоря о вложенных функциях, но о них речь пойдет позднее).</p>
 
 <p>Мы передаем <code class="language-plaintext highlighter-rouge">a</code> в качестве входного аргумента в <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Это значение, которое является матрицей 3 на 4, копируется из <code class="language-plaintext highlighter-rouge">a</code> во входной аргумент <code class="language-plaintext highlighter-rouge">m</code> функции <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Сумма всех элементов матрицы <code class="language-plaintext highlighter-rouge">m</code> считается так же, как и раньше, но теперь вычисления происходит внутри <code class="language-plaintext highlighter-rouge">sumAllElements</code>. Обратите внимание, что мы не можем получить доступ к данным через переменную <code class="language-plaintext highlighter-rouge">a</code>, так как она находится вне области видимости <code class="language-plaintext highlighter-rouge">sumAllElements</code>.</p>
 
-<p>После того как <code class="language-plaintext highlighter-rouge">sumAllElements</code> вычислит сумму, информация возвращается в <code class="language-plaintext highlighter-rouge">myRand</code> через выходной аргумент. В нашем случае локальная переменная <code class="language-plaintext highlighter-rouge">summa</code> ф-ии <code class="language-plaintext highlighter-rouge">sumAllElements</code> объявляется выходным аргументом (в заголовке: <code class="language-plaintext highlighter-rouge">function summa = ...</code>).</p>
+<p>После того как <code class="language-plaintext highlighter-rouge">sumAllElements</code> вычислит сумму, информация возвращается в <code class="language-plaintext highlighter-rouge">myRand</code> через выходной аргумент. В нашем случае локальная переменная <code class="language-plaintext highlighter-rouge">summa</code> функции <code class="language-plaintext highlighter-rouge">sumAllElements</code> объявляется выходным аргументом (в заголовке: <code class="language-plaintext highlighter-rouge">function summa = ...</code>).</p>
 
 <p>Как только функция <code class="language-plaintext highlighter-rouge">sumAllElements</code> завершает работу, ее выходной аргумент возвращается в точку вызова: <code class="language-plaintext highlighter-rouge">s = sumAllElements(a);</code>, и будет скопирован в <code class="language-plaintext highlighter-rouge">s</code>, который, в свою очередь, является выходным аргументом <code class="language-plaintext highlighter-rouge">myRand</code>.</p>
 
@@ -397,15 +397,15 @@ ss =
 
 <h2 id="более-подробно-об-области-видимости">Более подробно об области видимости</h2>
 
-<p>Область видимости определяется как множество выражений, имеющих доступ к переменной. В случае функций область фидимости любой её переменной есть множество выражений принадлежащих телу функции.</p>
+<p>Область видимости определяется как множество выражений, имеющих доступ к переменной. В случае функций область видимости любой её переменной есть множество выражений принадлежащих телу функции.</p>
 
-<p>Концепция области видимости является полезной поскольку способствует упрощению кода и накладывает автоматическое ограничение доступа в то же время держа свободным множество пространства имен (если бы все переменные были бы глобальными то скоро бы столкнулись с проблемой именования при росте кодовой базы).</p>
+<p>Концепция области видимости является полезной поскольку способствует упрощению кода и накладывает автоматическое ограничение доступа в то же время держа свободным множество пространства имен (если бы все переменные были бы глобальными то скоро бы столкнулись с проблемой именования при росте числа строк).</p>
 
 <p>Ограничение области видимости, характерное для функций, в программировании принято называть локальной областью видимости.</p>
 
 <p>Существуют ситуации, когда, например, нескольким функциям требуется доступ к одной переменной, или командное окно и функция должны иметь общий доступ к переменной. Это можно реализовать с помощью создания переменной, область видимости которой выходит за рамки функции. Такие переменные называются глобальными.</p>
 
-<p>Возьмем для примера функцию нашу функцию <code class="language-plaintext highlighter-rouge">sumAllElements</code>:</p>
+<p>Возьмем для примера нашу функцию <code class="language-plaintext highlighter-rouge">sumAllElements</code>:</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">summa</span> <span class="o">=</span> <span class="n">sumAllElements</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
@@ -418,7 +418,7 @@ ss =
     <span class="n">v</span> <span class="o">=</span> <span class="n">M</span><span class="p">(:);</span>
     <span class="n">summa</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span></code></pre></figure>
 
-<p><em>Замечание</em>: Нельзя объединять объявление глобальной переменной с присваиванием. То есть, запись вида global <code class="language-plaintext highlighter-rouge">v = M(:);</code> не допустима.</p>
+<p><em>Замечание</em>: Нельзя объединять объявление глобальной переменной с присваиванием. То есть, запись вида <code class="language-plaintext highlighter-rouge">global v = M(:);</code> не допустима.</p>
 
 <p>Теперь переменная <code class="language-plaintext highlighter-rouge">v</code> доступна в области видимости всех остальных функций, командных строк и скриптов (если мы объявим переменную <code class="language-plaintext highlighter-rouge">v</code> в соответствующих областях видимости, используя <code class="language-plaintext highlighter-rouge">global v;</code>).</p>
 
@@ -504,7 +504,7 @@ ans =
     5.9293    5.2511    5.3517    5.5497
 </code></pre></div></div>
 
-<p>Как правило, настоятельно рекомендуется избегать использование глобальных переменных. Они могут быть причиной ошибок, которые очень сложно диагностировать, так как одна функция может внезапно изменить значения переменных, используемых в другой функции, будто барабашка передвигает предметы в доме. Глобальные переменные являются источником хаоса.</p>
+<p>Как правило, настоятельно рекомендуется избегать использование глобальных переменных. Они могут быть причиной ошибок, которые очень сложно диагностировать, так как одна функция может внезапно изменить значения переменных, используемых в другой функции, будто барабашка передвигает предметы в доме.</p>
 
 
     </section>
