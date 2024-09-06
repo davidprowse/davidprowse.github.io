@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="В программировании есть два основных инструмента для управления потоком исполнения:" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-25-control-structures.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Управление потоком исполнения &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-25T10:00:00+03:00",
+        "headline": "Управление потоком исполнения",
+        "url": "http://localhost:4000/matlab_course/2023-09-25-control-structures.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-25-control-structures.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Управление потоком исполнения</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-25T10:00:00+03:00">
+      25 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>В программировании есть два основных инструмента для управления потоком исполнения:</p>
+
+<ul>
+  <li><strong>Ветвление ⇙⇘</strong>: позволяет запускать разный код в зависимости от условия (операторы <code class="language-plaintext highlighter-rouge">if</code> и <code class="language-plaintext highlighter-rouge">switch</code>)</li>
+  <li><strong>Цикл ⟲</strong>: обеспечивает повторное выполнение кода (<code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>).</li>
+</ul>
+
+<h1 id="ветвление-">Ветвление ⇙⇘</h1>
+
+<h2 id="общая-форма-оператора-if-в-matlab">Общая форма оператора <code class="language-plaintext highlighter-rouge">if</code> в Matlab</h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">condition</span> 
+    <span class="n">truth_actions</span>
+    <span class="c1">% ...</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Если условие (<code class="language-plaintext highlighter-rouge">condition</code>) истинно (<code class="language-plaintext highlighter-rouge">true</code>), тогда выполняются соответсвующие выражения (<code class="language-plaintext highlighter-rouge">truth_actions</code>)</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">condition</span>
+    <span class="n">truth_actions</span>
+<span class="k">else</span>
+    <span class="n">falsity_actions</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Иначе (<code class="language-plaintext highlighter-rouge">else</code>) выполняются выражения соответсвующие ложности условия: <code class="language-plaintext highlighter-rouge">falsity_actions</code></p>
+
+<p><strong>Пример.</strong> Если оценка студента больше или равна 3 напечатать ‘Зачет’ иначе напечатать ‘Незачет’:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">if</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">3</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     4
+Зачет
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент плохо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">3</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     2
+Незачет
+</code></pre></div></div>
+
+<h2 id="оператор-elseif">Оператор <code class="language-plaintext highlighter-rouge">elseif</code></h2>
+
+<p>Если решение исполнения того или иного кодового блока зависит от выполнения ряда последовательных условий если (<code class="language-plaintext highlighter-rouge">if</code>), иначе-если (<code class="language-plaintext highlighter-rouge">elseif</code>), иначе (<code class="language-plaintext highlighter-rouge">else</code>), тогда общая форма такой конструкции выглядит следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">condition1</span>
+    <span class="n">statements1</span>
+<span class="k">elseif</span> <span class="n">condition2</span>
+    <span class="n">statements2</span>
+<span class="k">else</span>
+    <span class="n">statements3</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>где <code class="language-plaintext highlighter-rouge">statements&lt;i&gt;</code> - это одно или множество выражений, которые выполнятся в случае истинности условия <code class="language-plaintext highlighter-rouge">condition&lt;i&gt;</code> и ложности предыдующих условий <code class="language-plaintext highlighter-rouge">condition1 ... condition&lt;i-1&gt;</code>.</p>
+
+<p><strong>Пример.</strong> Если оценка студента равна 2 напечатать ‘Плохо’, иначе если оценка студента равна 3 напечатать ‘Удовлетворительно’, иначе если оценка студента равна 4 напечатать ‘Хорошо’, иначе напечатать отлично</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">if</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Плохо'</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Удовлетворительно'</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Хорошо'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Отлично'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     4
+Хорошо
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент плохо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Плохо'</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Удовлетворительно'</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">grade</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Хорошо'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Отлично'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     2
+Хорошо
+</code></pre></div></div>
+
+<p><strong>Пример вложенных условий</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'i = j = 1'</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'i = 1, j ~= 1'</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'i = j = 1'</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'i = 1, j ~= 1'</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'i ~= 1'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>При любых значениях <code class="language-plaintext highlighter-rouge">i</code> и <code class="language-plaintext highlighter-rouge">j</code> для каждой из программ выполняется только один из <code class="language-plaintext highlighter-rouge">disp</code>.</p>
+
+<p><strong>Пример</strong> Пусть \(n\) условий исчерпывают все возможные случаи, например \(x &lt; 2, x = 2 , x &gt; 2\). Тогда вызов операторов, соответсвующих каждому из случаев, можно запрограммировать двумя способами.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">else</span> 
+    <span class="nb">disp</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Во втором способе не делаются лишние проверки, но первый способ наглядней.</p>
+
+<p><strong>Пример.</strong> Избыточные записи</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">c</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="k">else</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Вместо следует писать:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="p">;</span></code></pre></figure>
+
+<p>Аналогично:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="nb">true</span>
+    <span class="n">do_something</span><span class="p">();</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Вместо следует писать:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">b</span>
+    <span class="n">do_something</span><span class="p">();</span>
+<span class="k">end</span></code></pre></figure>
+
+<h2 id="составные-условие-логическое-и-">Составные условие. Логическое И (<code class="language-plaintext highlighter-rouge">&amp;&amp;</code>)</h2>
+
+<p><strong>Пример.</strong> Если средний балл студента за семестр больше или равен 3 и оценка студента за экзамен больше или равна 3 напечатать ‘Зачет’ иначе напечатать ‘Незачет’</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился и сдал экзамен</span>
+<span class="n">semester_average</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">final_exam</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">semester_average</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">final_exam</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>semester_average =
+     4
+final_exam =
+     3
+Зачет
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился, но не сдал экзамен</span>
+<span class="n">semester_average</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">final_exam</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">semester_average</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">final_exam</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>semester_average =
+     4
+final_exam =
+     2
+Незачет
+</code></pre></div></div>
+
+<h2 id="составные-условие-логическое-или-">Составные условие. Логическое ИЛИ (<code class="language-plaintext highlighter-rouge">||</code>)</h2>
+
+<p><strong>Пример.</strong> Если средний балл студента за семестр меньше 3 или оценка студента за экзамен меньше 3 напечатать ‘Незачет’ иначе напечатать ‘Зачет’</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился и сдал экзамен</span>
+<span class="n">semester_average</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">final_exam</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">semester_average</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">final_exam</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>semester_average =
+     4
+final_exam =
+     3
+Зачет
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился, но не сдал экзамен</span>
+<span class="n">semester_average</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">final_exam</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">semester_average</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">final_exam</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>semester_average =
+     4
+final_exam =
+     2
+Незачет
+</code></pre></div></div>
+
+<h2 id="логические-операции-логическое-отрицание-">Логические операции. Логическое отрицание (<code class="language-plaintext highlighter-rouge">~</code>)</h2>
+
+<p>Если оценка студента не равна 2 напечатать ‘Зачет’ иначе напечатать ‘Незачет’</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент хорошо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">if</span> <span class="o">~</span><span class="p">(</span><span class="n">grade</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     4
+Зачет
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Cтудент плохо учился</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">if</span> <span class="o">~</span><span class="p">(</span><span class="n">grade</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     2
+Незачет
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Часто можно избежать применение логического отрицания</span>
+<span class="n">grade</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">grade</span> <span class="o">~=</span> <span class="mi">2</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Зачет'</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Незачет'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     3
+Зачет
+</code></pre></div></div>
+
+<h2 id="оператор-switch">Оператор <code class="language-plaintext highlighter-rouge">switch</code></h2>
+
+<p>Является альтернативой множественным операторам <code class="language-plaintext highlighter-rouge">if</code>-<code class="language-plaintext highlighter-rouge">elseif</code>-<code class="language-plaintext highlighter-rouge">else</code>.</p>
+
+<p>Позволяет сделать код более читаемым, особенно при наличии множества условий.</p>
+
+<p>Общая форма выглядит следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">switch</span> <span class="n">expression</span>
+    <span class="k">case</span> <span class="n">value1</span>
+        <span class="n">statements1</span>
+    <span class="k">case</span> <span class="n">value2</span>
+        <span class="n">statements2</span>
+    <span class="c1">% ... дополнительные случаи ...</span>
+    <span class="k">otherwise</span>
+        <span class="n">statementsN</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Пример.</strong> Если оценка студента равна 2 напечатать ‘Плохо’ иначе если оценка студента равна 3 напечатать ‘Удовлетворительно’ иначе если оценка студента равна 4 напечатать ‘Хорошо’ иначе напечатать ‘Отлично’.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">switch</span> <span class="n">grade</span>
+    <span class="k">case</span> <span class="mi">2</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Плохо'</span><span class="p">);</span>
+    <span class="k">case</span> <span class="mi">3</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Удовлетворительно'</span><span class="p">);</span>
+    <span class="k">case</span> <span class="mi">4</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Хорошо'</span><span class="p">);</span>
+    <span class="k">otherwise</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Отлично'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grade =
+     4
+Зачет
+</code></pre></div></div>
+
+<p><strong>Пример.</strong> Определим выходной ли сегодня?</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">today</span> <span class="o">=</span> <span class="s1">'Воскресенье'</span><span class="p">;</span> 
+
+<span class="k">switch</span> <span class="n">today</span>
+    <span class="k">case</span> <span class="p">{</span><span class="s1">'Понедельник'</span><span class="p">,</span> <span class="s1">'Вторник'</span><span class="p">,</span> <span class="s1">'Среда'</span><span class="p">,</span> <span class="s1">'Четверг'</span><span class="p">,</span> <span class="s1">'Пятница'</span><span class="p">}</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Это будний день.'</span><span class="p">);</span>
+    <span class="k">case</span> <span class="p">{</span><span class="s1">'Суббота'</span><span class="p">,</span> <span class="s1">'Воскресенье'</span><span class="p">}</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Это выходной.'</span><span class="p">);</span>
+    <span class="k">otherwise</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Недействительный день.'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Общий пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">input_value</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span> <span class="c1">% Пример входных данных</span>
+
+<span class="k">switch</span> <span class="n">input_value</span>
+    <span class="k">case</span> <span class="p">{</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">}</span> <span class="c1">% Множество значений A, B и C.</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Входное значение - A, B или C.'</span><span class="p">);</span> <span class="c1">% Если принадлежит мн-ву</span>
+    <span class="k">case</span> <span class="p">{</span><span class="s1">'D'</span><span class="p">,</span> <span class="s1">'E'</span><span class="p">}</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Входное значение - D или E.'</span><span class="p">);</span>
+    <span class="k">otherwise</span>
+        <span class="nb">disp</span><span class="p">(</span><span class="s1">'Входное значение - что-то другое.'</span><span class="p">);</span>
+<span class="k">end</span></code></pre></figure>
+
+<h1 id="циклы-">Циклы ⟲</h1>
+
+<h2 id="общая-форма-оператора-for">Общая форма оператора <code class="language-plaintext highlighter-rouge">for</code></h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">element</span> <span class="o">=</span> <span class="n">vector</span>
+    <span class="n">perform_action</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Для каждого элемента (<code class="language-plaintext highlighter-rouge">element</code>) вектора (<code class="language-plaintext highlighter-rouge">vector</code>) выполняется некоторое действие (<code class="language-plaintext highlighter-rouge">perform_action</code>).</p>
+
+<p><strong>Простой пример использования <code class="language-plaintext highlighter-rouge">for</code></strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="s1">'Итерация: '</span> <span class="nb">num2str</span><span class="p">(</span><span class="n">i</span><span class="p">)]);</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Итерация: 1
+Итерация: 2
+Итерация: 3
+</code></pre></div></div>
+
+<p><strong>Пример 1.</strong> Вычислить сумму чисел \(1 + 3 + 5 + 7 + 9\)</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="nb">sum</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum = 
+    25
+</code></pre></div></div>
+
+<p><strong>Пример 2.</strong> По заданному целому неотрицательному значению \(n\) и вещественному значению \(x\) требуется вчсилить \(x^n\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="n">p</span></code></pre></figure>
+
+<p><strong>Пример 3.</strong> По заданному целому неотрицательному значению \(n\) требуется вычислить \(n!\)</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">f</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="n">f</span></code></pre></figure>
+
+<p><strong>Пример 4.</strong> По заданному натуральному значению \(n\) требуется вычислить</p>
+
+\[1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots \pm \frac{1}{n}\]
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="n">n</span>
+    <span class="c1">% В переменной k храним знак очередного слагаемого</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="o">-</span><span class="n">k</span><span class="p">;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">k</span> <span class="p">/</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Пример 4.</strong> По заданному натуральному значению \(n\) и вещественному значению \(x\) требуется вычислить \(x + x^2 + x^3 + \ldots + x^n\)</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span> <span class="c1">% в переменной z - очередное слагаемое</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">z</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Замечание</strong>. В MATLAB, если переменная используется как индекс в цикле <code class="language-plaintext highlighter-rouge">for</code>, то она присваивается текущему окружению, при этом перезаписывая любую другую переменную с таким же именем.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span> 
+    <span class="k">...</span>
+<span class="k">end</span>
+<span class="n">i</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i =
+    3
+</code></pre></div></div>
+
+<h2 id="оператор-повторения-while">Оператор повторения <code class="language-plaintext highlighter-rouge">while</code></h2>
+
+<p><strong>Пример.</strong> Вычислить сумму чисел \(1 + 3 + 5 + 7 + 9\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">9</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span> 
+<span class="k">end</span>
+<span class="nb">sum</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum =
+    25
+</code></pre></div></div>
+
+<h2 id="досрочное-завершение-цикла">Досрочное завершение цикла</h2>
+
+<p>Существует два способа досрочного завершения цикла <code class="language-plaintext highlighter-rouge">for</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">continue</code> прерывает текущую итерацию</li>
+  <li><code class="language-plaintext highlighter-rouge">break</code> прерывает выполнение всего цикла <code class="language-plaintext highlighter-rouge">for</code></li>
+</ul>
+
+<p><strong>Пример.</strong> Вычислить сумму чисел \(1 + 3 + 5 + 7 + 9\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">100</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">9</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span> 
+<span class="nb">sum</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum =
+    25
+</code></pre></div></div>
+
+<p><strong>Пример</strong> с использованием и <code class="language-plaintext highlighter-rouge">break</code> и <code class="language-plaintext highlighter-rouge">continue</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span>
+        <span class="k">continue</span><span class="p">;</span> <span class="c1">% Пропускает оставшуюся часть текущей итерации цикла</span>
+    <span class="k">end</span>
+
+    <span class="nb">disp</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">% Выводит значение i</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+        <span class="k">break</span><span class="p">;</span> <span class="c1">% Выходит из цикла</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    3
+    4
+    5
+</code></pre></div></div>
+
+<h2 id="вложенные-циклы">Вложенные циклы</h2>
+
+<p>Рассмотрим задачи, в которых внутри одного цикла реализован другой цикл.</p>
+
+<p><strong>Пример 1.</strong> Для заданного натурального числа \(n\) требуется найти все такие тройки натуральных чисел \(a, b, c\), что \(a + b + c = n\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span> 
+    <span class="k">for</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+        <span class="nb">fprintf</span><span class="p">(</span><span class="s2">"%d+%d+%d=%d\n"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1+1+2=4
+1+2+1=4
+2+1+1=4
+</code></pre></div></div>
+
+<p>Пример демонстрирует сокращение количество вложенных циклов.</p>
+
+<p><strong>Пример 2.</strong> Требуется распечатать все трехзначные числа, в которых есть две одинаковые цифры.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">9</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">9</span> 
+        <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">9</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
+                <span class="nb">disp</span><span class="p">([</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]);</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Если порядок выводимых чисел не важен, то эту задачу можно решить и более эффективно.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">9</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">j</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]);</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">j</span> <span class="n">j</span> <span class="mi">0</span><span class="p">]);</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">j</span> <span class="mi">0</span> <span class="n">j</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">9</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">i</span> <span class="n">i</span> <span class="n">j</span><span class="p">]);</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">j</span> <span class="n">i</span> <span class="n">i</span><span class="p">]);</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">i</span> <span class="n">j</span> <span class="n">i</span><span class="p">]);</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Пример 3.</strong> Требуется распечатать все трехзначные числа, в которых вторая цифра больше первой, а третья больше второй.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">7</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span>
+            <span class="nb">disp</span><span class="p">([</span><span class="n">i</span> <span class="n">j</span> <span class="n">k</span><span class="p">]);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span> </code></pre></figure>
+
+<p>Два последних примера показывают, что в задачах наивный подход не всегда является даже самым простым. В этих задачах излишним было бы перебирать все трехзначные числа, выделять из них цифры и сравнивать их между собой.</p>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-18-working-with-time.html">&laquo; Работа со временем</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-10-02-vectors.html">Вектора &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

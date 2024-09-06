@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Что такое MATLAB" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-04-matlab-first-steps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Первые шаги &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-04T09:00:00+03:00",
+        "headline": "Первые шаги",
+        "url": "http://localhost:4000/matlab_course/2023-09-04-matlab-first-steps.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-04-matlab-first-steps.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Первые шаги</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-04T09:00:00+03:00">
+      4 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="что-такое-matlab">Что такое MATLAB</h2>
+
+<p>MATLAB — это высокоуровневый интерпретируемый<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> язык программирования и пакет прикладных программ для инженерных и математических расчетов. Обладает широким прикладным функционалом и сравнительно легок в освоении.</p>
+
+<p>Говоря о полезности MATLAB, невозможно не упомянуть Simulink.</p>
+
+<blockquote>
+  <p>Simulink — среда динамического междисциплинарного моделирования сложных технических систем и основной инструмент для модельно-ориентированного проектирования. Его основным интерфейсом является графический инструмент для построения диаграмм и настраиваемый набор библиотек блоков. Он предлагает тесную интеграцию с остальной средой MATLAB.
+– Exponenta</p>
+</blockquote>
+
+<h2 id="первое-знакомство-с-графическим-интерфейсом-matlab">Первое знакомство с графическим интерфейсом MATLAB</h2>
+
+<p>При первом открытии MATLAB, возможна следующая конфигурация панелей:</p>
+
+<p><img src="/assets/images/matlab_course/matlab_first_steps/01-matlab-panes.png" alt="Labeled MATLAB panes" /></p>
+
+<ul>
+  <li>1-я панель: Содержит просмотрщик файлов;</li>
+  <li>2-я панель: Командное окно для выполнения вычислений и текстового вывода;</li>
+  <li>3-я панель: Окружение с переменными.</li>
+</ul>
+
+<p>Для каждой панели возможно изменить её положение и размер.</p>
+
+<h2 id="простые-расчеты">Простые расчеты</h2>
+
+<p>Простейший способ использование MATLAB – в качестве калькулятора. Например, после исполнения в командой строке:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span><span class="o">-</span><span class="mi">5</span></code></pre></figure>
+
+<p>получим результат:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 40
+</code></pre></div></div>
+
+<p><em>Обратим внимание, что результат вычислений не 20 а 40.</em></p>
+
+<p>Основными арифметическими операторами являются <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">-</code> <code class="language-plaintext highlighter-rouge">*</code> <code class="language-plaintext highlighter-rouge">/</code>, а <code class="language-plaintext highlighter-rouge">^</code> используется для обозначения операции возведения в степень. Также можно использовать скобки <code class="language-plaintext highlighter-rouge">(</code> <code class="language-plaintext highlighter-rouge">)</code>. Приоритет порядка тот же, что и обычно, т.е. скобки → степени → умножение и деление → сложение и вычитание.</p>
+
+<h2 id="встроенные-функции">Встроенные функции</h2>
+
+<p>Помимо основных операторов, MATLAB предоставляет все привычные математические функции, некоторые из которых представлены в следующей таблице:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Функция</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">abs(x)</code></td>
+      <td>\(\vert x \vert\) - модуль числа \(x\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sqrt(x)</code></td>
+      <td>\(\sqrt{x}\) - корень квадратный из $$x$</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pi</code></td>
+      <td>\(3.141592653589793\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sin(x)</code></td>
+      <td>\(\sin x\) - cинус угла \(x\) (в радианах)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cos(x)</code></td>
+      <td>\(\cos x\) - косинус угла \(x\) (в радианах)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">atan(x)</code></td>
+      <td>\(\arctan x\) - арктангенс угла $x$</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">exp(x)</code></td>
+      <td>Экспоненциальная функция (\(e^x\))</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log(x)</code></td>
+      <td>Натуральный логарифм (\(\log_e x\))</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">log10(x)</code></td>
+      <td>Логарифм по основанию 10 (\(\log_{10} x\))</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">round(x)</code></td>
+      <td>Округлить до ближайшего целого числа</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">floor(x)</code></td>
+      <td>Округлить вниз (в сторону \(-\infty\))</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ceil(x)</code></td>
+      <td>Округление вверх (в сторону \(+\infty\))</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fix(x)</code></td>
+      <td>Округление в сторону нуля</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sign(x)</code></td>
+      <td>Знак числа (-1 или +1)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rem(x)</code></td>
+      <td>Остаток после целочисленного деления</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Как видим, эти функции вызываются привычным для многих языков программирования способом: именем функции с последующей передачей аргументов в скобках, например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 2.7183
+</code></pre></div></div>
+
+<p>Вычислим более длинное выражение: \(1.2 \cdot \sin(40^{\circ} + \ln(2.42))\)</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="nb">pi</span><span class="p">/</span><span class="mi">180</span> <span class="o">+</span> <span class="nb">log</span><span class="p">(</span><span class="mf">2.4</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 0.76618
+</code></pre></div></div>
+
+<p>Следует отметить:</p>
+
+<ul>
+  <li>В уравнениях всегда необходим явный знак умножения, например, между
+<code class="language-plaintext highlighter-rouge">1.2</code> и <code class="language-plaintext highlighter-rouge">sin</code>;</li>
+  <li>Тригонометрические функции (например, <code class="language-plaintext highlighter-rouge">sin</code>) работают в радианах. Коэффициент π/180 можно использовать для преобразования градусов в радианы. <code class="language-plaintext highlighter-rouge">pi</code> - это пример именованной переменной.</li>
+  <li>Функция натурального логарифма именуется “log”, а не “ln”.</li>
+</ul>
+
+<h2 id="переменные">Переменные</h2>
+
+<p>Любой код состоит из двух составляющих: описания <em>данных</em> и описания <em>действий</em>, которые выполняются над данными. В грамматике языков программирования действия представляются операторами, например арифметическими, как в примере ранее. Данные являются операндами и часто храняться в переменных.</p>
+
+<p>При любом значимом вычислении появляется желание сохранить свои ответы или повторно использовать значения, точно так же, как при использовании памяти калькулятора. MATLAB предоставляет возможность определять и использовать именованные переменные. Например, рассмотрим пример с градусами в предыдущем разделе. Мы можем определить переменную <code class="language-plaintext highlighter-rouge">deg</code> для хранения коэффициента преобразования, записав:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">deg</span> <span class="o">=</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">180</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deg = 0.017453
+</code></pre></div></div>
+
+<p>Обратим внимание, что тип переменной определять не нужно, в отличие от большинства высокоуровневых языков программирования.</p>
+
+<p>Все переменные в MATLAB являются числами с плавающей запятой<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</p>
+
+<p>Используя переменную <code class="language-plaintext highlighter-rouge">deg</code>, мы можем переписать предыдущее выражение следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">deg</span> <span class="o">+</span> <span class="nb">log</span><span class="p">(</span><span class="mf">2.4</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 0.76618
+</code></pre></div></div>
+
+<p>Использование переменных не только облегчит ввод и чтение данных, но и снизит вероятность ошибки. Замена “мистических чисел”<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> переменными делает код более читаемым и поддерживаемым, что в свою очередь упрощает его модификацию в будущем.</p>
+
+<p>В MATLAB, если вводится  выражение без присваивания переменной, результат сохраняется в переменную под именем <code class="language-plaintext highlighter-rouge">ans</code>. Эту переменную можно потом использовать как обычно.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">new</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="nb">ans</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>new = 2.2985
+</code></pre></div></div>
+
+<p>Обратим внимание, что это не тот ответ, который можно было бы ожидать от простого выполнения 3 × 0.76618. MATLAB отображает числа с ограниченным количеством знаков после запятой, но хранит их с высокой точностью. Поэтому результаты более точные, чем кажутся на первый взгляд.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></p>
+
+<p><strong>Правила именования переменных:</strong></p>
+<ol>
+  <li>Имя переменной начинается с буквы;</li>
+  <li>Может содержать буквы, цифры и подчёркивания;</li>
+  <li>Чувствительно к регистру;</li>
+  <li>Зарезервированные слова и специальные символы запрещены;</li>
+  <li>Пробелы запрещены.</li>
+</ol>
+
+<p>Список зарезервированных (служебных, ключевых) слов можно посмотреть вызвав команду <code class="language-plaintext highlighter-rouge">iskeyword</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">iskeyword</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  20×1 cell array
+    {'break'     }
+    {'case'      }
+    {'catch'     }
+    {'classdef'  }
+    {'continue'  }
+    {'else'      }
+    {'elseif'    }
+    {'end'       }
+    {'for'       }
+    {'function'  }
+    {'global'    }
+    {'if'        }
+    {'otherwise' }
+    {'parfor'    }
+    {'persistent'}
+    {'return'    }
+    {'spmd'      }
+    {'switch'    }
+    {'try'       }
+    {'while'     }
+</code></pre></div></div>
+
+<p>Чтобы проверить значение переменной, введите её имя и нажмите Enter. Для списка всех ваших переменных и функций, введите команду <code class="language-plaintext highlighter-rouge">who</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">who</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Variables visible from the current scope:
+
+ans  deg  new
+</code></pre></div></div>
+
+<p><strong>Чтобы удалить переменные (очистить рабочее пространство)</strong>, используйте команду <code class="language-plaintext highlighter-rouge">clear</code>. Для удаления конкретной переменной, введите <code class="language-plaintext highlighter-rouge">clear имя_переменной</code>. Это может быть полезно для экономии памяти или для “сброса” переменных.</p>
+
+<h2 id="числа-и-форматирование">Числа и форматирование</h2>
+
+<p>MATLAB обычно отображает числа с пятью значащими цифрами. Команда <code class="language-plaintext highlighter-rouge">format</code> позволяет вам выбрать способ отображения чисел. В частности:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">format</span> <span class="n">long</span></code></pre></figure>
+
+<p>установит отображение чисел с 15+ значащих цифр, что примерно соответствует точности вычислений MATLAB. Введя <code class="language-plaintext highlighter-rouge">help format</code> можно получить полный список опций для этой команды. Установив значение <code class="language-plaintext highlighter-rouge">format long</code>, мы можем просмотреть более точное значение <code class="language-plaintext highlighter-rouge">deg</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">deg</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deg = .0174532925199433
+</code></pre></div></div>
+
+<p>Для возврата отображения обычной точности:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">format</span> <span class="n">short</span></code></pre></figure>
+
+<p>MATLAB показывает большие или маленькие числа в экспоненциальном формате, как 1,3143e+04 (что соответствует \(1,3143 \cdot 10^{4}\)) для 13142,6. Также можно использовать этот формат и при вводе чисел.</p>
+
+<p>Существуют также другие виды чисел, распознаваемые и вычисляемые MATLAB:</p>
+
+<ul>
+  <li><strong>Комплексные числа</strong> (например, <code class="language-plaintext highlighter-rouge">3+4i</code>).</li>
+  <li><strong>Бесконечность (<code class="language-plaintext highlighter-rouge">Inf</code>)</strong> возникает при делении на ноль и может храниться как переменная.</li>
+  <li><strong>«Не число» (<code class="language-plaintext highlighter-rouge">NaN</code>)</strong> появляется в неопределенных операциях и также может быть переменной; все вычисления с ним всегда дают <code class="language-plaintext highlighter-rouge">NaN</code>.</li>
+</ul>
+
+<h2 id="представление-чисел-и-точность">Представление чисел и точность</h2>
+
+<p>Числа в MATLAB, как и во всех компьютерах, хранятся в двоичном формате, а не в десятичном. В десятичной системе счисления 12,25 означает:</p>
+
+\[12.25=1×10^1 +2×10^0 +2×10^{−1} +5×10^{−2}\]
+
+<p>но в двоичном формате это было бы записано как:</p>
+
+\[1101.01 = 1×2^3 +1×2^2 +0×2^1 +1×2^0 +0×2^{−1} +1×2^{−2} =12.25\]
+
+<p>Двоичный код в ЭВМ используется для простоты управления электрическими сигналами. Из-за ограниченного числа битов, не все числа могут быть точно представлены, что может вызвать ошибки в расчетах. Рассмотрим пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mf">0.2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 5.5511e-17
+</code></pre></div></div>
+
+<p>Результат не равен нулю из-за ограничений двоичного представления чисел в компьютерах. Значение 0.2 не может быть точно представлено в двоичной системе счисления с конечным числом разрядов (\(0.0011001100  \ldots\)), аналогично тому, как 1/3 не может быть точно представлена в десятичной системе. Поэтому часто лучше не сравнивать числа на строгое равенство, а использовать допуск на ошибку. Самый простой пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">;</span>  <span class="c1">% Допуск на погрешность вычислений</span>
+<span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span>  
+  <span class="nb">disp</span><span class="p">(</span><span class="s1">'Числа приблизительно равны.'</span><span class="p">)</span>
+<span class="k">else</span>
+  <span class="nb">disp</span><span class="p">(</span><span class="s1">'Числа различны.'</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<h2 id="считывание-значений-переменных-с-клавиатуры">Считывание значений переменных с клавиатуры</h2>
+
+<p>Для того, чтобы задать значение переменной путем ввода с клавиатуры:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Введите ваше имя: '</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">([</span><span class="s1">'Привет, '</span> <span class="n">name</span><span class="p">]);</span></code></pre></figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">input('Введите ваше имя: ', 's')</code> запрашивает у пользователя ввод имени. Параметр <code class="language-plaintext highlighter-rouge">'s'</code> указывает, что ввод должен рассматриваться как строка.</li>
+  <li><code class="language-plaintext highlighter-rouge">disp(['Привет, ' name])</code> объединяет строку <code class="language-plaintext highlighter-rouge">'Привет, '</code> с введенным именем и выводит это сообщение на экран.</li>
+</ul>
+
+<h2 id="загрузка-и-сохранение-пременных">Загрузка и сохранение пременных</h2>
+
+<p>При выходе из MATLAB все переменные теряются. Для сохранения области переменных используйте функцию сохранения и загрузки.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">save</span> <span class="n">anyname</span></code></pre></figure>
+
+<p>→ сохранит рабочее пространства в файл “anyname.mat” и позволит восстановить переменные при следующем запуске MATLAB.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">load</span> <span class="n">anyname</span></code></pre></figure>
+
+<p>→  восстановит предыдущую область переменных, что позволит  продолжить с того места, на котором остановились.</p>
+
+<p>Для загрузки и сохранения только определенных переменных:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">save</span> <span class="n">filename</span> <span class="n">var1</span> <span class="n">var2</span> <span class="k">...</span></code></pre></figure>
+
+<p>Например, можно сохранить (только) переменную <code class="language-plaintext highlighter-rouge">deg</code>, чтобы не вычислять её с нуля (что, конечно, не очень сложно в данном случае!):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">save</span> <span class="n">degconv</span> <span class="n">deg</span></code></pre></figure>
+
+<p>Это сохранит переменную в файл под названием degconv.mat. Затем её можно загрузить:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">load</span> <span class="n">degconv</span></code></pre></figure>
+
+<h2 id="повторение-предыдущих-команд">Повторение предыдущих команд</h2>
+
+<p>MATLAB сохраняет запись всех команд, которые вы ввели во время сессии, и вы можете использовать клавиши курсора ↑ и ↓ для просмотра предыдущих команд (самые последние команды отображаются первыми). Если вы хотите повторить одну из этих команд, просто найдите её с помощью клавиш курсора и нажмите <kbd>Enter</kbd>.</p>
+
+<p>После того, как команда была восстановлена, вы можете отредактировать её перед повторным выполнением. Вы можете использовать клавиши ← и → для перемещения курсора по строке и вводить символы или нажимать <kbd>Backspace</kbd> для изменения содержимого. Это особенно полезно, если вы только что ввели длинную строку, а затем MATLAB обнаруживает в ней ошибку. Используя клавиши со стрелками, вы можете восстановить строку, исправить ошибку и попробовать снова.</p>
+
+<h2 id="очистка-командного-окна">Очистка командного окна</h2>
+
+<p>Для очистки командного окна выполните команду <code class="language-plaintext highlighter-rouge">clc</code>.</p>
+
+<h2 id="справочная-система">Справочная система</h2>
+
+<p>Если Вы не уверены, что делает конкретная команда в MATLAB, или хотите найти определённую функцию, в MATLAB есть интегрированная система справки. Базовый способ использования справки:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">help</span> <span class="err">имя_команды</span></code></pre></figure>
+
+<p>Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">help</span> <span class="nb">sqrt</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'sqrt' is a built-in function from the file libinterp/corefcn/mappers.cc
+
+ -- sqrt (X)
+     Compute the square root of each element of X.
+
+     If X is negative, a complex result is returned.
+
+     To compute the matrix square root, see Linear Algebra.
+
+     See also: realsqrt, nthroot.
+...
+</code></pre></div></div>
+
+<p>Если Вы не знаете нужной команды, можно ввести <code class="language-plaintext highlighter-rouge">doc</code> для перехода к документации или <code class="language-plaintext highlighter-rouge">lookfor &lt;str&gt;</code> для поиска по справочной системе.</p>
+
+<h2 id="отмена-команды">Отмена команды</h2>
+
+<p>Если вы обнаружите, что ввели команду, которая занимает много времени для выполнения (или, возможно, это одна из ваших собственных программ с ошибкой, из-за которой она бесконечно повторяется), полезно знать, как её остановить. Вы можете отменить текущую команду, нажав</p>
+
+<p><kbd>Ctrl</kbd>+<kbd>C</kbd>,</p>
+
+<p>что должно (возможно, после небольшой паузы) вернуть вас к командному окну.</p>
+
+<h2 id="точки-с-запятой-и-скрытие-результатов">Точки с запятой и скрытие результатов</h2>
+
+<p>В языках программирования, таких как C++, точки с запятой ‘;’ часто используются для обозначения конца строки. В MATLAB это не обязательно, но может быть полезно. Если команда введена без завершающей точки с запятой, MATLAB покажет результат. Если строку завершить точкой с запятой, результат не будет отображён. Это удобно, если результат не нужен сразу или если он слишком большой.</p>
+
+<h2 id="создание-и-сохранение-matlab-скрипта">Создание и сохранение MATLAB скрипта</h2>
+
+<p>Хотя командная строка может быть полезной, основная часть работы c MATLAB выполняется в скриптах. Скрипты позволяют сохранять в файле  исполняемые инструкции. MATLAB скрпиты имеют <code class="language-plaintext highlighter-rouge">.m</code> расширение.</p>
+
+<p>Можно создать скрипт, набрав команду <code class="language-plaintext highlighter-rouge">edit</code>, в результате получив:</p>
+
+<p><img src="/assets/images/matlab_course/matlab_first_steps/02-untitled-script.png" alt="Untitled script" /></p>
+
+<p>Редактировать уже созданный скрипт можно выполнив команду <code class="language-plaintext highlighter-rouge">edit &lt;название файла&gt;</code>, если же такого файла не существует, MATLAB предложит его создать.</p>
+
+<p>Незабудьте сохранить файл после внесения изменений: <kbd>Ctrl</kbd>+<kbd>S</kbd>. Несохраненные файлы MATLAB помечает <code class="language-plaintext highlighter-rouge">*</code>.</p>
+
+<p>Лучшая практика говорит о сохранении файла с названием исключительно из латинских букв и цифр.</p>
+
+<p><strong>Варианты создания нового скрипт файла из панели инструментов:</strong></p>
+
+<p><img src="/assets/images/matlab_course/matlab_first_steps/03-creating-script-1-selection.png" alt="matlab-creating-script-1" /></p>
+
+<p><img src="/assets/images/matlab_course/matlab_first_steps/04-creating-script-2-selection.png" alt="matlab-creating-script-2" /></p>
+
+<h2 id="исполнение-кода-из-matlab-скрипта">Исполнение кода из MATLAB скрипта</h2>
+
+<p>Существует несколько вариантов исполнения кода из MATLAB скрипта:</p>
+
+<ol>
+  <li>Скопировав и вставив код из файла в командную строку: <kbd>Ctrl</kbd>+<kbd>C</kbd> → <kbd>Ctrl</kbd>+<kbd>V</kbd></li>
+  <li>Выделив код → правая кнопка мыши → <code class="language-plaintext highlighter-rouge">Evaluate Selection</code></li>
+  <li>В панели инструментов <code class="language-plaintext highlighter-rouge">Editor</code> → <code class="language-plaintext highlighter-rouge">Run</code></li>
+  <li>Из командной строки написав: <code class="language-plaintext highlighter-rouge">&lt;название файла&gt;</code>. Мы можем открыть файл написанный в командной строке выделилв его название и выполнив сочетание клавиш <kbd>Ctrl</kbd>+<kbd>D</kbd>.</li>
+</ol>
+
+<p><br /></p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>В отличие от компилируемых языков, интерпретируемым для исполнения программы не нужен машинный код; вместо этого программу построчно исполнят интерпретаторы. Это позволяет быстро тестировать и отлаживать код, но часто снижает скорость выполнения программ по сравнению с компилируемыми языками. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Или строками, что очевидно из контекста. Однако даже строки хранятся в виде вектора идентификационных номеров символов. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>“Мистические числа” (англ.: <em>magic numbers</em>) — это числовые значения, которые встречаются в коде без объяснения их назначения. Например: <code class="language-plaintext highlighter-rouge">x = x * 3.14159</code>, число <code class="language-plaintext highlighter-rouge">3.14159</code> является “мистическим числом”. Лучше использовать переменную с понятным именем, например <code class="language-plaintext highlighter-rouge">pi</code>: <code class="language-plaintext highlighter-rouge">x = x * pi</code>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>MATLAB хранит все числа в формате IEEE с плавающей запятой с двойной (64-разрядной) точностью. Значение <code class="language-plaintext highlighter-rouge">ans</code> здесь на самом деле равно 0,766177651029692 (с точностью до 15 знаков после запятой). <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      
+      <a class="next" href="/matlab_course/2023-09-04-comments.html">Комментарии &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

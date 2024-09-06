@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="При использовании MATLAB для вычислений важно помнить, что числа с которыми мы работаем не эквивалентны вещественным числам в математики. В математике вещест..." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-11-numeric-types.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Численные типы данных &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-11T10:00:00+03:00",
+        "headline": "Численные типы данных",
+        "url": "http://localhost:4000/matlab_course/2023-09-11-numeric-types.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-11-numeric-types.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Численные типы данных</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-11T10:00:00+03:00">
+      11 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>При использовании MATLAB для вычислений важно помнить, что числа с которыми мы работаем не эквивалентны вещественным числам в математики. В математике вещественные числа могут быть бесконечно большими, и у них бесконечно высокое разрешение, то есть разница между двумя разными числами может быть бесконечно малой.</p>
+
+<p>Компьютеры имеют ограниченный объем памяти. Поэтому существует и предел того, насколько большим может быть число, представленное в памяти. Также существует и ограничение на то, насколько малым может быть абсолютное значение ненулевого числа.</p>
+
+<p>Конечность памяти означает, что переменная MATLAB не может хранить иррациональное число. Поэтому, например, функция <code class="language-plaintext highlighter-rouge">pi</code> возвращает не число пи, а только приближение, как и функция квадратного корня может вернуть только приближенное значение квадратного корня из двух.</p>
+
+<p>Это может показаться довольно существенным ограничением, но для подавляющего большинства задач, которые мы хотим решать на компьютере, набор чисел, которые могут быть представлены переменной, более чем достаточен. Справляться с этим ограничением помогают численнные типы данных.</p>
+
+<p>Рассмотрим пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'double'
+</code></pre></div></div>
+
+<p>Функция <code class="language-plaintext highlighter-rouge">class</code> сообщает нам, что <code class="language-plaintext highlighter-rouge">x</code> имеет тип <code class="language-plaintext highlighter-rouge">double</code>. Это тип данных по умолчанию для всех числовых данных в MATLAB. Это относится не только к переменным, но и к значениям.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">class</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'double'
+</code></pre></div></div>
+
+<p>Почему функция называется <code class="language-plaintext highlighter-rouge">class</code>, а не <code class="language-plaintext highlighter-rouge">type</code>? Оказывается <code class="language-plaintext highlighter-rouge">type</code> зарезервирована для команды, которая выводит содержимое файла (в смысле “type the file”).</p>
+
+<p>Рассмотрим ещё один пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">class</span><span class="p">(</span><span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'double'
+</code></pre></div></div>
+
+<p>Хотя результат является мнимым числом и в то же время MATLAB поддерживает комплексные числа, он не разделяет их на действительные, мнимые и комплексные, когда классифицирует их по типам.</p>
+
+<p>Давайте рассмотрим функцию <code class="language-plaintext highlighter-rouge">whos</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">whos</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name       Size            Bytes  Class     Attributes
+  ans       1x6                12  char                
+  x         1x1                 8  double              
+</code></pre></div></div>
+
+<p>В столбце <code class="language-plaintext highlighter-rouge">size</code> указаны размеры массива, подробнее о массивах мы поговорим позже. В MATLAB все скаляры рассматриваются как массивы 1x1.</p>
+
+<p>Значение <code class="language-plaintext highlighter-rouge">ans</code> - это строка, символами которой являются <code class="language-plaintext highlighter-rouge">'d', 'o', 'u', 'b', 'l', 'e'</code>. А как значение <code class="language-plaintext highlighter-rouge">ans</code> стало строкой? Это произошло еще в этой команде <code class="language-plaintext highlighter-rouge">class(sqrt(-1))</code>. Это была последняя команда, в которой мы не присваивали вывод переменной. Команда <code class="language-plaintext highlighter-rouge">class</code> вернула тип данных вывода квадратного корня. Им оказался <code class="language-plaintext highlighter-rouge">double</code>. И вернула она эту информацию в виде строки.</p>
+
+<p>Конечно, когда мы вводим строку, как, например, при вводе строки формата в операторе <code class="language-plaintext highlighter-rouge">fprintf</code>, мы должны заключить ее в кавычки, чтобы MATLAB знал, что это не имя переменной. Когда же MATLAB печатает строку, он не заключает ее в кавычки.</p>
+
+<p>Говоря о заключении строк в кавычки, давайте посмотрим на тип вводимой строки.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">class</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'char'
+</code></pre></div></div>
+
+<p>Снова <code class="language-plaintext highlighter-rouge">char</code>, как и ожидалось для символьной строки.</p>
+
+<h3 id="числовые-типы">Числовые типы</h3>
+
+<p>Тип <code class="language-plaintext highlighter-rouge">double</code> представляет числа в формате “с плавающей точкой”, что можно сравнить с научной нотацией. Например, число \(12.34\) в научной нотации записывается как \(1.234 \cdot 10^{-2}\), что позволяет хранить его как два целых числа: 1234 и \(-2\). При использовании представления с плавающей точкой и двойной точностью выделяется 64 бита памяти (или 8 байт), где 1 бит отведён для знака, 52 бита для мантиссы и 11 бит для экспоненты. Мантисса, схожа с числом \(1.234\) в научной нотации, по определению всегда меньше единицы, и первая значащая цифра после запятой не может быть нулём, например, \(12.34 \rightarrow 0.1234\).</p>
+
+<p>Точность математических операций определяется наименее значащим битом мантисс операндов. Эта точность обозначается числом \(\varepsilon\). Например: \(1.0 + \delta = 1.0\), если \(\vert \delta \vert &lt; \varepsilon\). Величина \(\varepsilon\) доступна в MATLAB через встроенную переменную <code class="language-plaintext highlighter-rouge">eps</code>.</p>
+
+<p>Единственным другим типом с плавающей точкой, поддерживаемым в MATLAB, является <code class="language-plaintext highlighter-rouge">single</code>, который содержит всего 32 бита. Название <code class="language-plaintext highlighter-rouge">double</code> (двойной) происходит от того, что этот тип занимает в два раза больше памяти, чем <code class="language-plaintext highlighter-rouge">single</code> (одинарный). Благодаря этому дополнительному пространству, <code class="language-plaintext highlighter-rouge">double</code> позволяет обрабатывать числа с большей точностью, отсюда и термин ‘double precision’ — числа с двойной точностью.</p>
+
+<p>Что делать, если вам нужны только целые числа? Например, значения, получаемые от датчиков или значения цвета пикселей при обработке изображений, обычно представляют собой целые числа. В MATLAB есть поддержка множества различных целочисленных типов данных — всего восемь. Среди них четыре знаковых и четыре беззнаковых типа.</p>
+
+<p>Ещё один ключевой аспект целочисленных типов — это их разрядность. В MATLAB доступны 8-, 16-, 32- и 64-битные целочисленные типы, как знаковые, так и беззнаковые. Большее количество битов увеличивает диапазон представляемых чисел, позволяя обрабатывать более широкий спектр данных.</p>
+
+<p>В следующей таблице представлены все числовые типы MATLAB и диапазоны, которые они охватывают.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Тип данных</th>
+      <th>Диапазон значений</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int8</code></td>
+      <td>\(-2^{7}\) до \(2^7 - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int16</code></td>
+      <td>\(-2^{15}\) до \(2^{15} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int32</code></td>
+      <td>\(-2^{31}\) до \(2^{31} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int64</code></td>
+      <td>\(-2^{63}\) до \(2^{63} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uint8</code></td>
+      <td>\(0\) до \(2^{8} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uint16</code></td>
+      <td>\(0\) до \(2^{16} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uint32</code></td>
+      <td>\(0\) до \(2^{32} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">uint64</code></td>
+      <td>\(0\) до \(2^{64} - 1\)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">single</code></td>
+      <td>\(-3.4 \times 10^{38}\) до \(3.4 \times 10^{38}\), <code class="language-plaintext highlighter-rouge">Inf</code>, <code class="language-plaintext highlighter-rouge">NaN</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td>\(-1.79 \times 10^{308}\) до \(1.79 \times 10^{308}\), <code class="language-plaintext highlighter-rouge">Inf</code>, <code class="language-plaintext highlighter-rouge">NaN</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">Inf</code> («бесконечность») чаще всего возникает при делении ненулевого числа на ноль. Это значение превышает максимально допустимый предел, который может быть представлен в типе данных <code class="language-plaintext highlighter-rouge">double</code>. Аналогично работает и <code class="language-plaintext highlighter-rouge">-Inf</code>, обозначающий отрицательную бесконечность.</p>
+
+<p>Ещё одно специальное значение, которое может принимать тип данных <code class="language-plaintext highlighter-rouge">single</code> или <code class="language-plaintext highlighter-rouge">double</code>, — это <code class="language-plaintext highlighter-rouge">NaN</code> («не число»). <code class="language-plaintext highlighter-rouge">NaN</code> используется для обозначения результатов вычислений, которые не приводят к допустимым числовым значениям. Примером такой операции может служить деление нуля на ноль.</p>
+
+<p>Рассмотрим некоторые полезные функции</p>
+
+<p><strong>Проверка типа:</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">isa</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">'double'</span><span class="p">)</span></code></pre></figure>
+
+<p>Функция <code class="language-plaintext highlighter-rouge">isa</code> проверяет, соответствует ли тип данных переменной <code class="language-plaintext highlighter-rouge">x</code> указанному типу. В данном случае возвращает <code class="language-plaintext highlighter-rouge">true</code>, если <code class="language-plaintext highlighter-rouge">x</code> имеет тип <code class="language-plaintext highlighter-rouge">double</code>, и <code class="language-plaintext highlighter-rouge">false</code> — в противном случае</p>
+
+<p><strong>Проверка диапазона:</strong></p>
+
+<p>Функции <code class="language-plaintext highlighter-rouge">intmax</code> и <code class="language-plaintext highlighter-rouge">intmin</code> дают максимальное и минимальное значение целочисленных типов:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">intmax</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  int32
+   2147483647
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">ans</span> <span class="o">=</span>
+  <span class="nb">int32</span>
+   <span class="o">-</span><span class="mi">2147483648</span></code></pre></figure>
+
+<p>Также можно передать аргумент, например: <code class="language-plaintext highlighter-rouge">intmax('int64')</code> -&gt; <code class="language-plaintext highlighter-rouge">9223372036854775807</code>.</p>
+
+<p>Функции <code class="language-plaintext highlighter-rouge">realmax</code> и <code class="language-plaintext highlighter-rouge">realmin</code> дают максимальное и минимальное значение для типов с плавающей точкой:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">realmax</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  1.7977e+308
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">realmin</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  2.2251e-308
+</code></pre></div></div>
+
+<p>Также можно передать аргумент, например: <code class="language-plaintext highlighter-rouge">realmin('single')</code> -&gt; <code class="language-plaintext highlighter-rouge">1.1755e-38</code>.</p>
+
+<p>В дополнение к функциям проверки типов, MATLAB предлагает набор функций для их преобразования. Название каждой функции совпадает с желаемым типом данных, например: <code class="language-plaintext highlighter-rouge">int8(x)</code>, <code class="language-plaintext highlighter-rouge">uint32(x)</code>, <code class="language-plaintext highlighter-rouge">double(x)</code> и так далее.</p>
+
+<p>Конечно, самое частое действие с переменными в MATLAB — это арифметические операции, и существуют правила арифметики, зависящие от типов данных. Все арифметические операции без проблем принимают два операнда одного типа, и результат всегда имеет тот же тип.</p>
+
+<p>MATLAB также позволяет смешивать типы данных в арифметических выражениях. Это называется арифметикой смешанного типа (mixed-mode arithmetic), и существует множество правил и ограничений относительно того, что допустимо и какого типа будет результат. Эти правила могут быть довольно сложными и обременительными, поэтому мы не будем углубляться в них здесь.</p>
+
+<p>В то же время, есть хорошие новости: операторы сравнения работают с любым сочетанием числовых типов данных без проблем. И неудивительно, что результат всегда имеет один тип — <code class="language-plaintext highlighter-rouge">logical</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x</span> <span class="o">=</span> <span class="nb">single</span><span class="p">(</span><span class="mf">43.23</span><span class="p">);</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">int8</span><span class="p">(</span><span class="o">-</span><span class="mi">16</span><span class="p">);</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">uint16</span><span class="p">(</span><span class="mi">1234</span><span class="p">);</span>
+<span class="n">whosdigit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span> <span class="n">of</span> <span class="n">the</span> <span class="n">decimal</span> <span class="n">point</span> <span class="n">is</span> <span class="nb">not</span> <span class="n">zero</span><span class="o">.</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Name      Size            Bytes  Class     Attributes
+  a         1x1                 1  int8                
+  b         1x1                 2  uint16              
+  x         1x1                 4  single   
+</code></pre></div></div>
+
+<p>Что, если мы попытаемся присвоить число, которое не вписывается в заданный тип?</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>k =
+  uint8
+   255
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>k =
+  uint8
+   255
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>k =
+  uint8
+   0
+</code></pre></div></div>
+
+<p>Функция преобразования выдает число, наиболее близкое к входному значению, которое может быть представлено в данном типе данных. Здесь мы работаем с типом данных <code class="language-plaintext highlighter-rouge">unit8</code>, который может содержать значения от 0 до 255.</p>
+
+<p>Следует соблюдать осторожность при переприсваивании значений:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'double'
+</code></pre></div></div>
+
+<p>В тот момент, когда мы присвоили <code class="language-plaintext highlighter-rouge">2</code> числу <code class="language-plaintext highlighter-rouge">k</code>, его тип данных изменился. Число <code class="language-plaintext highlighter-rouge">2</code> по умолчанию имеет тип <code class="language-plaintext highlighter-rouge">double</code>.</p>
+
+<p>Такое поведение логично, поскольку если бы мы присвоили <code class="language-plaintext highlighter-rouge">k</code> строку, мы бы не ожидали, что она будет иметь какой-либо другой тип данных.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">k</span> <span class="o">=</span> <span class="s1">'Hello World!'</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'char'
+</code></pre></div></div>
+
+<p>В MATLAB при присваивании переменной значения нового типа она автоматически принимает этот тип. Во многих других языках программирования ситуация отличается: переменная объявляется с определённым типом и сохраняет его на протяжении всего времени использования. В таких языках программирования если бы мы попытались присвоить значение переменной типа <code class="language-plaintext highlighter-rouge">char</code> другой переменной, например <code class="language-plaintext highlighter-rouge">k</code>, это могло бы привести к ошибке, или было бы выполнено неявное преобразование типа прямо в момент присваивания.</p>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-11-logical-type.html">&laquo; Логический тип данных</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-11-strings.html">Строки &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

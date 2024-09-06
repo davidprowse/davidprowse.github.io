@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Множество значений логического типа logical содержит всего два элемента - true (истина) и false (ложь). Эти константы определены так, что true равняется 1, f..." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-11-logical-type.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Логический тип данных &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-11T09:00:00+03:00",
+        "headline": "Логический тип данных",
+        "url": "http://localhost:4000/matlab_course/2023-09-11-logical-type.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-11-logical-type.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Логический тип данных</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-11T09:00:00+03:00">
+      11 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>Множество значений логического типа <code class="language-plaintext highlighter-rouge">logical</code> содержит всего два элемента - <code class="language-plaintext highlighter-rouge">true</code> (истина) и <code class="language-plaintext highlighter-rouge">false</code> (ложь). Эти константы определены так, что <code class="language-plaintext highlighter-rouge">true</code> равняется <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">false</code> равняется <code class="language-plaintext highlighter-rouge">0</code> и <code class="language-plaintext highlighter-rouge">true &gt; false</code>.</p>
+
+<p>Значения логического типа обычно получаются в результате сравнения с использованием следующих операторов:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">==</code>: равенство. Например, <code class="language-plaintext highlighter-rouge">a == b</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">a</code> равно <code class="language-plaintext highlighter-rouge">b</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">~=</code>: неравенство. Например, <code class="language-plaintext highlighter-rouge">x ~= y</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">x</code> не равно <code class="language-plaintext highlighter-rouge">y</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;</code>: меньше. Например, <code class="language-plaintext highlighter-rouge">p &lt; q</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">p</code> меньше <code class="language-plaintext highlighter-rouge">q</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code>: больше. Например, <code class="language-plaintext highlighter-rouge">m &gt; n</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">m</code> больше <code class="language-plaintext highlighter-rouge">n</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;=</code>: меньше или равно. Например, <code class="language-plaintext highlighter-rouge">r &lt;= s</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">r</code> меньше или равно <code class="language-plaintext highlighter-rouge">s</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;=</code>: больше или равно. Например, <code class="language-plaintext highlighter-rouge">t &gt;= u</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">t</code> больше или равно <code class="language-plaintext highlighter-rouge">u</code>.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">class</span><span class="p">(</span><span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'logical'
+</code></pre></div></div>
+
+<p>Сравнение значений полезно в исследовании математических выражений, анализе данных (фильтрации по условию) и в построении управляющих конструкций.</p>
+
+<p>Кроме операторов сравнения для построения логических выражений используются логические операторы:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">~</code> - отрицание</li>
+  <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> - логическое И</li>
+  <li><code class="language-plaintext highlighter-rouge">||</code> - логическое ИЛИ</li>
+</ul>
+
+<p>Приведем таблицы результатов этих логических операций для всех возможных значений операндов (в алгебре логики такие такие таблицы называются таблицами истинности).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">x</code></th>
+      <th><code class="language-plaintext highlighter-rouge">~x</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">x</code></th>
+      <th><code class="language-plaintext highlighter-rouge">y</code></th>
+      <th><code class="language-plaintext highlighter-rouge">x &amp;&amp; y</code></th>
+      <th><code class="language-plaintext highlighter-rouge">x || y</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>В логических выражениях могут встречаться как арифметические операции, так и логические. Порядок выполнения операций определяется их приоритетом (в других языках программирования приоритеты операций могут быть другими):</p>
+
+<ol>
+  <li>Скобки <code class="language-plaintext highlighter-rouge">()</code></li>
+  <li>Отрицание <code class="language-plaintext highlighter-rouge">~</code></li>
+  <li>Умножение <code class="language-plaintext highlighter-rouge">*</code> и деление <code class="language-plaintext highlighter-rouge">/</code></li>
+  <li>Сложение <code class="language-plaintext highlighter-rouge">+</code> и вычитание <code class="language-plaintext highlighter-rouge">-</code></li>
+  <li>Операторы сравнения: меньше <code class="language-plaintext highlighter-rouge">&lt;</code>, нестрогое меньше <code class="language-plaintext highlighter-rouge">&lt;=</code>, больше <code class="language-plaintext highlighter-rouge">&gt;</code>, нестрогое больше <code class="language-plaintext highlighter-rouge">&gt;=</code>, равенство <code class="language-plaintext highlighter-rouge">==</code>, не равно <code class="language-plaintext highlighter-rouge">~=</code></li>
+  <li>Логические И <code class="language-plaintext highlighter-rouge">&amp;&amp;</code></li>
+  <li>Логическое ИЛИ <code class="language-plaintext highlighter-rouge">||</code></li>
+</ol>
+
+<p>Операции с одинаковым приоритетом выполняются по порядку слева направо. Для изменения порядка необходимо воспользоваться кргулыми скобками <code class="language-plaintext highlighter-rouge">()</code>.</p>
+
+<p>При вычислении булевских выражений их значение может стать известным еще до конца вычисления всего выражения. Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">h_plus</span> <span class="o">=</span> <span class="mf">10e-8</span><span class="p">;</span> <span class="c1">% molar concetrations of H+</span>
+<span class="n">is_water</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_plus</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mf">6.5</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">log10</span><span class="p">(</span><span class="n">h_plus</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">-</span><span class="nb">log10</span><span class="p">(</span><span class="n">h_plus</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">8.5</span><span class="p">)</span></code></pre></figure>
+
+<p>В случае, если бы <code class="language-plaintext highlighter-rouge">h_plus = 0</code>, уже после первого операнда операции <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> ясно, что результат всего выражения - ложь <code class="language-plaintext highlighter-rouge">0</code> (<code class="language-plaintext highlighter-rouge">false</code>), поэтому второй операнд вычисляться не будет. Если бы первый операнд отсутсвовал, то формула была бы ошибочна при неккоректном входном аргументе <code class="language-plaintext highlighter-rouge">h_plus</code>.</p>
+
+<p>Нередко при составлении программ со сложными логическими выражениями, необходимо строить их отрицания (см. “На тему вложенности кода”). Для этого полезно воспользоваться следующими тождествами:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">~~a</code> \(\equiv\) <code class="language-plaintext highlighter-rouge">a</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~(a &amp;&amp; b)</code> \(\equiv\) <code class="language-plaintext highlighter-rouge">a || b</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~(a || b)</code> \(\equiv\) <code class="language-plaintext highlighter-rouge">a &amp;&amp; b</code></li>
+</ul>
+
+<p>Последние два тождества известны как законы де Моргана.</p>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-04-matlab-improve-QL.html">&laquo; Повышение удобства работы</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-11-numeric-types.html">Численные типы данных &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

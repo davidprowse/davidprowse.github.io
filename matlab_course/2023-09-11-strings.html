@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Текст - еще один важный вид данных, с которым приходится работать компьютерным программам. В программировании мы называем любой сегмент текста строкой." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-11-strings.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Строки &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-11T10:00:00+03:00",
+        "headline": "Строки",
+        "url": "http://localhost:4000/matlab_course/2023-09-11-strings.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-11-strings.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Строки</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-11T10:00:00+03:00">
+      11 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>Текст - еще один важный вид данных, с которым приходится работать компьютерным программам. В программировании мы называем любой сегмент текста строкой.</p>
+
+<h2 id="строки-как-аргумент-функций-печати">Строки как аргумент функций печати</h2>
+
+<p>Мы используем строку в качестве аргументов, передаваемых функциям печати: <code class="language-plaintext highlighter-rouge">disp</code> и <code class="language-plaintext highlighter-rouge">fprintf</code>.</p>
+
+<h3 id="функция-disp">Функция <code class="language-plaintext highlighter-rouge">disp</code></h3>
+
+<p><a href="https://au.mathworks.com/help/matlab/ref/disp.html">Из документации Matlab по <code class="language-plaintext highlighter-rouge">disp</code></a>:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">disp(X)</code> отображает значение переменной <code class="language-plaintext highlighter-rouge">X</code> без печати имени переменной. Другой способ отобразить переменную — это напечатать ее имя, что добавляет перед значением префикс «X =».</p>
+</blockquote>
+
+<h3 id="функция-fprintf">Функция <code class="language-plaintext highlighter-rouge">fprintf</code></h3>
+
+<p>Функция <code class="language-plaintext highlighter-rouge">fprintf</code> используется для вывода информации на экран.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">fprintf</span><span class="p">(</span><span class="s1">'&lt;message&gt;'</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">);</span></code></pre></figure>
+
+<p>Работу данной функции следует воспринимать как посимвольную печать строки, аналогично одноименной функции я.п. СИ. Функция <code class="language-plaintext highlighter-rouge">fprintf</code> отличается от <code class="language-plaintext highlighter-rouge">disp</code> тем, что позволяет вставлять значения переменных в последовательность символов массива используя параметр форматирования, начинающийся с символа <code class="language-plaintext highlighter-rouge">%</code> (здесь <code class="language-plaintext highlighter-rouge">%</code> не означает комментарий).</p>
+
+<p><code class="language-plaintext highlighter-rouge">%</code> в сообщении <code class="language-plaintext highlighter-rouge">&lt;message&gt;</code> является якорем на место которого будет вставлено значение из последующих перемененных <code class="language-plaintext highlighter-rouge">var1, var2, ...</code> в порядке следования.</p>
+
+<p>Ниже приведены несколько примеров вывода переменных с помощью <code class="language-plaintext highlighter-rouge">fprintf</code>. Обратите внимание на использование <code class="language-plaintext highlighter-rouge">%s</code> для вывода строки, <code class="language-plaintext highlighter-rouge">%d</code> для вывода целого числа и <code class="language-plaintext highlighter-rouge">%f</code> для вывода вещественного числа.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">fprintf</span><span class="p">(</span><span class="s1">'Имя преподавателя: %s\n'</span><span class="p">,</span> <span class="n">prof_name</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s1">'Возраст: %d; Зарплата: %.2f\n'</span><span class="p">,</span> <span class="n">prof_age</span><span class="p">,</span> <span class="n">prof_salary</span><span class="p">);</span></code></pre></figure>
+
+<p>При использовании знаков <code class="language-plaintext highlighter-rouge">%</code> для вывода данных, хранящихся в переменных, мы должны использовать такое же количество знаков <code class="language-plaintext highlighter-rouge">%</code>, как и количество <strong>переменных</strong>.</p>
+
+<p>Некоторые общие параметры форматирования:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">%s</code> - вывод строки</li>
+  <li><code class="language-plaintext highlighter-rouge">%c</code> - вывод одного символа</li>
+  <li><code class="language-plaintext highlighter-rouge">%d</code> - вывод целого числа</li>
+  <li><code class="language-plaintext highlighter-rouge">%f</code> - вывод числа с плавающей запятой</li>
+  <li><code class="language-plaintext highlighter-rouge">\n</code> - переход на новую строку</li>
+  <li><code class="language-plaintext highlighter-rouge">\t</code> - вывод табуляции</li>
+  <li><code class="language-plaintext highlighter-rouge">\\</code> - вывод обратного слэша</li>
+  <li><code class="language-plaintext highlighter-rouge">%%</code> - вывод знака процента</li>
+</ul>
+
+<p>Пример <code class="language-plaintext highlighter-rouge">%.2f</code> показывает, что добавив точку и число в команду форматирования, можно ограничить вывод только двумя знаками после запятой. Это удобно в нашем случае для отображения денежной суммы, где тысячные доли рубля не важны.</p>
+
+<blockquote>
+  <p>Другим примером входного значения, представляющего собой строку, является <code class="language-plaintext highlighter-rouge">intmax</code> из предыдущей статьи. В то время как <code class="language-plaintext highlighter-rouge">class</code> является примером функции, возвращающей строку.</p>
+</blockquote>
+
+<h2 id="кодирование-символов">Кодирование символов</h2>
+
+<p>Интересно, что <code class="language-plaintext highlighter-rouge">char</code> - это числовой тип данных. За кулисами существует схема кодирования и декодирования, которая определяет, какое число обозначает какой символ.</p>
+
+<p>Самая старая такая схема кодирования символов называется A-S-C-I-I. ASCII расшифровывается как American Standard Code for Information Interchange - американский стандартный код для обмена информацией, и была разработана в 1960-х годах. Код символа ASCII состоит из семи битов, поэтому в нем может быть закодирован набор из 128 символов.</p>
+
+<p><img src="/assets/images/matlab_course/strings/ASCII-table.png" alt="ASCII table" /></p>
+
+<p>Из специальных символов нам важен символ новой строки <code class="language-plaintext highlighter-rouge">\n</code>, сокращенно обозначенным <code class="language-plaintext highlighter-rouge">LF</code> (Line Feed) имеющий код 10. Важен и символ пробела обозначенном <code class="language-plaintext highlighter-rouge">sp</code> с кодом 32.</p>
+
+<p>В Америке 1960-х годов 128 символов казалось много, но сейчас нам нужно значительно больше. Только подумайте обо всех символах во всех языках мира, а главное обо всех эмодзи. За прошедшие годы было разработано множество других схем с гораздо большим количеством символов. Хорошая новость для нас заключается в том, что старый добрый ASCII является подмножеством практически всех этих схем и сохраняет определенную актуальность.</p>
+
+<p>Напечатаем все видимые символы таблицы ASCII:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">33</span><span class="p">:</span><span class="mi">126</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span> <span class="nb">char</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="k">end</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">);</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+</code></pre></div></div>
+
+<p>Вторым аргументом <code class="language-plaintext highlighter-rouge">fprintf</code> является значение индекса цикла, преобразованное в символ функцией преобразования <code class="language-plaintext highlighter-rouge">char</code>.</p>
+
+<p>На самом деле нам не нужно использовать функцию преобразования <code class="language-plaintext highlighter-rouge">char</code>. Спецификатор формата <code class="language-plaintext highlighter-rouge">%s</code> воспримет число в виде символа:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">33</span><span class="p">:</span><span class="mi">126</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">);</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+</code></pre></div></div>
+
+<h2 id="работа-со-строкой-как-с-массивом-символов">Работа со строкой как с массивом символов</h2>
+
+<p>Строка обозначенная в одинарных кавычках <code class="language-plaintext highlighter-rouge">''</code> является на самом деле вектором (массивом) символов:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">course_title</span> <span class="o">=</span> <span class="s1">'MATLAB COURSE'</span><span class="p">;</span></code></pre></figure>
+
+<p>Мы можем применить функцию, возвращающую количество элементов массива:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">length</span><span class="p">(</span><span class="n">course_title</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    13
+</code></pre></div></div>
+
+<p>Или же извлечь какой то элемент по его позиции:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">course_title</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'M'
+</code></pre></div></div>
+
+<p>Или вернуть подмножество нашего массива:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">course_title</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'MATLAB'
+</code></pre></div></div>
+
+<p>Поскольку строки являются векторами символов, сравнить две строки не так просто, как два скаляра.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">txt1</span> <span class="o">=</span> <span class="s1">'colonel'</span><span class="p">;</span>
+<span class="n">txt2</span> <span class="o">=</span> <span class="s1">'kernel'</span><span class="p">;</span>
+<span class="n">txt1</span> <span class="o">==</span> <span class="n">txt2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Arrays have incompatible sizes for this operation.
+</code></pre></div></div>
+
+<p>Нельзя сравнивать два массива с помощью оператора <code class="language-plaintext highlighter-rouge">==</code>, если они не одинакового размера.</p>
+
+<p>И даже если длина двух массивов одинакова, результат сравнения, вероятно, окажется не тем, что нам нужно.</p>
+
+<p>Рассмотрим пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="n">course_title</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a =
+    'MATLAB'
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b =
+    'BALTAM'
+</code></pre></div></div>
+
+<p>Поскольку <code class="language-plaintext highlighter-rouge">'MATLAB'</code> и <code class="language-plaintext highlighter-rouge">'BALTAM'</code> имеют одинаковую длину, мы можем использовать их в качестве операндов для оператора <code class="language-plaintext highlighter-rouge">==</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">==</span> <span class="n">b</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  1×6 logical array
+   0   1   0   0   1   0
+</code></pre></div></div>
+
+<p>Мы получаем вектор логического типа (<code class="language-plaintext highlighter-rouge">logical array</code>), то есть то, что мы получим при любом поэлементном сравнении векторов. Вместо нужного нам ответа наподобие «эти строки не одинаковы». Мы получаем ответ для каждой пары символов в этих двух строках. А поскольку в нашем случае совпадают только <code class="language-plaintext highlighter-rouge">A</code>, то второй и пятый элементы - единственные истинные значения в результирующем векторе, остальные - ложные.</p>
+
+<p>Давайте посмотрим на полезную функцию, которая даст нужный нам ответ:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">strcmp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  logical
+   0
+</code></pre></div></div>
+
+<h2 id="функции-для-работы-со-строками">Функции для работы со строками</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>ФУНКЦИЯ</strong></th>
+      <th><strong>ОПИСАНИЕ</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td>преобразует тип данных в символьный тип</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">findstr</code></td>
+      <td>находит позиции подстроки в строке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ischar</code></td>
+      <td>возвращает 1, если аргумент является символьным массивом, и 0 в противном случае</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isletter</code></td>
+      <td>находит буквы в строке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isspace</code></td>
+      <td>находит пробелы, новые строки и табуляции в строке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isstrprop</code></td>
+      <td>находит символы указанного типа в строке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">num2str</code></td>
+      <td>преобразует число в строку</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">length</code></td>
+      <td>определяет количество символов в строке</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">lower</code></td>
+      <td>преобразует строку в нижний регистр</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sprintf</code></td>
+      <td>записывает отформатированные данные в строку (аналогично <code class="language-plaintext highlighter-rouge">fprintf</code>, но сохраняет ,а не печатает)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">strcmp</code></td>
+      <td>сравнивает строки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">strcmpi</code></td>
+      <td>как <code class="language-plaintext highlighter-rouge">strcmp</code>, но без учета регистра</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">strmatch</code></td>
+      <td>ищет строки в массиве, начинающиеся с указанной строки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">strncmp</code></td>
+      <td>как <code class="language-plaintext highlighter-rouge">strcmp</code>, но сравнивает только первые n символов</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">strncmpi</code></td>
+      <td>как <code class="language-plaintext highlighter-rouge">strncmp</code>, но без учета регистра</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">str2num</code></td>
+      <td>преобразует строку в число</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">upper</code></td>
+      <td>преобразует строку в верхний регистр</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Самые полезные:</strong></p>
+
+<ol>
+  <li>Поиск подстроки в строке становится простым с использованием <code class="language-plaintext highlighter-rouge">findstr</code>.</li>
+  <li>Преобразование числа в строку и наоборот: <code class="language-plaintext highlighter-rouge">num2str</code>, <code class="language-plaintext highlighter-rouge">str2num</code>.</li>
+  <li>Сравнение строк с помощью <code class="language-plaintext highlighter-rouge">strcmp</code>.</li>
+  <li>Переключение между прописными и строчными буквами: <code class="language-plaintext highlighter-rouge">lower</code>, <code class="language-plaintext highlighter-rouge">upper</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">sprintf</code>: иногда нам нужно форматировать данные не в командное окно, а в переменную или файл.</li>
+</ol>
+
+<p><strong>Рассмотрим <code class="language-plaintext highlighter-rouge">findstr</code> более подробно:</strong></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">findstr</span><span class="p">(</span><span class="n">course_title</span><span class="p">,</span> <span class="s1">'LAB'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     4
+</code></pre></div></div>
+
+<p>Мы получили первое появление <code class="language-plaintext highlighter-rouge">LAB</code> в строке <code class="language-plaintext highlighter-rouge">MATLAB Course</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">findstr</span><span class="p">(</span><span class="n">course_title</span><span class="p">,</span> <span class="s1">'lab'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     []
+</code></pre></div></div>
+
+<p>Строки чувствительны к регистру, поэтому если нет строчной <code class="language-plaintext highlighter-rouge">'lab'</code>, то нечего возвращать, и, следовательно, мы получаем пустой массив.</p>
+
+<p>Теперь давайте найдем что-нибудь больше, чем один раз.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">findstr</span><span class="p">(</span><span class="n">course_title</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     2     5
+</code></pre></div></div>
+
+<p><strong>Рассмотрим <code class="language-plaintext highlighter-rouge">sprintf</code> более подробно:</strong></p>
+
+<p>Вычислим площадь круга определенного радиуса:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">r</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s1">'The area of a circle with radius %.2f is %.2f\n'</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">pi</span><span class="o">*</span><span class="n">r</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The area of a circle with radius 12.00 is 452.39
+</code></pre></div></div>
+
+<p>Теперь предположим, что мы хотим сохранить этот вывод в строке:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">str</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The area of a circle with radius %.2f is %.2f\n'</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">pi</span><span class="o">*</span><span class="n">r</span><span class="o">^</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">str</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str =
+    'The area of a circle with radius 12.00 is 452.39
+     '
+</code></pre></div></div>
+
+<h2 id="тип-строка-введен-в-2017a">Тип «Строка» (введен в 2017a)</h2>
+
+<p>Строка обозначенная в двойных кавычках <code class="language-plaintext highlighter-rouge">""</code> не является массивом символов. Типом таких данных является <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>Есть некоторые проблемы с использованием char для хранения строк, и MATLAB ввел новый тип с именем String, чтобы решить их.</p>
+
+<p>Рассмотрим пример. Зададим строку в одинарных кавычках:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">fruit</span> <span class="o">=</span> <span class="s1">'strawberries'</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+<span class="nb">size</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'char'
+
+ans =
+     1    12
+</code></pre></div></div>
+
+<p>Чтобы создать строку нового типа, воспользуемся двойными кавычками:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">berry</span> <span class="o">=</span> <span class="s2">"watermelon"</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>berry = 
+    "watermelon"
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">class</span><span class="p">(</span><span class="n">berry</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'string'
+</code></pre></div></div>
+
+<p>Несмотря на то, что это разные типы, практически любая встроенная функция, предназначенная для обработки вектора <code class="language-plaintext highlighter-rouge">char</code>, будет работать и для <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">fprintf</span><span class="p">(</span><span class="s1">'The value of pi is %f\n'</span><span class="p">,</span> <span class="nb">pi</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The value of pi is 3.141593
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">fprintf</span><span class="p">(</span><span class="s2">"The value of pi is %f\n"</span><span class="p">,</span> <span class="nb">pi</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The value of pi is 3.141593
+</code></pre></div></div>
+
+<p>Можно преобразовать строку в старый формат:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">char</span><span class="p">(</span><span class="n">new_fruit</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'strawberries'
+</code></pre></div></div>
+
+<p>Экранирование кавычек:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">string</span><span class="p">(</span><span class="s1">'There</span><span class="se">''</span><span class="s1">s a place for us'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    "There's a place for us"
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Andy_Serkis</span> <span class="o">=</span> <span class="s2">"The way he says, </span><span class="se">""</span><span class="s2">My precious</span><span class="se">""</span><span class="s2"> makes my skin crawl!"</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Andy_Serkis = 
+    "The way he says, "My precious" makes my skin crawl!"
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong>Важное отличие!</strong> Мы не можем обращаться к элементам <code class="language-plaintext highlighter-rouge">string</code>, так как будто они являются массивами.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">course_title_new_string</span> <span class="o">=</span> <span class="s2">"MATLAB Course"</span><span class="p">;</span>
+<span class="n">course_title_new_string</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index exceeds the number of array elements. Index must not exceed 1.
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">extractBetween</span><span class="p">(</span><span class="n">course_title_new_string</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    "MATLAB"
+</code></pre></div></div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-11-numeric-types.html">&laquo; Численные типы данных</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-18-working-with-time.html">Работа со временем &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Создание векторов" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-10-02-vectors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Вектора &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-10-02T09:00:00+03:00",
+        "headline": "Вектора",
+        "url": "http://localhost:4000/matlab_course/2023-10-02-vectors.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-10-02-vectors.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Вектора</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-10-02T09:00:00+03:00">
+      2 октября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="создание-векторов">Создание векторов</h2>
+
+<p>Существуют различные способы создания векторов и матриц. Самый простой способ задание вектора – в квадратных скобках <code class="language-plaintext highlighter-rouge">[</code> <code class="language-plaintext highlighter-rouge">]</code>. Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a =
+   1   4   5
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span></code></pre></figure>
+
+<p>или <code class="language-plaintext highlighter-rouge">b = [2,1,0]</code> (без пробелов)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b =
+   2   1   0
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">10</span><span class="p">]</span></code></pre></figure>
+
+<p>или <code class="language-plaintext highlighter-rouge">c = [4;7;10]</code> (без пробелов)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c =
+    4
+    7
+   10
+</code></pre></div></div>
+
+<p>или через перенос строки:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">c</span> <span class="o">=</span> <span class="p">[</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c =
+    1
+    2
+    3
+</code></pre></div></div>
+
+<p>Список чисел, разделенных пробелами или запятыми внутри квадратных скобок, определяет <strong><em>вектор-строку</em></strong>. Числа, разделенные точкой с запятой или переносом строки определяют <strong><em>вектор-столбец</em></strong>.</p>
+
+<p>Можно создать вектор из уже существующего, добавив его в определение. Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a =
+   1   4   5
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="mi">6</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b =
+   1  4  5  6
+</code></pre></div></div>
+
+<h2 id="нотация-с-двоиточием">Нотация с двоиточием</h2>
+
+<p>Удобный способ создания вектора из последовательных чисел — использование символа двоеточия “:”, например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">e</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="mi">6</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>e =
+   2  3  4  5 6
+</code></pre></div></div>
+
+<p>Двоеточие указывает Matlab создать вектор чисел, начиная с первого числа и заканчивая вторым числом (включительно). Также можно добавить третье число между первым и вторым, получая a : b : c. Среднее число в этом случае задает шаг между элементами вектора.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">e</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="mf">0.3</span><span class="p">:</span><span class="mi">4</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>e =
+    2.0000    2.3000    2.6000    2.9000    3.2000    3.5000    3.8000
+</code></pre></div></div>
+
+<p>Обратите внимание, если шаг не позволяет точно достичь конечного числа, будут сгенерированы числа, не превышающие его. Шаг может быть отрицательным, и тогда числа будут убывать до конечного значения.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">e</span> <span class="o">=</span> <span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mf">0.3</span><span class="p">:</span><span class="mi">2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>e =
+    4.0000    3.7000    3.4000    3.1000    2.8000    2.5000    2.2000
+</code></pre></div></div>
+
+<h2 id="функции-создания-векторов">Функции создания векторов</h2>
+
+<p>Matlab также предлагает набор функций для создания векторов:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">zeros(M,N)</code> – cоздает матрицу, в которой каждый элемент равен нулю. Для вектора-строки размера n установите M = 1, N = n;</li>
+  <li><code class="language-plaintext highlighter-rouge">ones(M,N)</code> – cоздает матрицу, в которой каждый элемент равен единице. Для вектора-строки размера n установите M = 1, N = n;</li>
+  <li><code class="language-plaintext highlighter-rouge">linspace(x1, x2, N)</code> – cоздает вектор из N элементов, равномерно распределенных между x1 и x2;</li>
+  <li><code class="language-plaintext highlighter-rouge">logspace(x1, x2, N)</code> – cоздаeт вектор из N элементов, логарифмически распределенных между \(10^{x1}\) и \(10^{x2}\).</li>
+</ul>
+
+<p>Первые две функции, <code class="language-plaintext highlighter-rouge">zeros</code> и <code class="language-plaintext highlighter-rouge">ones</code>, также работают для матриц, и два аргумента функции, <code class="language-plaintext highlighter-rouge">M</code> и <code class="language-plaintext highlighter-rouge">N</code>, указывают количество строк и столбцов в матрице соответственно. Вектор-строка — это матрица, которая имеет одну строку и столько же столбцов, каков размер вектора.</p>
+
+<h2 id="отображение-больших-векторов-и-матриц">Отображение больших векторов и матриц</h2>
+
+<p>При работе с большими векторами и матрицами полезно иметь возможность выводить результаты постранично. Для включения постраничного просмотра:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">more</span> <span class="n">on</span></code></pre></figure>
+
+<p>Нажмите пробел (или ‘f’), чтобы просмотреть следующую страницу значений, и используйте клавишу “q”, чтобы закрыть отображение и вернуться к командной строке Matlab. Вы также можете использовать клавишу ‘b’ для прокрутки назад вверх по отображаемым значениям.</p>
+
+<p>Постраничный просмотр не всегда удобен, например, при отображении промежуточных значений во время длительных расчетов. Для отключения постраничного просмотра:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">more</span> <span class="n">off</span></code></pre></figure>
+
+<h2 id="извлечение-элементов-из-вектора">Извлечение элементов из вектора</h2>
+
+<p>Индивидуальные элементы вектора извлекаются обычными скобками <code class="language-plaintext highlighter-rouge">(</code> <code class="language-plaintext highlighter-rouge">)</code> и нумеруются с 1, а не с 0. Создадим вектор:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a =
+    1   3    5    -1    0
+</code></pre></div></div>
+
+<p>тогда, чтобы извлечь 3-ий элемент:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    5
+</code></pre></div></div>
+
+<p>Нотация с двоеточием может использоваться для извлечения элементов индексы которых принадлежат заданному диапазону:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    5   -1   0
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    1   5   0
+</code></pre></div></div>
+
+<h2 id="фильтрация-значений-вектора">Фильтрация значений вектора</h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">20</span><span class="p">];</span>
+<span class="n">v</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span></code></pre></figure>
+
+<p>Выдаст нечетные числа больше 10:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+
+    11    13    15    17    19
+</code></pre></div></div>
+
+<h2 id="операции-с-векторами">Операции с векторами</h2>
+
+<p>Сохранение чисел в одном векторе в Matlab позволяет эффективно проводить расчеты. В отличие от некоторых других Я.П., где для умножения каждого элемента на 2 нужен цикл for, в Matlab можно использовать векторные операции. <strong><em>Умножение всех чисел вектора на одно число</em></strong> сводится к умножению всего вектора на это число:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">*</span> <span class="mi">2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    2   6   10   -2   0
+</code></pre></div></div>
+
+<p>То же верно и для деления. Также можно добавить одно и то же число к каждому элементу, используя операторы <code class="language-plaintext highlighter-rouge">+</code> или <code class="language-plaintext highlighter-rouge">-</code>, хотя это не соответствует классическим математическим конвенциям.</p>
+
+<p>Умножение двух векторов в Matlab следует правилам умножения матриц и не является поэлементным умножением. Чтобы вполнить  <strong><em>поэлементное умножение двух векторов</em></strong>, Matlab определяет операторы <code class="language-plaintext highlighter-rouge">.*</code> и <code class="language-plaintext highlighter-rouge">./</code>, например:</p>
+
+\[\begin{align}
+  \begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    a_3 \\
+  \end{pmatrix}
+\space
+.*
+\space
+  \begin{pmatrix}
+    b_1 \\
+    b_2 \\
+    b_3 \\
+  \end{pmatrix}
+=
+  \begin{pmatrix}
+    a_1 * b_1 \\
+    a_2 * b_2 \\
+    a_3 * b_3 \\
+  \end{pmatrix}
+\end{align}\]
+
+<p>Точка перед символами указывает на поэлементную операцию. Так, элементы вектора <code class="language-plaintext highlighter-rouge">a</code> можно умножить на разные числа:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">.*</span> <span class="n">b</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    1   6   15   -4   0
+</code></pre></div></div>
+
+<p>Оператор поэлементного  возведения в степень  <code class="language-plaintext highlighter-rouge">.^</code> бывает полезен. Он может быть использован для возведения вектора чисел в степень или для возведения числа в разные степени, в зависимости от того, как он используется (аналогично возможно при работе с другими операторами):</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">b</span> <span class="o">.*</span> <span class="mi">2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    1   4   9   16   25
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="mi">2</span> <span class="o">.*</span> <span class="n">b</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    2   4   8   16   32
+</code></pre></div></div>
+
+<p>В первом примере каждый элемент <code class="language-plaintext highlighter-rouge">b</code> возведен в квадрат; во втором число <code class="language-plaintext highlighter-rouge">2</code> возведено в степени, указанные в <code class="language-plaintext highlighter-rouge">b</code>.</p>
+
+<p>Все поэлементные команды для векторов (<code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">-</code> <code class="language-plaintext highlighter-rouge">./</code> <code class="language-plaintext highlighter-rouge">.*</code> <code class="language-plaintext highlighter-rouge">.^</code>) могут быть использованы между двумя векторами, при условии что они имеют одинаковый <em>размер</em> и <em>форму</em>. В противном случае соответствующие элементы не будут найдены, и будет выдана ошибка.</p>
+
+<p>Большинство функций в Matlab работают с векторами. Например, чтобы создать список значений синуса с интервалами в 60 градусов, вам просто нужно передать вектор углов функции <code class="language-plaintext highlighter-rouge">sin</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">pi</span><span class="p">/</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>angles =
+        0   1.0472   2.0944   3.1416   4.1888   5.2360   6.2832
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">y</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>y =
+        0   0.8660   0.8660   0.0000  -0.8660  -0.8660  -0.0000
+</code></pre></div></div>
+
+<h2 id="изменение-значений-в-векторе">Изменение значений в векторе</h2>
+
+<p><strong>Изменение одного значения</strong></p>
+
+<p>Для изменения одного конкретного элемента в векторе в Matlab указывается индекс этого элемента и присваивается новое значение. Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="n">v</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+    1   10    3    4    5
+</code></pre></div></div>
+
+<p><strong>Изменение нескольких значений</strong></p>
+
+<p>Если требуется изменить несколько элементов в векторе:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">v</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+    1   20   30   40    5
+</code></pre></div></div>
+
+<p><strong>Изменение значений с шагом</strong></p>
+
+<p>Можно также изменять значения с определенным шагом. Например, для замены всех элементов на нечетных позициях на 0:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">v</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+    0   20    0   40    0
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">1:2:end</code> – Эта часть создаёт новую последовательность индексов, которая начинается с первого элемента (<code class="language-plaintext highlighter-rouge">1</code>), увеличивается с шагом <code class="language-plaintext highlighter-rouge">2</code> и продолжается до последнего элемента (<code class="language-plaintext highlighter-rouge">end</code>) вектора <code class="language-plaintext highlighter-rouge">v</code>.</p>
+
+<p><strong>Использование условных операторов для изменения значений</strong></p>
+
+<p>Для изменения элементов, удовлетворяющих определенному условию, применяются условные операторы. Например, для замены всех элементов больше 30 на 0:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">v</span><span class="p">(</span><span class="n">v</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v =
+    0   20    0    0    0
+</code></pre></div></div>
+
+<h2 id="итерации-по-вектору">Итерации по вектору</h2>
+
+<p><strong>Пример 1.</strong> Печать каждого второго элемента в векторе</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s2">"%d "</span><span class="p">,</span> <span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="k">end</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 3 5 
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">));</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1     3     5
+</code></pre></div></div>
+
+<p><strong>Пример 2.</strong>  Требуется сдвинуть элементы массива на одну позицию влево, а первый элемент поставить на последнее место.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">arr</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">arr</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+<span class="n">arr</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arr =
+    2     3     4     5     6     1
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span> <span class="n">arr</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arr =
+    2     3     4     5     6     1
+</code></pre></div></div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-25-control-structures.html">&laquo; Управление потоком исполнения</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-10-02-matrices.html">Матрицы &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

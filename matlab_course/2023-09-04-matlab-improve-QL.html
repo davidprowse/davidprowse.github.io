@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Далее представлено описание некоторых действий, которые могут повысить удобство работы в MATLAB." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-04-matlab-improve-QL.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Повышение удобства работы &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-04T11:00:00+03:00",
+        "headline": "Повышение удобства работы",
+        "url": "http://localhost:4000/matlab_course/2023-09-04-matlab-improve-QL.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-04-matlab-improve-QL.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Повышение удобства работы</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-04T11:00:00+03:00">
+      4 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>Далее представлено описание некоторых действий, которые могут повысить удобство работы в MATLAB.</p>
+
+<h2 id="отстыкованный-режим-окон">«Отстыкованный» режим окон</h2>
+
+<p>MATLAB предлагает «отстыкованный» режим окон. Это особенно полезно в случае работы на нескольких мониторах.</p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/01-undock-option-selection.png" alt="Undock option selecetion" /></p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/02-undock-result.png" alt="Undock result" /></p>
+
+<h2 id="настройка-компновки-окон">Настройка компновки окон</h2>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/03-builtin-layouts-selection.png" alt="Built in layout selection options" /></p>
+
+<p>Не приумножайте сущности сверх необходимого<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. Часто следующая простая компоновка наиболее выгодна:</p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/04-matlab-simple-layout.png" alt="A simple layout for MATLAB" /></p>
+
+<p>Компоновка выше не является встроенной. Свою компоновку можно добавить в меню компоновки окон: <code class="language-plaintext highlighter-rouge">Home</code> → <code class="language-plaintext highlighter-rouge">Layout</code> → <code class="language-plaintext highlighter-rouge">Save Layout...</code></p>
+
+<h2 id="настройка-цветовой-палитры">Настройка цветовой палитры</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Solarized">Solarized</a> — это цветовая палитра, разработанная для терминалов и графических приложений. Её отличительной чертой являются тщательно подобранные оттенки, что делает её особенно полезной при длительной работе за компьютером. <a href="https://github.com/benhager/solarized-matlab">Solarized для MATLAB</a>.</p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/05-solarized-light.png" alt="Solarized light theme in MATLAB" /></p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/06-solarized-dark.png" alt="Solarized dark theme in MATLAB" /></p>
+
+<p>Для установки темы достаточно скачать файл <code class="language-plaintext highlighter-rouge">setupSolarized.m</code> с гитхаба и добавить её в самостоятельно созданную папку с темами для MATLAB (не меняйте имя файла). Затем необходимо добавить папку в путь MATLAB, используя команду <code class="language-plaintext highlighter-rouge">addpath</code> (<a href="https://au.mathworks.com/help/matlab/ref/addpath.html">документация по addpath</a>). В командном окне выполните команду: <code class="language-plaintext highlighter-rouge">addpath('&lt;Путь до папки с темами&gt;', '-end')</code>.</p>
+
+<p>Для того чтобы посмотреть путь: <code class="language-plaintext highlighter-rouge">path</code>. Для того чтобы удалить из пути: <code class="language-plaintext highlighter-rouge">rmpath(&lt;Путь до папки с темами&gt;)</code>.</p>
+
+<p>Для того, чтобы сохранить путь для следующих сессий: <code class="language-plaintext highlighter-rouge">savepath</code>.</p>
+
+<p>Для того, чтобы установить тему необходимо в командном окне выполнить команду <code class="language-plaintext highlighter-rouge">setupSolarized('light')</code> - для светлой, <code class="language-plaintext highlighter-rouge">setupSolarized('dark')</code> - для темной, <code class="language-plaintext highlighter-rouge">setupSolarized('default');</code> - возврат к настройкам темы по умолчанию.</p>
+
+<h2 id="изменение-шрифта-и-его-размера">Изменение шрифта и его размера</h2>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/07-font-size-preferences.png" alt="Font size preference options" /></p>
+
+<p>Важно использовать моноширинный шрифт в программировании, так как в таком шрифте все символы занимают одинаковое количество пространства по горизонтали. Это упрощает форматирование кода, улучшает читаемость таблиц и помогает различать похожие символы. <a href="https://madmalik.github.io/mononoki/">mononoki</a> является хорошей альтернативой шрифта по умолчанию.</p>
+
+<h2 id="убираем-линию-ограничения-длины-текста-справа">Убираем линию ограничения длины текста справа</h2>
+
+<p>MATLAB показывает желаемую ширину кода в 75 символов. Регулярное превышение данного лимита указывает на излишнюю многословность и нежелательно в целях избегания горизонтальной прокрутки. Ограничение ширины строки помогает придумывать более удачные имена переменных и устранять избыточную вложенность кода. Тем не менее строка из 76 символов может быть легче читаема, чем та, где переносы нарушают визуальные отступы. Главное уменьшать логическую сложность в пределах строки, а не просто ограничивать количество символов.</p>
+
+<p>Имея вышесказанное ввиду, линия может служить источником визуального шума, для того чтобы от неё избавиться в панели инструментов: <code class="language-plaintext highlighter-rouge">Home</code> → <code class="language-plaintext highlighter-rouge">Preferences</code> → <code class="language-plaintext highlighter-rouge">Editor/Debugger</code> → <code class="language-plaintext highlighter-rouge">Display</code> → <code class="language-plaintext highlighter-rouge">Show line</code> (снять галочку).</p>
+
+<h2 id="включение-подсказок-данных-содержания-переменных">Включение подсказок данных (содержания переменных)</h2>
+
+<p>Подсказки данных позволяют навести курсор на любую переменную, определенную в базовом рабочем пространстве, и просмотреть ее содержимое.</p>
+
+<p>В панели инструментов: <code class="language-plaintext highlighter-rouge">Home</code> → <code class="language-plaintext highlighter-rouge">Preferences</code> → <code class="language-plaintext highlighter-rouge">Editor/Debugger</code> → <code class="language-plaintext highlighter-rouge">Display</code> → <code class="language-plaintext highlighter-rouge">Enable datatips in edit mode</code></p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/08-datatip-ex1.png" alt="Datatip example 1" /></p>
+
+<p>После выполнения кода, промежуточные переменные будут вычислены и добавлены в рабочие пространства, они станут доступными для рассмотрения инструментом <code class="language-plaintext highlighter-rouge">datatips</code>:</p>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/09-datatip-ex2.png" alt="Datatip example 2" /></p>
+
+<p>Это особенно полезно при изучении кода и выявлении ошибок.</p>
+
+<h2 id="переход-к-другой-части-кода">Переход к другой части кода</h2>
+
+<p>Для перехода к другим частям кода можно использовать следующие горячие клавиши:</p>
+
+<ul>
+  <li>Для перехода к следующей и предыдущей ячейки кода. Mac OS: <kbd>⌘</kbd>+<kbd>↓↑</kbd>. Windows: <kbd>Ctrl</kbd>+<kbd>↓↑</kbd></li>
+  <li>Для перехода к упоминаниям переменных. Mac OS: <kbd>⌥</kbd>+<kbd>↓↑</kbd>. Windows: <kbd>Alt</kbd>+<kbd>↓↑</kbd></li>
+</ul>
+
+<h2 id="просмотр-доступных-горячих-клавиш">Просмотр доступных горячих клавиш</h2>
+
+<p>В панели инструментов: <code class="language-plaintext highlighter-rouge">Home</code> → <code class="language-plaintext highlighter-rouge">Preferences</code> → <code class="language-plaintext highlighter-rouge">Keybord</code> → <code class="language-plaintext highlighter-rouge">Shortcuts</code></p>
+
+<h2 id="переименовывания-переменной">Переименовывания переменной</h2>
+
+<ol>
+  <li>Перейдите к месту объявления переменной (первому упоминанию)</li>
+  <li>Внесите изменение в название</li>
+  <li>Для того чтобы название изменилось для каждого упоминания: <kbd>Shift</kbd>+<kbd>Enter</kbd></li>
+</ol>
+
+<h2 id="изменение-рабочей-директории">Изменение рабочей директории</h2>
+
+<p>В панели инструментов: <code class="language-plaintext highlighter-rouge">Preferences</code> → <code class="language-plaintext highlighter-rouge">General</code> → <code class="language-plaintext highlighter-rouge">Initial working folder</code></p>
+
+<h2 id="создание-файла-запуска">Создание файла запуска</h2>
+
+<p>Файл <code class="language-plaintext highlighter-rouge">startup.m</code> в MATLAB необходим для автоматического выполнения кода при запуске MATLAB. Он может быть полезен для выполнения рутинных задач, добавления пользовательских директорий в путь поиска MATLAB или выставлении параметров по умолчанию (например для графиков).</p>
+
+<p>Файл <code class="language-plaintext highlighter-rouge">startup.m</code> должен находиться в пути видимости для MATLAB.</p>
+<ul>
+  <li>Для Windows его можно поместить в: <code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\Documents\Matlab</code></li>
+  <li>Для Mac OS его можно поместить в: <code class="language-plaintext highlighter-rouge">/Users/&lt;username&gt;/Documents/MATLAB</code></li>
+</ul>
+
+<p>Для того чтобы отобразить путь видимости MATLAB выполните команду <code class="language-plaintext highlighter-rouge">path</code></p>
+
+<p>Для того чтобы добавить в путь папку, воспользуйтесь <a href="https://au.mathworks.com/help/matlab/ref/addpath.html"><code class="language-plaintext highlighter-rouge">addpath</code></a>. Для того чтобы удалить <a href="https://au.mathworks.com/help/matlab/ref/rmpath.html"><code class="language-plaintext highlighter-rouge">rmpath</code></a>.</p>
+
+<p>После создания файла <code class="language-plaintext highlighter-rouge">startup.m</code> на пути видимости MATLAB, можно добавить в него команду, которые будут выполняться при каждом запуске MATLAB.</p>
+
+<p>Например следующие предпочтения для графиков являются полезными:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'DefaultFigureWindowStyle'</span><span class="p">,</span> <span class="s1">'docked'</span><span class="p">)</span></code></pre></figure>
+
+<p>Эта команда делает так, что все новые графические окна открываются прикрепленными к основному окну MATLAB (в докированном состоянии).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'DefaultFigureColormap'</span><span class="p">,</span> <span class="n">turbo</span><span class="p">);</span></code></pre></figure>
+
+<p>Эта команда устанавливает <a href="https://research.google/blog/turbo-an-improved-rainbow-colormap-for-visualization/">цветовую палитру turbo</a> для всех новых графиков по умолчанию. <a href="https://au.mathworks.com/help/matlab/ref/turbo.html">Документация MATLAB по turbo</a>.</p>
+
+<p>Функция <code class="language-plaintext highlighter-rouge">set(0, ...)</code> используется для настройки свойств корневого объекта графической иерархии MATLAB (объект с идентификатором 0).</p>
+
+<p>Так например будет выглядеть результат выполнения следующих команд, после настроек в <code class="language-plaintext highlighter-rouge">startup.m</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">figure</span><span class="p">;</span> <span class="c1">% Создает новое графическое окно</span>
+<span class="nb">imagesc</span><span class="p">(</span><span class="nb">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">% Отображает 20x20 матрицу случайных чисел</span>
+<span class="nb">axis</span> <span class="n">square</span><span class="p">;</span> <span class="c1">% Устанавливает квадратные оси</span></code></pre></figure>
+
+<p><img src="/assets/images/matlab_course/matlab_improve_QL/10-docked-by-default.png" alt="Figures docked by default" /></p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://ru.wikipedia.org/wiki/Бритва_Оккама">Бритва Оккама</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-04-comments.html">&laquo; Комментарии</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-11-logical-type.html">Логический тип данных &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

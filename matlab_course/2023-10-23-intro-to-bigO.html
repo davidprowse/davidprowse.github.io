@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Первое знакомство с Big 0" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-10-23-intro-to-bigO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Вычислительная сложность алгоритма &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-10-23T09:00:00+03:00",
+        "headline": "Вычислительная сложность алгоритма",
+        "url": "http://localhost:4000/matlab_course/2023-10-23-intro-to-bigO.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-10-23-intro-to-bigO.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Вычислительная сложность алгоритма</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-10-23T09:00:00+03:00">
+      23 октября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="первое-знакомство-с-big-0">Первое знакомство с Big 0</h2>
+
+<blockquote>
+  <p>О большое (англ. Big O) - математическое обозначение для сравнения асимптотического поведения функции.</p>
+
+  <p>– Википедия</p>
+</blockquote>
+
+<p>Концепция Big O необходима для описания эффективности алгоритмов. Ни один серьезный проект и ни одно серьезное собеседование не может обойтись без вопросов о Big O, ведь она необходима для выявления и исправления неоптимального кода.</p>
+
+<p>Эффективность алгоритмов описывается с помощью двух характеристик: времени и памяти. Здесь речь пойдет именно о первой составляющей.</p>
+
+<p>Эффективный с точки зрения времени алгоритм — это быстрый алгоритм. Но что считается быстрым? Небольшой массив может обрабатываться за 10 секунд, а больший — за 100 секунд. Интуитивно понятно, что время выполнения зависит от размера массива и характеристик ЭВМ.</p>
+
+<p>Решение заключается в оценке верхней границы временной сложности как количества операций, необходимых для выполнения алгоритма в зависимости от входных данных. Это позволяет оценить, насколько хорошо алгоритм масштабируется с увеличением объема данных.</p>
+
+<p>Для упрощения расчетов часто игнорируют разницу в скорости выполнения различных операций. Например, деление чисел с плавающей точкой и сложение целых чисел в теории алгоритмов считаются равнозначными по сложности, несмотря на различия в затратах процессорного времени. При оценке верхней границы внимание сосредотачивается на наиболее значимых аспектах алгоритма.</p>
+
+<p>Рассмотрим аналогию из жизни. Вы собираетесь завтра полететь к другу в гости на киномарафон. У вас есть загруженная кинобиблиотека. Если планируется посмотреть небольшое количество фильмов, то вероятно будет быстрее отправить файлы по сети; в противном случае лучше взять с собой носитель с фильмами.</p>
+
+<p><img src="/assets/images/matlab_course/big_o/01-flight-analogy.png" alt="Resulting browser from timezones command" /></p>
+
+<p>В первом случае сложность является константной: независимо от количества фильмов на носителе, вашему другу придется ждать вашего прилета. Во втором случае время передачи прямо пропорционально количеству передаваемых бит, зависимость — линейная.</p>
+
+<h2 id="сложность-o1-и-on">Сложность O(1) и O(n)</h2>
+
+<p><strong>O(1) обозначает константную сложность</strong>. Время выполнения не зависит от размера входных данных.</p>
+
+<p>Возьмем массив из 5 чисел:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span></code></pre></figure>
+
+<p>Допустим, нам необходимо получить третий элемент:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">nums</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">% выводит 7</span></code></pre></figure>
+
+<p>Операция извлечения не зависит от размера массива, потому что, зная индекс элемента, мы знаем его адрес в памяти. Время такой операции не зависит от количества элементов, хранящихся в памяти.</p>
+
+<p>Алгоритмы со сложностью O(1) являются наиболее эффективными.</p>
+
+<p><strong>O(n) обозначает линейную сложность</strong>. Время выполнения алгоритма линейно зависит от размера входных данных.</p>
+
+<p>Рассмотрим пример нахождения суммы элементов массива.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">s</span> <span class="o">=</span> <span class="n">nums</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">num</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>В этом случае нам необходимо перебрать все элементы массива. Количество операций прямо пропорционально количеству элементов.</p>
+
+<p>Пример рекурсивной реализации:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sumRecursive</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">sumRecursive</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>У этой функции сложность тоже \(O(n)\).</p>
+
+<p>Что насчет следующей функции?</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="nb">sum</span> <span class="o">=</span> <span class="n">pairSumSequence</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">pairSum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nb">result</span> <span class="o">=</span> <span class="n">pairSum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Сложность функции <code class="language-plaintext highlighter-rouge">pairSumSequence</code> зависит от сложности функции <code class="language-plaintext highlighter-rouge">pairSum</code>. Функция <code class="language-plaintext highlighter-rouge">pairSum</code> выполняет сложение <code class="language-plaintext highlighter-rouge">a + b</code> и не содержит циклов или рекурсии, она всегда выполняет константное количество операций, следовательно, сложность функции <code class="language-plaintext highlighter-rouge">pairSum</code> — \(O(1)\). В функции <code class="language-plaintext highlighter-rouge">pairSumSequence</code> в цикле выполняется <code class="language-plaintext highlighter-rouge">pairSum</code>, и он выполняется от \(0\) до \(n-1\). Таким образом, сложность <code class="language-plaintext highlighter-rouge">pairSumSequence</code> также \(O(n)\).</p>
+
+<p>Можем ли мы сделать суммирование более эффективным? В общем случае нет. А если мы знаем, что массив начинается с единицы, отсортирован и каждый последующий элемент всегда больше предыдущего на единицу? Тогда мы можем воспользоваться формулой: \(S = \frac{n(n+1)}{2}\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">sum_ary</span> <span class="o">=</span> <span class="n">sumContiguousArray</span><span class="p">(</span><span class="n">ary</span><span class="p">)</span>
+    <span class="c1">% Get the last item</span>
+    <span class="n">last_item</span> <span class="o">=</span> <span class="n">ary</span><span class="p">(</span><span class="k">end</span><span class="p">);</span>
+    <span class="c1">% Gauss's trick</span>
+    <span class="n">sum_ary</span> <span class="o">=</span> <span class="n">last_item</span> <span class="o">*</span> <span class="p">(</span><span class="n">last_item</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="n">sum_ary</span> <span class="o">=</span> <span class="n">sumContiguousArray</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum_ary =
+    15
+</code></pre></div></div>
+
+<p>Такой алгоритм гораздо эффективнее \(O(n)\), более того, он выполняется за «постоянное/константное время», т.е. это \(O(1)\).</p>
+
+<p><strong>Отбрасывание констант</strong> в оценках Big O связано с тем, что это асимптотическая оценка: мы рассматриваем поведение алгоритма при стремлении размера входных данных к бесконечности.</p>
+
+<p>Если алгоритм выполняет для \(n\) элементов \(n\) шагов, и еще один шаг для вывода информации, мы все равно говорим, что его сложность — \(O(n)\). В контексте асимптотики, бесконечность значительно превышает любую константу.</p>
+
+<p>Например, \(O(2n) = O(n)\), \(O(3n) = O(n)\), \(O(5n) = O(n)\). Две бесконечности, три бесконечности и пять бесконечностей по сути одно и то же. Также упрощаются выражения \(O(2) = O(1)\), \(O(3) = O(1)\), \(O(5) = O(1)\).</p>
+
+<p>Big O дает асимптотическую оценку, фокусируясь только на скорости роста сложности при бесконечном увеличении входных данных.</p>
+
+<p>Рассмотрим примеры:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">ary</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+
+<span class="n">min_val</span> <span class="o">=</span> <span class="n">inf</span><span class="p">;</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">inf</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ary</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">min_val</span>
+        <span class="n">min_val</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">max_val</span>
+        <span class="n">max_val</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Сложность алгоритма \(O(n)\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">ary</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+
+<span class="n">min_val</span> <span class="o">=</span> <span class="n">inf</span><span class="p">;</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">inf</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ary</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">min_val</span>
+        <span class="n">min_val</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">for</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ary</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">max_val</span>
+        <span class="n">max_val</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Сложность алгоритма \(O(2n) = O(n)\).</p>
+
+<p><strong>Неважная сложность</strong> — это еще одно важное понятие при проведении асимптотической оценки. Она отвечает на вопрос о том, как обращаться со сложностью вида \(O(n^2 + n)\), где \(n\) — не константа. Поскольку мы оцениваем верхнюю границу, можно заменить \(O(n^2 + n)\) на \(O(n^2 + n^2)\), так как \(n^2\) значительно больше \(n\). В результате получаем \(O(n^2 + n^2) = O(2n^2) = O(n^2)\).</p>
+
+<p>Несколько примеров:</p>
+
+<ul>
+  <li>\(O(N + \log N) = O(N)\);</li>
+  <li>\(O(5 \cdot 2^N + 10 \cdot N^{100}) = O(2^N)\);</li>
+  <li>\(O(N^2 + B) = O(N^2 + B)\).</li>
+</ul>
+
+<p>В последнем выражении упрощение невозможно, пока мы не знаем конкретные значения \(B\).</p>
+
+<h2 id="складывать-или-умножать-сложности-выполнения">Складывать или умножать сложности выполнения?</h2>
+
+<p>Рассмотрим следующий пример:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">a</span> <span class="o">=</span> <span class="n">arrA</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">for</span> <span class="n">b</span> <span class="o">=</span> <span class="n">arrB</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Наш код сначала проходит по массиву длиной \(A\), затем — по массиву длиной \(B\). Сложность данного алгоритма равна \(O(A + B)\), так как проходы по массивам производятся последовательно, и выполнение первого цикла не зависит от второго.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">a</span> <span class="o">=</span> <span class="n">arrA</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="o">=</span> <span class="n">arrB</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="nb">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="s1">','</span> <span class="nb">num2str</span><span class="p">(</span><span class="n">b</span><span class="p">)]);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Для каждого элемента <code class="language-plaintext highlighter-rouge">a</code> выполняется проход по всем элементам массива <code class="language-plaintext highlighter-rouge">b</code>. Циклы вложены и зависят друг от друга, так как один из них выполняется в теле другого. Сложность такой конструкции составляет \(O(A \times B)\).</p>
+
+<h2 id="не-самые-лучшие-решения-on2">Не самые лучшие решения: O(n^2)</h2>
+
+<p>Рассмотрим следующий алгоритм, который проверяет массив на наличие дубликатов:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">has_duplicates</span> <span class="o">=</span> <span class="n">checkForDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">num_elements</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
+    <span class="n">has_duplicates</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">num_elements</span>
+        <span class="n">current_num</span> <span class="o">=</span> <span class="n">nums</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">num_elements</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="k">end</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="n">current_num</span>
+                <span class="n">has_duplicates</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">if</span> <span class="n">has_duplicates</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nb">result</span> <span class="o">=</span> <span class="n">checkForDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span> <span class="c1">% returns true</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">result</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Итерирование по массиву имеет сложность O(n). В данном алгоритме используется вложенный цикл, так что для каждого элемента происходит повторное итерирование по массиву — это создаёт сложность O(n^2), или «сложность порядка n квадрат».</p>
+
+<p>Хотя в алгоритме выше не всегда будут перебраны все элементы, при оценке сложности по методике Big O обычно рассматривается худший случай.</p>
+
+<h2 id="сложность-порядка-log-n-olog-n">«Сложность порядка log n»: O(log n)</h2>
+
+<p>Вложенный цикл в алгоритме можно использовать для поиска элемента в массиве. При определённых условиях, такой поиск можно оптимизировать, сделав его быстрее, чем линейный поиск O(n).</p>
+
+<p>Предположим, что массив отсортирован. Тогда мы можем использовать алгоритм «бинарного поиска»:</p>
+
+<ol>
+  <li>Берём середину массива.</li>
+  <li>Если искомое число меньше значения в середине, идём в левый подмассив. Если больше — в правый.</li>
+  <li>Повторяем ту же процедуру для выбранного подмассива.</li>
+  <li>Прекращаем поиск, когда найдём элемент или когда длина подмассива станет равной 1.</li>
+</ol>
+
+<p><img src="/assets/images/matlab_course/big_o/02-binary-search-scheme.png" alt="Binary search" /></p>
+
+<p>Для массива длиной \(N = 16\):</p>
+
+<ul>
+  <li>\(N = 16\) разделили на 2,</li>
+  <li>\(N = 8\) разделили на 2,</li>
+  <li>\(N = 4\) разделили на 2,</li>
+  <li>\(N = 2\) разделили на 2,</li>
+  <li>\(N = 1\).</li>
+</ul>
+
+<p>4 — это максимальное количество операций, которое необходимо выполнить алгоритму, чтобы найти ответ. Запишем зависимость в виде: \(2^4 = 16\).</p>
+
+<p>В общем виде: \(2^k = N\). \(k = \log_2 N\). Так как значение \(k\) является Big O, то \(O(k) = O(\log_2 N)\). Основание логарифма не играет роли (так как является константой), поэтому: \(O(k) = O(\log N)\).</p>
+
+<p><strong>Вывод:</strong> для алгоритма, где на каждой итерации выбирается половина элементов, сложность будет \(O(\log N)\).</p>
+
+<p>Алгоритм бинарного поиска:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="nb">result</span> <span class="o">=</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="nb">floor</span><span class="p">((</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="p">/</span> <span class="mi">2</span><span class="p">);</span>
+        
+        <span class="c1">% Проверяем, присутствует ли x в середине</span>
+        <span class="k">if</span> <span class="n">arr</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="o">==</span> <span class="n">x</span>
+            <span class="nb">result</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        
+        <span class="c1">% Если x больше, игнорируем левую половину</span>
+        <span class="k">elseif</span> <span class="n">arr</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">x</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        
+        <span class="c1">% Если x меньше, игнорируем правую половину</span>
+        <span class="k">else</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    
+    <span class="c1">% Если мы достигли этой точки, элемент не найден</span>
+    <span class="nb">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="n">binarySearch</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     2
+</code></pre></div></div>
+
+<h2 id="улучшим-on2-до-on-log-n-или-нет">Улучшим O(n^2) до O(n log n)? Или нет?</h2>
+
+<p>Вернемся к задаче проверки массива на наличие дубликатов. Исходный метод перебирает все элементы массива, и для каждого элемента снова производит перебор. Это дает сложность \(O(n \times n)\) или \(O(n^2)\).</p>
+
+<p>Мы можем рассмотреть возможность использования бинарного поиска вместо второго перебора. Таким образом, сохраняя перебор всех элементов \(O(n)\), внутри каждой итерации мы бы выполняли бинарный поиск \(O(\log n)\), что приводит к общей сложности \(O(n \log n)\).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">has_duplicates</span> <span class="o">=</span> <span class="n">checkForDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">num_elements</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
+	<span class="n">has_duplicates</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">num_elements</span>
+        <span class="n">current_num</span> <span class="o">=</span> <span class="n">nums</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">sub_nums</span> <span class="o">=</span> <span class="n">nums</span><span class="p">([</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">]);</span>
+        <span class="n">has_duplicates</span> <span class="o">=</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">sub_nums</span><span class="p">,</span> <span class="n">current_num</span><span class="p">)</span> <span class="o">~=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="n">has_duplicates</span>
+        	<span class="k">break</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nb">result</span> <span class="o">=</span> <span class="n">checkForDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span> <span class="c1">% true</span></code></pre></figure>
+
+<p>Однако, чтобы бинарный поиск был эффективен, массив должен быть отсортирован, что само по себе требует времени \(O(n \log n)\).</p>
+
+<p>Если массив уже отсортирован, поиск дубликатов может быть выполнен за \(O(n)\) путем линейного прохода и сравнения каждого элемента с его соседом. Этот метод гораздо эффективнее и проще, чем использование бинарного поиска в данной задаче.</p>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-10-16-indentation.html">&laquo; На тему вложенности кода</a>
+      
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

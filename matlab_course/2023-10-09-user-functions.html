@@ -5,30 +5,30 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="До сих пор мы использовали Matlab как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программиров..." />
-  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html" />
+  <meta name="description" content="До сих пор мы использовали MATLAB как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программиров..." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-10-09-user-functions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/main.css"/>
   <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
-  <title>Пользовательские функции в Matlab/Octave &middot; David Prowse</title>
+  <title>Пользовательские функции &middot; David Prowse</title>
   
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "author": "",
-        "datePublished": "2023-10-23T01:30:00+03:00",
-        "headline": "Пользовательские функции в Matlab/Octave",
-        "url": "https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html",
+        "datePublished": "2023-10-09T09:00:00+03:00",
+        "headline": "Пользовательские функции",
+        "url": "http://localhost:4000/matlab_course/2023-10-09-user-functions.html",
         "inLanguage": "en-US",
         "isFamilyFriendly": "true",
-        "keywords": "Matlab/Octave",
-        "image": "https://davidprowse.github.io/favicon.ico",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://davidprowse.github.io/matlab_course/2023-10-23-octave-user-functions.html"
+          "@id": "http://localhost:4000/matlab_course/2023-10-09-user-functions.html"
        }
       }
     </script>
@@ -52,7 +52,7 @@
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
-  <h1>Пользовательские функции в Matlab/Octave</h1>
+  <h1>Пользовательские функции</h1>
   <header class="title-tags">
     
     
@@ -60,14 +60,14 @@
     
     
 
-    <time datetime="2023-10-23T01:30:00+03:00">
-      23 октября, 2023. Это был понедельник.
+    <time datetime="2023-10-09T09:00:00+03:00">
+      9 октября, 2023. Это был понедельник.
     </time>    
     
     <div class="tags-container">
       Опубликовано под тегом <span>
           
-            <a class="tags" href="/tags#Matlab/Octave">Matlab/Octave</a>
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
           
         </span>
       &nbsp;
@@ -82,7 +82,7 @@
   <article>
 
     <section class="content">
-      <p>До сих пор мы использовали Matlab как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программирования, они:</p>
+      <p>До сих пор мы использовали MATLAB как своего рода продвинутый калькулятор. Функции являются достаточно полезной и интересной особенностью языков программирования, они:</p>
 
 <ul>
   <li>позволяют нам разбивать сложные задачи на более мелкие управляемые части;</li>
@@ -90,7 +90,7 @@
   <li>позволяют отделить внутреннюю среду от внешней с помощью четко определенного стандартизированного интерфейса, через который происходит взаимодействие с «внешним миром».</li>
 </ul>
 
-<p>У Matlab существует много полезных встроенных функций: функции для отрисовки и настройки графиков, математические функции, такие как расчет значение корня и синуса. Существует огромное множество встроенных функций, которые мы могли бы вызввать для решения тех или иных задач. Тем не менее, часто возникает ситуация, когда необходимо создать свою функцию и использовать её так как будто она была встроена в Matlab. Рассмотрим как можно создать пользовательские функции.</p>
+<p>У MATLAB существует много полезных встроенных функций: функции для отрисовки и настройки графиков, математические функции, такие как расчет значение корня и синуса. Существует огромное множество встроенных функций, которые мы могли бы вызввать для решения тех или иных задач. Тем не менее, часто возникает ситуация, когда необходимо создать свою функцию и использовать её так как будто она была встроена в MATLAB. Рассмотрим как можно создать пользовательские функции.</p>
 
 <p>Пример. Встроенная функция <code class="language-plaintext highlighter-rouge">rand</code> возвращает случайные числа взятые из равномерного распределения с интервала \((0, 1)\).</p>
 
@@ -126,7 +126,7 @@
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span>
 <span class="k">end</span></code></pre></figure>
 
-<p>Для того, чтобы использовать функции в Matlab до версии R2016b необходимо их сохранять в отдельный файл. После и включительно версии R2016b можно их размещать в том же файле с основным исполняемым кодом, разместив их в самом низу файла.</p>
+<p>Для того, чтобы использовать функции в MATLAB до версии R2016b необходимо их сохранять в отдельный файл. После и включительно версии R2016b можно их размещать в том же файле с основным исполняемым кодом, разместив их в самом низу файла.</p>
 
 <p>После сохранения функции (хорошая практика называть файл и функцию одинаково) в файл <code class="language-plaintext highlighter-rouge">&lt;названиеФункции&gt;.m</code> в рабочей директории можно вызвать фукнцию из командного окна:</p>
 
@@ -266,7 +266,7 @@ Did you mean:
 
 <p>Интерес представляет <code class="language-plaintext highlighter-rouge">a(:)</code>.</p>
 
-<p>Когда мы передаем одно значение в качестве индекса матрице: <code class="language-plaintext highlighter-rouge">a(i)</code> Matlab воспринимает матрицу как вектор столбец, состоящий из столбцов исходной матрицы поставленных друг за другом.</p>
+<p>Когда мы передаем одно значение в качестве индекса матрице: <code class="language-plaintext highlighter-rouge">a(i)</code> MATLAB воспринимает матрицу как вектор столбец, состоящий из столбцов исходной матрицы поставленных друг за другом.</p>
 
 <p>В нашем случае единственное двоеточее <code class="language-plaintext highlighter-rouge">:</code> в качества индекса, означает, что мы хотим извлечь все элементы.</p>
 
@@ -293,7 +293,7 @@ ss =
    30.1106
 </code></pre></div></div>
 
-<p>Стоит заметить, что если не использовать множественное присвоение, как в <code class="language-plaintext highlighter-rouge">[X, ss] = ...</code>, Matlab вернет только первый выходной аргумент функции:</p>
+<p>Стоит заметить, что если не использовать множественное присвоение, как в <code class="language-plaintext highlighter-rouge">[X, ss] = ...</code>, MATLAB вернет только первый выходной аргумент функции:</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">X</span> <span class="o">=</span> <span class="n">myRand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></code></pre></figure>
 
@@ -422,7 +422,7 @@ ss =
 
 <p>Теперь переменная <code class="language-plaintext highlighter-rouge">v</code> доступна в области видимости всех остальных функций, командных строк и скриптов (если мы объявим переменную <code class="language-plaintext highlighter-rouge">v</code> в соответствующих областях видимости, используя <code class="language-plaintext highlighter-rouge">global v;</code>).</p>
 
-<p>Если в текущем рабочем пространстве уже существует переменная с таким же именем, что и у глобальной переменной, Matlab выдаст предупреждение и изменит значение и область видимости этой переменной в соответствии с глобальной переменной.</p>
+<p>Если в текущем рабочем пространстве уже существует переменная с таким же именем, что и у глобальной переменной, MATLAB выдаст предупреждение и изменит значение и область видимости этой переменной в соответствии с глобальной переменной.</p>
 
 <p>Чтобы удалить глобальную переменную из всех рабочих пространств, используйте: <code class="language-plaintext highlighter-rouge">clear global variable</code>.</p>
 
@@ -506,6 +506,57 @@ ans =
 
 <p>Как правило, настоятельно рекомендуется избегать использование глобальных переменных. Они могут быть причиной ошибок, которые очень сложно диагностировать, так как одна функция может внезапно изменить значения переменных, используемых в другой функции, будто барабашка передвигает предметы в доме.</p>
 
+<h2 id="анонимные-фнукции">Анонимные фнукции</h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span></code></pre></figure>
+
+<p>Здесь:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">f</code>: Это имя, данное анонимной функции. После её определения её можно использовать, как и любое другое имя функции;</li>
+  <li><code class="language-plaintext highlighter-rouge">@(...)</code>: Обозначает входные аргументы функции. В этом контексте анонимная функция принимает один аргумент, <code class="language-plaintext highlighter-rouge">x</code>;</li>
+  <li><code class="language-plaintext highlighter-rouge">sin(x)</code>: Это выражение функции. Оно указывает, что функция возвращает. В этом случае возвращается \(\sin x\).</li>
+</ul>
+
+<h2 id="инкапсуляция-более-сложной-логики">Инкапсуляция более сложной логики</h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">mark</span> <span class="o">=</span> <span class="n">grade</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">90</span>
+        <span class="n">mark</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">80</span>
+        <span class="n">mark</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">50</span>
+        <span class="n">mark</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">mark</span> <span class="o">=</span> <span class="s1">'F'</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">97</span><span class="p">];</span>
+<span class="n">grades</span> <span class="o">=</span> <span class="nb">arrayfun</span><span class="p">(</span><span class="o">@</span><span class="n">grade</span><span class="p">,</span> <span class="n">points</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">grades</span><span class="p">);</span> <span class="c1">%&gt; FCBA</span></code></pre></figure>
+
+<p>Символ <code class="language-plaintext highlighter-rouge">@</code> создает ссылку на функцию (именованную либо анонимную), следующую за знаком <code class="language-plaintext highlighter-rouge">@</code>.</p>
+
+<p><em>Создание ссылки на именованную функцию:</em></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">fhandle</span> <span class="o">=</span> <span class="o">@</span><span class="n">myfun</span></code></pre></figure>
+
+<p><em>Создание ссылки на анонимную функцию:</em></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">fhandle</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span></code></pre></figure>
+
+<p>Пример. Приведем пример функции нахождения максимума из трех чисел</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="nb">result</span> <span class="o">=</span> <span class="n">max_val</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+        <span class="nb">result</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="nb">result</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">result</span> <span class="o">=</span> <span class="n">max_val</span><span class="p">(</span><span class="n">max_val</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="p">)</span></code></pre></figure>
+
 
     </section>
 
@@ -523,8 +574,10 @@ ans =
 
     <section class="pagination">
       
-      <a class="prev" href="/matlab_course/2023-09-18-octave-basic-2d-plotting.html">&laquo; Основы построения двумерных графиков в Matlab/Octave</a>
+      <a class="prev" href="/matlab_course/2023-10-02-matrices.html">&laquo; Матрицы</a>
       
+      
+      <a class="next" href="/matlab_course/2023-10-16-indentation.html">На тему вложенности кода &raquo;</a>
       
     </section>
 
@@ -543,7 +596,7 @@ ans =
 
   <div>
     <br>
-    David Prowse &copy; 2023
+    David Prowse &copy; 2024
   </div>
 </footer>
 

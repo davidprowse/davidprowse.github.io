@@ -6,29 +6,29 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="description" content="Определение матрицы" />
-  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-09-11-octave-matrix-algebra.html" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-10-02-matrices.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/main.css"/>
   <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
-  <title>Матричная алгебра в Matlab/Octave &middot; David Prowse</title>
+  <title>Матрицы &middot; David Prowse</title>
   
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "author": "",
-        "datePublished": "2023-09-11T04:17:05+03:00",
-        "headline": "Матричная алгебра в Matlab/Octave",
-        "url": "https://davidprowse.github.io/matlab_course/2023-09-11-octave-matrix-algebra.html",
+        "datePublished": "2023-10-02T10:00:00+03:00",
+        "headline": "Матрицы",
+        "url": "http://localhost:4000/matlab_course/2023-10-02-matrices.html",
         "inLanguage": "en-US",
         "isFamilyFriendly": "true",
-        "keywords": "Matlab/Octave",
-        "image": "https://davidprowse.github.io/favicon.ico",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://davidprowse.github.io/matlab_course/2023-09-11-octave-matrix-algebra.html"
+          "@id": "http://localhost:4000/matlab_course/2023-10-02-matrices.html"
        }
       }
     </script>
@@ -52,7 +52,7 @@
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
-  <h1>Матричная алгебра в Matlab/Octave</h1>
+  <h1>Матрицы</h1>
   <header class="title-tags">
     
     
@@ -60,14 +60,14 @@
     
     
 
-    <time datetime="2023-09-11T04:17:05+03:00">
-      11 сентября, 2023. Это был понедельник.
+    <time datetime="2023-10-02T10:00:00+03:00">
+      2 октября, 2023. Это был понедельник.
     </time>    
     
     <div class="tags-container">
       Опубликовано под тегом <span>
           
-            <a class="tags" href="/tags#Matlab/Octave">Matlab/Octave</a>
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
           
         </span>
       &nbsp;
@@ -151,14 +151,14 @@
   \end{pmatrix}
 \end{align}\]
 
-<p>Матрица со случайными элементами, равномерно распределенными на интервале (0, 1) размерностью \(2 \times 3\) в Matlab/Octave <code class="language-plaintext highlighter-rouge">&gt;&gt; rand(2, 3)</code>:</p>
+<p>Матрица со случайными элементами, равномерно распределенными на интервале (0, 1) размерностью \(2 \times 3\) в Matlab <code class="language-plaintext highlighter-rouge">&gt;&gt; rand(2, 3)</code>:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     0.8147    0.1270    0.6324
     0.9058    0.9134    0.0975
 </code></pre></div></div>
 
-<h2 id="сложение-и-умножение-векторов">Сложение и умножение векторов</h2>
+<h2 id="сложение-и-умножение-матриц">Сложение и умножение матриц</h2>
 
 <p><strong>Сложение матриц:</strong></p>
 
@@ -203,7 +203,7 @@
   \end{pmatrix}
 \end{align}\]
 
-<p>Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; [1 2; 3 4] + [5 6; 7 8]</code></p>
+<p>Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; [1 2; 3 4] + [5 6; 7 8]</code></p>
 
 <p><strong>Умножение матрицы на скаляр:</strong></p>
 
@@ -218,7 +218,7 @@
     kc &amp; kd \\
   \end{pmatrix}\]
 
-<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; 3 * [1 1; 1 1]</code></p>
+<p>В Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; 3 * [1 1; 1 1]</code></p>
 
 <p><strong>Умножение двух матриц:</strong></p>
 
@@ -286,13 +286,13 @@ C =
     0 &amp; 2 \\
   \end{pmatrix}\]
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">];</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">];</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">];</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">];</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">];</span>
+<span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 1
 </code></pre></div></div>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">isequal</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 0
 </code></pre></div></div>
@@ -318,27 +318,27 @@ C =
     25 &amp; 26 \\
   \end{pmatrix}\]
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="o">*</span><span class="n">B</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span><span class="o">*</span><span class="n">B</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     74    80    86    92
    173   188   203   218
 </code></pre></div></div>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shape =
    2   4
 </code></pre></div></div>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">ans</span> <span class="o">*</span> <span class="n">C</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">ans</span> <span class="o">*</span> <span class="n">C</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     7364    7696
    17354   18136
 </code></pre></div></div>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">shape</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shape =
    2   2
@@ -352,7 +352,7 @@ C =
 
 <p><em>Используя раннее определенные матрицы:</em></p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 1
 </code></pre></div></div>
@@ -361,8 +361,8 @@ C =
 
 <p>Предположим, что мы хотим проверить ассоциативность умножения на случайно сгенерированных матрицах подходящих размерностей. Задав состояние <em>(seed)</em> случайного генератора (для того чтобы точно такой-же результат можно было повторить позже) для Matlab: <code class="language-plaintext highlighter-rouge">rng(1)</code>, для Octave: <code class="language-plaintext highlighter-rouge">rand('seed', 1)</code> (стоит иметь в виду, что одинаковый <em>seed</em> не приведет к одинаковым результатам в разных языках), сгенерируем матрицы \(A: 2 \times 3, \space B: 3 \times 4,\space C: 4 \times 5\) заполненные случайными числами из равномерного распределения (\(0, 1\)):</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="nb">isequal</span><span class="p">((</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">))</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
    0
@@ -372,7 +372,7 @@ C =
 
 <p>Проведем поэлементное сравнение:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> <span class="o">==</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> <span class="o">==</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
 
@@ -382,14 +382,14 @@ C =
 
 <p>В значительном количестве элементов матрицы не строго равны. Хотя на первый взгляд:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">C</span> </code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     0.5053    0.6697    0.3570    0.4288    0.5599
     1.1254    1.4416    0.6967    1.0206    1.2094
 </code></pre></div></div>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     0.5053    0.6697    0.3570    0.4288    0.5599
@@ -412,7 +412,7 @@ C =
     0 &amp; 0 \\
   \end{pmatrix};\]
 
-<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(2, 2)</code></p>
+<p>В Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(2, 2)</code></p>
 
 \[O_{3 \times 2} = 
   \begin{pmatrix}
@@ -421,7 +421,7 @@ C =
     0 &amp; 0 \\
   \end{pmatrix};\]
 
-<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(3, 2)</code></p>
+<p>В Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; zeros(3, 2)</code></p>
 
 <p>Нулевая матрица обладает рядом свойств:</p>
 
@@ -454,7 +454,7 @@ C =
     0 &amp; 1 \\
   \end{pmatrix};\]
 
-<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(2)</code></p>
+<p>В Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(2)</code></p>
 
 <p>Единичная матрица \(I_3\) размера \(3 \times 3\):</p>
 
@@ -465,7 +465,7 @@ C =
     0 &amp; 0 &amp; 1 \\
   \end{pmatrix};\]
 
-<p>В Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(3)</code></p>
+<p>В Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; eye(3)</code></p>
 
 <p>Единичная матрица обладает рядом свойств:</p>
 
@@ -474,7 +474,7 @@ C =
   <li>Обратная матрица к единичной матрице является единичной матрицей;</li>
 </ol>
 
-<p>В Matlab/Octave функция <code class="language-plaintext highlighter-rouge">eye(2, 3)</code> создаст матрицу размером \(2 \times 3\), в которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обратим внимание, что полученная матрица не является квадратной; у неё 2 строки и 3 столбца. Строго говоря это не единичная матрица, которая должна быть квадратной, но принцип похож: единицы на главной диагонали.</p>
+<p>В Matlab функция <code class="language-plaintext highlighter-rouge">eye(2, 3)</code> создаст матрицу размером \(2 \times 3\), в которой на главной диагонали стоят единицы, а все остальные элементы равны нулю. Обратим внимание, что полученная матрица не является квадратной; у неё 2 строки и 3 столбца. Строго говоря это не единичная матрица, которая должна быть квадратной, но принцип похож: единицы на главной диагонали.</p>
 
 <p>Вот как будет выглядеть результат:</p>
 
@@ -498,9 +498,9 @@ C =
     0 &amp; 0 &amp; d_3 \\
   \end{pmatrix}\]
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
 
@@ -509,9 +509,9 @@ C =
    0   0   3
 </code></pre></div></div>
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span>  <span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">])</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">])</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
      1
@@ -532,10 +532,10 @@ C =
     0 &amp; 0 &amp; f \\
   \end{pmatrix}\]
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
+<span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U =
    1   2   3
@@ -545,7 +545,7 @@ C =
 
 <p><em>Верхнетреуголная единичная:</em></p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="nb">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">U</span> <span class="o">=</span> <span class="nb">triu</span><span class="p">(</span><span class="nb">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>U =
    1   1   1
@@ -566,10 +566,10 @@ C =
     d &amp; e &amp; f \\
   \end{pmatrix}\]
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">L</span> <span class="o">=</span> <span class="nb">tril</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span>
+<span class="n">L</span> <span class="o">=</span> <span class="nb">tril</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>L =
      1     0     0
@@ -600,10 +600,10 @@ C =
     b &amp; d &amp; f \\
   \end{pmatrix}\]
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="o">'</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="n">A</span><span class="o">'</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
      1     4
@@ -633,7 +633,7 @@ C =
     c &amp; e &amp; f \\
   \end{pmatrix}\]
 
-<p>Проверка на симметрию в Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, A')</code></p>
+<p>Проверка на симметрию в Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, A')</code></p>
 
 <p><strong>Кососимметричная матрица</strong></p>
 
@@ -648,7 +648,7 @@ C =
     b &amp; -c &amp; 0 \\
   \end{pmatrix}\]
 
-<p>Проверка на кососимметрию в Matlab/Octave: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, -A')</code></p>
+<p>Проверка на кососимметрию в Matlab: <code class="language-plaintext highlighter-rouge">&gt;&gt; isequal(A, -A')</code></p>
 
 <h2 id="скалярное-векторное-и-тензерное-произведение-векторов">Скалярное, векторное и тензерное произведение векторов</h2>
 
@@ -666,19 +666,19 @@ C =
 
 <p>Если \(\langle \overline{a}, \overline{b} \rangle = 0\), то \(\overline{a}\) и \(\overline{b}\) – ортогональны.</p>
 
-<p>В контексте матричной алгебры скалярное произведение представляется как произведение вектора-строки на вектор-столбец, учитывая, что при создании векторов в Matlab/Octave по умолчанию создаются вектора-строки, тогда:</p>
+<p>В контексте матричной алгебры скалярное произведение представляется как произведение вектора-строки на вектор-столбец, учитывая, что при создании векторов в Matlab по умолчанию создаются вектора-строки, тогда:</p>
 
 \[\langle \overline{a}, \overline{b} \rangle = \overline{a} \cdot \overline{b}^T\]
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">'</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">'</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 32
 </code></pre></div></div>
 
 <p>Также можно использовать специальную функцию:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 32
 </code></pre></div></div>
@@ -691,10 +691,10 @@ C =
 
 <p>Частые обозначения векторного произведения: \(A \times B\), \([A, B]\)</p>
 
-<p>Для вычисления вектороного произведения в Matlab/Octave испольузется следующая фукнция:</p>
+<p>Для вычисления вектороного произведения в Matlab испольузется следующая фукнция:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="nb">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="nb">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
   -3   6  -3
@@ -734,10 +734,10 @@ v  =
     v_1 &amp; v_2 &amp; v_3\\
   \end{pmatrix};\]
 
-<p>В Matlab/Octave по умолчанию создаются вектора-строки, поэтому тензерное произведение получается путем транспонирования первого, а не второго вектора \(u \otimes v = u^T \cdot v\). Например:</p>
+<p>В Matlab по умолчанию создаются вектора-строки, поэтому тензерное произведение получается путем транспонирования первого, а не второго вектора \(u \otimes v = u^T \cdot v\). Например:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">'*</span><span class="n">b</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="n">a</span><span class="o">'*</span><span class="n">b</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     4    5    6
@@ -747,9 +747,9 @@ v  =
 
 <p>Что то же самое, что:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="s1">' a'</span> <span class="n">a</span><span class="o">'</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">.*</span> <span class="n">B</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="s1">' a'</span> <span class="n">a</span><span class="o">'</span><span class="p">];</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">.*</span> <span class="n">B</span></code></pre></figure>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
     4    5    6
@@ -835,10 +835,10 @@ y_2 = \frac{a}{ad - bc} \\
 
 <p>Из этого определения следует критерий обратимости: матрица обратима тогда и только тогда, когда она невырождена, то есть её определитель не равен нулю. Для неквадратных матриц и вырожденных матриц обратных матриц не существует.</p>
 
-<p>В Matlab/Octave:</p>
+<p>В Matlab:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
 
 <p>Теперь, матрица \(B\) будет содержать обратную матрицу для \(A\):</p>
 
@@ -848,6 +848,42 @@ y_2 = \frac{a}{ad - bc} \\
 </code></pre></div></div>
 
 <p>Однако стоит быть осторожным при использовании <code class="language-plaintext highlighter-rouge">inv()</code>. В некоторых случаях, особенно когда матрица \(A\) близка к вырожденной, использование <code class="language-plaintext highlighter-rouge">inv(A)</code> может привести к численным неточностям. Во многих приложениях, вместо явного вычисления обратной матрицы, лучше решать систему уравнений напрямую с помощью оператора <code class="language-plaintext highlighter-rouge">\</code>.</p>
+
+<p><strong>Пример.</strong> Решите систему линейных уравнений:</p>
+
+\[\begin{equation}
+\begin{cases}
+3x + 4y + 5z = 2, \\
+2x - 3y + 7z = -1, \\
+x - 6y + z = 3.
+\end{cases}
+\end{equation}\]
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">6</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">A</span> <span class="p">\</span> <span class="n">B</span>
+<span class="n">A</span> <span class="o">*</span> <span class="n">X</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A =
+     3     4     5
+     2    -3     7
+     1    -6     1
+
+B =
+     2
+    -1
+     3
+
+X =
+    2.6196
+   -0.2283
+   -0.9891
+
+ans =
+    2.0000
+   -1.0000
+    3.0000
+</code></pre></div></div>
 
 <h2 id="ортогональная-матрица">Ортогональная матрица</h2>
 
@@ -865,20 +901,20 @@ y_2 = \frac{a}{ad - bc} \\
 
 \[(Qv)^T (Qv) = ||Qv||^2 = v^T Q^T Q v = v^T v = ||v||^2\]
 
-<p><strong>Получение ортогональной матрицы в Matlab/Octave:</strong></p>
+<p><strong>Получение ортогональной матрицы в Matlab:</strong></p>
 
 <p>Имея матрицу можно воспользоваться функцией <code class="language-plaintext highlighter-rouge">qr</code> проводящую QR - факторизацию (разложение матрицы на ортогональную и верхнетреугольную).</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">% 3x3 random matrix</span>
-<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="nb">qr</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c1">% QR decomposition</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">% 3x3 random matrix</span>
+<span class="p">[</span><span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="nb">qr</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c1">% QR decomposition</span></code></pre></figure>
 
 <p>В этом примере <code class="language-plaintext highlighter-rouge">Q</code> – \(3 \times 3\) ортогональная матрица.</p>
 
-<p><strong>Проверка на ортогональность матрицы в Matlab/Octave:</strong></p>
+<p><strong>Проверка на ортогональность матрицы в Matlab:</strong></p>
 
 <p>Можно проверить, является ли матрица ортогональной, проверив, совпадает ли её транспонированная матрица с её обратной матрицей.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">isOrthogonal</span> <span class="o">=</span> <span class="nb">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">'*</span><span class="n">Q</span> <span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-10</span><span class="p">;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">is_orthogonal</span> <span class="o">=</span> <span class="nb">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">'*</span><span class="n">Q</span> <span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-10</span><span class="p">;</span></code></pre></figure>
 
 <p>Здесь рассчитывается фробениусова (евклидова) норма разницы \(Q^TQ - I\). Если эта норма очень близка к нулю (меньше некоторой маленькой погрешности, скажем, \(1^{-10}\), то пологаем, что матрица является ортогональной.</p>
 
@@ -894,7 +930,7 @@ y_2 = \frac{a}{ad - bc} \\
 
 <p>Рассмотрим сначала задачу поворота вектора. Представим, что над гладью воды зависла удочка рыбака под углом \(\phi = 45^{\circ}\). Вдруг - поклёв! Рыбак потянул удочку, и она стала быстро набирать высоту, длина лески (катет А) стала расти, а расстояние от рыбака до самой лески стало уменьшаться (катет B). <strong><em>Длина самой удочки совсем не изменилась</em></strong>, даже когда она описала в воздухе дугу и оказалась почти над головой рыбака, под углом \(\phi = 90^{\circ}\). Длина лески сравнялась с длиной удочки, а расстояние между рыбаком и леской изменилось до 0, леска оказалась в руках рыбака.</p>
 
-<p><img src="/assets/images/matlab_course/01-fisherman-animation.gif" alt="Fisherman animation" /></p>
+<p><img src="/assets/images/matlab_course/matrices/01-fisherman-animation.gif" alt="Fisherman animation" /></p>
 
 <p>Пусть: длина удочки – \(r\), длина лески – \(y\), а \(x\) - расстояние между рыбаком и тем местом, где леска погружена в воду. Тогда, вспоминая теорему Пифагора: \(r^2 = y^2 + x^2\).</p>
 
@@ -963,7 +999,7 @@ y' = y \cos \theta + x \sin \theta \\
 
 \[R_{-\theta} = R_{\theta}^T\]
 
-<p>Поворот на \(\frac{\pi}{4}\) в Matlab/Octave:</p>
+<p>Поворот на \(\frac{\pi}{4}\) в Matlab:</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">theta</span> <span class="o">=</span> <span class="nb">pi</span><span class="p">/</span><span class="mi">4</span><span class="p">;</span> <span class="c1">% Example: 45-degree rotation in radians</span>
 <span class="n">R2D</span> <span class="o">=</span> <span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span> <span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)];</span>
@@ -973,6 +1009,105 @@ y' = y \cos \theta + x \sin \theta \\
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v_rotated =
     0.7071
     0.7071
+</code></pre></div></div>
+
+<h2 id="итерирование-по-матрице-с-помощью-цикла">Итерирование по матрице с помощью цикла</h2>
+
+<p><strong>Пример 1.</strong> Обработка двумерных массивов производится с помощью двух вложенных циклов. Например, посчитать сумму всех элементов можно следующим образом.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span>
+<span class="p">];</span>
+<span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">s</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>78
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">))</span></code></pre></figure>
+
+<p><strong>Пример 2.</strong> Выведем элементы стоящие на главной диагонали квадратной матрицы</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+  <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+  <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>
+  <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span>
+  <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span>
+<span class="p">];</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'%d '</span><span class="p">,</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+<span class="k">end</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 0 0 0 0 
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">diag</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     0
+     0
+     0
+     0
+     0
+</code></pre></div></div>
+
+<p><strong>Пример 3.</strong> Выведем элементы верхнего треугольника:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'%d '</span><span class="p">,</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">));</span>
+    <span class="k">end</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">);</span>
+<span class="k">end</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 1 1 1 
+1 1 1 
+1 1 
+1 
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">triu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     0     1     1     1     1
+     0     0     1     1     1
+     0     0     0     1     1
+     0     0     0     0     1
+     0     0     0     0     0
+</code></pre></div></div>
+
+<p><strong>Пример 4.</strong> Выведем элементы нижнего треугольника:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+      <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'%d '</span><span class="p">,</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">));</span>
+    <span class="k">end</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">);</span>
+<span class="k">end</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2 
+2 2 
+2 2 2 
+2 2 2 2 
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">tril</span><span class="p">(</span><span class="n">A</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     0     0     0     0     0
+     2     0     0     0     0
+     2     2     0     0     0
+     2     2     2     0     0
+     2     2     2     2     0
 </code></pre></div></div>
 
 <p><br /></p>
@@ -1003,10 +1138,10 @@ y' = y \cos \theta + x \sin \theta \\
 
     <section class="pagination">
       
-      <a class="prev" href="/matlab_course/2023-09-04-octave-vectors-matrices.html">&laquo; Вектора и матрицы в Matlab/Octave</a>
+      <a class="prev" href="/matlab_course/2023-10-02-vectors.html">&laquo; Вектора</a>
       
       
-      <a class="next" href="/matlab_course/2023-09-18-octave-basic-2d-plotting.html">Основы построения двумерных графиков в Matlab/Octave &raquo;</a>
+      <a class="next" href="/matlab_course/2023-10-09-user-functions.html">Пользовательские функции &raquo;</a>
       
     </section>
 
@@ -1025,7 +1160,7 @@ y' = y \cos \theta + x \sin \theta \\
 
   <div>
     <br>
-    David Prowse &copy; 2023
+    David Prowse &copy; 2024
   </div>
 </footer>
 

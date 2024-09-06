@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Написание строчных комментариев" />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-04-comments.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Комментарии &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-04T10:00:00+03:00",
+        "headline": "Комментарии",
+        "url": "http://localhost:4000/matlab_course/2023-09-04-comments.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-04-comments.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Комментарии</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-04T10:00:00+03:00">
+      4 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <h2 id="написание-строчных-комментариев">Написание строчных комментариев</h2>
+
+<p>В интервью данному Dikran Karagueuzian в 2006 году Дональд Кнут отмечает:</p>
+
+<blockquote>
+  <p>Я думаю, что самая большая польза для меня лично от всей этой работы над типографикой была идея того, что я решил назвать «грамотным программированием» (англ.: literate programming), что является способом обращения с компьютерными программами, как с литературой. Компьютерная программа – это то, что должны читать люди, и вы пишете её для людей, а не для компьютера.</p>
+</blockquote>
+
+<p>В то же время необходимо помнить, что комментарии должны помогать понять хорошо написанный код, а не дублировать его логику или пытаться компенсировать недостатки плохо написанного кода. Код, где может, должен говорить сам за себя.</p>
+
+<p><strong>Для того чтобы написать строчный комментарий в MATLAB</strong> необходимо использовать: <code class="language-plaintext highlighter-rouge">%</code>.</p>
+
+<p>Коментарии игнорируются MATLAB при исполнении и явлются информацией только для программистов.</p>
+
+<p>Коментарии можно оставлять на той же строке, что и строчка кода. Это часто удобно для отметки об используемых единицах измерений. Например:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% расчет индекса массы тела </span>
+<span class="n">weight</span> <span class="o">=</span> <span class="mi">154</span><span class="p">;</span> <span class="c1">% lb - вес в фунтах</span>
+<span class="nb">height</span> <span class="o">=</span> <span class="mi">70</span><span class="p">;</span> <span class="c1">% in - дюймы</span>
+<span class="n">bmi</span> <span class="o">=</span> <span class="n">weight</span> <span class="p">/</span> <span class="nb">height</span><span class="o">^</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">703</span></code></pre></figure>
+
+<h2 id="блочные-или-многострочные-комментарии">Блочные, или многострочные комментарии</h2>
+
+<p>В MATLAB также можно писать многострочные комментарии:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%{
+  Этот скрипт вычисляет индекс массы тела (BMI)
+  по заданным весу в фунтах и росту в дюймах.
+  Формула расчета BMI:
+  BMI = (вес в фунтах / (рост в дюймах)^2) * 703
+%}
+</code></pre></div></div>
+
+<p>Для того, чтобы <strong>закоментировать несколько строчек кода</strong> можно выделить код → правая кнопка мыши → <code class="language-plaintext highlighter-rouge">Comment</code> или <kbd>Ctrl</kbd>+<kbd>R</kbd>.</p>
+
+<p>Для того, чтобы <strong>разкоментировать несколько строчек кода</strong> можно выделить код → правая кнопка мыши → <code class="language-plaintext highlighter-rouge">Unсomment</code> или <kbd>Ctrl</kbd>+<kbd>T</kbd>.</p>
+
+<h2 id="комментирование-элементов-многострочного-определения">Комментирование элементов многострочного определения</h2>
+
+<p>Рассмотрим вектор столбец чисел и столбца массива ячеек:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">dataArray</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span>
+    <span class="mi">2</span>
+    <span class="mi">3</span>
+    <span class="mi">4</span>
+<span class="p">]</span>
+
+<span class="n">cellArray</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'dog'</span><span class="p">,</span>
+    <span class="s1">'tiger'</span><span class="p">,</span>
+    <span class="s1">'sheep'</span><span class="p">,</span>
+    <span class="s1">'elephant'</span>
+<span class="p">}</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataArray =
+     1
+     2
+     3
+     4
+
+cellArray =
+  4×1 cell array
+    {'dog'     }
+    {'tiger'   }
+    {'sheep'   }
+    {'elephant'}
+</code></pre></div></div>
+
+<p>Предположим, что мы хотим закоментировать вторые по счету элементы:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">dataArray</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span>
+    <span class="c1">% 2</span>
+    <span class="mi">3</span>
+    <span class="mi">4</span>
+<span class="p">]</span>
+
+<span class="n">cellArray</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'dog'</span><span class="p">,</span>
+    <span class="c1">% 'tiger',</span>
+    <span class="s1">'sheep'</span><span class="p">,</span>
+    <span class="s1">'elephant'</span>
+<span class="p">}</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataArray =
+     1
+     3
+     4
+
+cellArray =
+  3×1 cell array
+    {'dog'     }
+    {'sheep'   }
+    {'elephant'}
+</code></pre></div></div>
+
+<p>Подход выше <strong>не будет работать в случае</strong> вектора строки или в случае строки массива ячеек, необходимо использовать троеточие:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">dataArray</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="k">...</span>
+    <span class="k">...</span><span class="c"> 2, ...</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="k">...</span>
+    <span class="mi">4</span>
+<span class="p">]</span>
+
+<span class="n">cellArray</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'dog'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="k">...</span><span class="c"> 'tiger', ...</span>
+    <span class="s1">'sheep'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'elephant'</span>
+<span class="p">}</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataArray =
+     1     3     4
+
+cellArray =
+  1×3 cell array
+    {'dog'}    {'sheep'}    {'elephant'}
+</code></pre></div></div>
+
+<p>Аналогично можно закомментировать аргумент в многострочной передаче аргументов функции:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">result</span> <span class="o">=</span> <span class="n">myfunc</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="k">...</span>
+            <span class="k">...</span><span class="c"> arg2, ...</span>
+                <span class="n">arg2b</span><span class="p">,</span> <span class="k">...</span>
+                <span class="n">arg3</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="разбиение-длинной-строки-на-несколько-строк">Разбиение длинной строки на несколько строк</h2>
+
+<p>Выше мы рассматривали примеры, в которых кодовые строки были разбиты на несколько строк.</p>
+
+<p>В MATLAB для разбиения длинной строки на несколько строк используется символ троеточия (англ.: elipsis) (<code class="language-plaintext highlighter-rouge">...</code>). Это полезно для улучшения читаемости и структурирования кода:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% Разбивка длинного выражения на несколько строк</span>
+<span class="nb">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span> <span class="p">)</span> <span class="k">...</span><span class="c"> то что после троеточия считается комментарием</span>
+       <span class="o">*</span> <span class="p">(</span><span class="n">e</span> <span class="o">+</span> <span class="n">f</span> <span class="o">+</span> <span class="n">g</span> <span class="o">+</span> <span class="n">h</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span></code></pre></figure>
+
+<p>Это часто испольузется при передаче большого количества параметров в функцию.</p>
+
+<h2 id="добавление-комментариев-к-элементам-в-многострочном-определении">Добавление комментариев к элементам в многострочном определении</h2>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">dataArray</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span>
+    <span class="mi">2</span> <span class="c1">% This is the number of wheels on a bicycle</span>
+    <span class="mi">3</span>
+    <span class="mi">4</span>
+<span class="p">]</span>
+
+<span class="n">cellArray</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'dog'</span><span class="p">,</span>
+    <span class="s1">'tiger'</span><span class="p">,</span> <span class="c1">% Saber tooth </span>
+    <span class="s1">'sheep'</span><span class="p">,</span>
+    <span class="s1">'elephant'</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">dataArray</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="k">...</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="k">...</span><span class="c"> This is the number of wheels on a bicycle</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="k">...</span>
+    <span class="mi">4</span>
+<span class="p">]</span>
+
+<span class="n">cellArray</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'dog'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'tiger'</span><span class="p">,</span> <span class="k">...</span><span class="c"> Saber tooth </span>
+    <span class="s1">'sheep'</span><span class="p">,</span> <span class="k">...</span>
+    <span class="s1">'elephant'</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="ячейки-кода">Ячейки кода</h2>
+
+<p>В MATLAB ячейки кода (англ.: code cells) разделяют скрипт на независимые исполняемые блоки для удобства разработки и отладки. Каждая ячейка начинается с двойного процента (<code class="language-plaintext highlighter-rouge">%%</code>). Пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">%% Загрузка данных</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">load</span><span class="p">(</span><span class="s1">'datafile.mat'</span><span class="p">);</span>
+
+<span class="c1">%% Обработка данных</span>
+<span class="n">processedData</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+<span class="c1">%% Анализ данных</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">analyze</span><span class="p">(</span><span class="n">processedData</span><span class="p">);</span>
+
+<span class="c1">%% Визуализация результатов</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">results</span><span class="p">);</span></code></pre></figure>
+
+<p>Ячейки кода особенно полезны при итеративной разработке и долгих вычислениях (можно перезапускать только то что необходимо).</p>
+
+<p>Чтобы выполнить код внутри ячейки можно воспользоваться горячими клавишами <kbd>Ctrl</kbd>+<kbd>Enter</kbd> или правой кнопкой мыши по строке находящейся в ячейке → <code class="language-plaintext highlighter-rouge">Run Section</code>.</p>
+
+<p>Для пошагового запуска кодовых ячеек можно воспользоваться опцией меню <code class="language-plaintext highlighter-rouge">EDITOR</code> -&gt; <code class="language-plaintext highlighter-rouge">SECTION</code> -&gt; <code class="language-plaintext highlighter-rouge">Run and Advance</code>.</p>
+
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-04-matlab-first-steps.html">&laquo; Первые шаги</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-04-matlab-improve-QL.html">Повышение удобства работы &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>

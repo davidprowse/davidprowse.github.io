@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Даты и время являются частыми элементами во множестве данных, от финансовых отчетов до экологических исследований. Для обработки этих повсеместных данных MAT..." />
+  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-18-working-with-time.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/main.css"/>
+  <link rel="alternate" type="application/rss+xml" title="David Prowse" href="/feed.xml" />
+  <title>Работа со временем &middot; David Prowse</title>
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": "",
+        "datePublished": "2023-09-18T10:00:00+03:00",
+        "headline": "Работа со временем",
+        "url": "http://localhost:4000/matlab_course/2023-09-18-working-with-time.html",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "keywords": "MATLAB",
+        "image": "http://localhost:4000/favicon.ico",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://localhost:4000/matlab_course/2023-09-18-working-with-time.html"
+       }
+      }
+    </script>
+  
+</head>
+
+<body>
+<div class="container">
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <hr class="stylish"/>
+  <div class="_progress-wrapper">
+  <div id="_progress"></div>
+</div>
+
+<header>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <h1>Работа со временем</h1>
+  <header class="title-tags">
+    
+    
+
+    
+    
+
+    <time datetime="2023-09-18T10:00:00+03:00">
+      18 сентября, 2023. Это был понедельник.
+    </time>    
+    
+    <div class="tags-container">
+      Опубликовано под тегом <span>
+          
+            <a class="tags" href="/tags#MATLAB">MATLAB</a>
+          
+        </span>
+      &nbsp;
+    </div>
+  </header>
+</header>
+
+<hr class="stylish" />
+
+<main role="main">
+
+  <article>
+
+    <section class="content">
+      <p>Даты и время являются частыми элементами во множестве данных, от финансовых отчетов до экологических исследований. Для обработки этих повсеместных данных MATLAB предлагает удобные типы данных.</p>
+
+<h2 id="тип-datetime">Тип datetime</h2>
+
+<p>Рассмотрим тип данных и одноименную функцию <code class="language-plaintext highlighter-rouge">datetime</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">datetime</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  datetime
+   15-Sep-2023 09:55:05
+</code></pre></div></div>
+
+<p>Итак, мы начали с функции, которая имеет такое же название, как тип <code class="language-plaintext highlighter-rouge">datetime</code>. Когда мы вызываем её без аргумента, как мы только что сделали, она считывает календарь и часы нашего компьютера и возвращает дату и время в виде объекта, тип которого - <code class="language-plaintext highlighter-rouge">datetime</code>.</p>
+
+<p>Время состоит из трех частей: часов, минут и секунд, разделенных двоеточиями. Эти двоеточия не имеют никакого отношения к оператору «двоеточие» <code class="language-plaintext highlighter-rouge">:</code>, это обычная пунктуация.</p>
+
+<blockquote>
+  <p>Matlab отображает не только значение объекта <code class="language-plaintext highlighter-rouge">datetime</code>, но и имя типа подчеркнутым синим шрифтом, точно так же, как мы видели это для других типов данных. Как и в тех случаях, название типа данных является активной ссылкой при нажатии на которую появляется окно с документацией.</p>
+</blockquote>
+
+<p>[img]</p>
+
+<p>Рассмотрим некоторые аргументы, которые можно передать в функцию <code class="language-plaintext highlighter-rouge">datetime</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">datetime</span><span class="p">(</span><span class="s1">'yesterday'</span><span class="p">),</span> <span class="nb">datetime</span><span class="p">(</span><span class="s1">'today'</span><span class="p">),</span> <span class="nb">datetime</span><span class="p">(</span><span class="s1">'tomorrow'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  datetime
+   14-Sep-2023
+
+ans = 
+  datetime
+   15-Sep-2023
+
+ans = 
+  datetime
+   16-Sep-2023
+</code></pre></div></div>
+
+<p>Вызов функции с аргументами <code class="language-plaintext highlighter-rouge">yesterday</code>, <code class="language-plaintext highlighter-rouge">today</code>, <code class="language-plaintext highlighter-rouge">tomorrow</code> возвращает дату вчерашнего, сегодняшнего и завтрашнего дня соответственно.</p>
+
+<p>Также можно получить дату и время текущего момента, передав аргумент <code class="language-plaintext highlighter-rouge">now</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">datetime</span><span class="p">(</span><span class="s1">'now'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  datetime
+   15-Sep-2023 10:05:35
+</code></pre></div></div>
+
+<h2 id="тип-duration">Тип duration</h2>
+
+<p>Тип данных <code class="language-plaintext highlighter-rouge">duration</code> представляет собой полезный инструмент для представления продолжительности времени. Создать переменные этого типа можно с помощью функций <code class="language-plaintext highlighter-rouge">seconds</code> (секунды), <code class="language-plaintext highlighter-rouge">minutes</code> (минуты), <code class="language-plaintext highlighter-rouge">hours</code> (часы) или <code class="language-plaintext highlighter-rouge">days</code> (дни).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">hours</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   2.5 hr
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">days</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   2.5 days
+</code></pre></div></div>
+
+<p>Примечательно, что в случае работы с типом данных <code class="language-plaintext highlighter-rouge">duration</code> MATLAB следит за единицами измерения. Для обычных чисел нет возможности определить единицы измерения, например, вес объекта в килограммах.</p>
+
+<h2 id="арифметика-между-типами-datetime-и-duration">Арифметика между типами datetime и duration</h2>
+
+<p>Длительность можно добавить к переменным типа <code class="language-plaintext highlighter-rouge">datetime</code>. Создадим переменную отображающую временную метку момента её создания:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">right_now</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="s1">'now'</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> right_now = 
+   datetime
+    15-Sep-2023 10:42:13
+</code></pre></div></div>
+
+<p>Теперь вычислим дату и время, которые будут через три года от текущей временной метки <code class="language-plaintext highlighter-rouge">right_now</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">three_years_from_now</span> <span class="o">=</span> <span class="n">right_now</span> <span class="o">+</span> <span class="nb">years</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>three_years_from_now = 
+  datetime
+   16-Sep-2026 04:09:49
+</code></pre></div></div>
+
+<p>Через три дня:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">three_days_from_now</span> <span class="o">=</span> <span class="n">right_now</span> <span class="o">+</span> <span class="nb">days</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>three_days_from_now = 
+  datetime
+   18-Sep-2023 10:42:13
+</code></pre></div></div>
+
+<p>Три дня назад:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">three_days_ago</span> <span class="o">=</span> <span class="n">right_now</span> <span class="o">-</span> <span class="nb">days</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>three_days_ago = 
+  datetime
+   12-Sep-2023 10:42:13
+</code></pre></div></div>
+
+<p>Самое время обратить внимание на то, что названия двух функций - <code class="language-plaintext highlighter-rouge">years</code> (года) и <code class="language-plaintext highlighter-rouge">days</code> (дни), а также их родственных функций - <code class="language-plaintext highlighter-rouge">hours</code> (часы), <code class="language-plaintext highlighter-rouge">minutes</code> (минуты), <code class="language-plaintext highlighter-rouge">seconds</code> (секунды) - имеют множественное число. Они имеют букву <code class="language-plaintext highlighter-rouge">s</code> на конце. Необходимо об этом помнить, потому что существуют также функции с одноименными названиями в единственном числе, такие как <code class="language-plaintext highlighter-rouge">day</code>, <code class="language-plaintext highlighter-rouge">year</code> и <code class="language-plaintext highlighter-rouge">second</code>  которые имеют совсем другие значения. О них мы поговорим позже.</p>
+
+<h2 id="аргументы-функции-datetime">Аргументы функции datetime</h2>
+
+<p>Сложение и вычитание - не единственный способ получить даты в далеком прошлом или будущем. Функция <code class="language-plaintext highlighter-rouge">datetime</code> также принимает аргументы, с помощью которых можно напрямую перейти к любой точке во времени.</p>
+
+<p>Первое публичное представление MATLAB состоялось на заседании конференции “IEEE Conference on Decision and Control”, CDC, в Лас-Вегасе в декабре 1984 года. Конференция проходила с 12 по 14 декабря. Зададим дату начала этой конференции</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">matlab_debut</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">1984</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>matlab_debut = 
+  datetime
+   12-Dec-1984
+</code></pre></div></div>
+
+<p>Перемирие, положившее конец боевым действиям в Первой мировой войне, было подписано в 1918 году в 11 часов 11-го дня 11-го месяца.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Armistice_WWI</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">1918</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></code></pre></figure>
+
+<p>Но чей это был 11-й час? Если посмотреть на разные страны мира, где-то может быть 11 часов утра, а где-то — 5 часов вечера. Договор был подписан в Лондоне, и мы можем установить это время в соответствии с лондонским часовым поясом.</p>
+
+<p>Чтобы установить часовой пояс, сначала нужно выяснить, в каком часовом поясе находится Лондон. Часовые пояса управляются по всему миру организацией Internet Assigned Numbers Authority, которая известна в первую очередь тем, что распределяет интернет-номера. MATLAB избавляет нас от хлопот определения часового пояса, предоставляя удобную функцию, называемую <code class="language-plaintext highlighter-rouge">timezones</code>.</p>
+
+<p>При вызове функции <code class="language-plaintext highlighter-rouge">timezones</code> открывается таблица поиска мест и соответствующие им часовые пояса</p>
+
+<p><img src="/assets/images/matlab_course/time_objects/time-zones-browser.png" alt="Resulting browser from timezones command" /></p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Armistice_WWI</span><span class="o">.</span><span class="n">TimeZone</span> <span class="o">=</span> <span class="s1">'Europe/London'</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Armistice_WWI = 
+  datetime
+   11-Nov-1918 11:00:00
+</code></pre></div></div>
+
+<p>Ничего не изменится, потому что для этой переменной ранее не был установлен часовой пояс. Давайте сделаем копию этой переменной. Копирование переменной включает в себя все её содержимое, так что свойство часового пояса сохранится.</p>
+
+<p>Изменим часовой пояс соответствующий Москве:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Armistice_WWI_Moscow</span> <span class="o">=</span> <span class="n">Armistice_WWI</span><span class="p">;</span>
+<span class="n">Armistice_WWI_Moscow</span><span class="o">.</span><span class="n">TimeZone</span> <span class="o">=</span> <span class="s1">'Europe/Moscow'</span><span class="p">;</span>
+<span class="n">Armistice_WWI_Moscow</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Armistice_WWI_Moscow = 
+  datetime
+   11-Nov-1918 14:31:19
+</code></pre></div></div>
+
+<p>Чтобы просмотреть возможные поля переменной <code class="language-plaintext highlighter-rouge">datetime</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">fieldnames</span><span class="p">(</span><span class="n">Armistice_WWI</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  8×1 cell array
+    {'Format'  }
+    {'TimeZone'}
+    {'Year'    }
+    {'Month'   }
+    {'Day'     }
+    {'Hour'    }
+    {'Minute'  }
+    {'Second'  }
+</code></pre></div></div>
+
+<p>Следует отметить, что имена полей чувствительны к регистру, и мы не можете добавлять новые поля.</p>
+
+<p>Версальский договор был подписан спустя 228 дней с момента перемирия:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span> <span class="o">=</span> <span class="n">Armistice_WWI</span> <span class="o">+</span> <span class="nb">days</span><span class="p">(</span><span class="mi">228</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Treaty_of_Versailles = 
+  datetime
+   27-Jun-1919 12:00:00
+</code></pre></div></div>
+
+<p>Мы уже несколько раз замечали, что время изменилось; это связано с учетом перехода на летнее время. В Европе впервые стали переходить на летнее время в 1916 году.</p>
+
+<p>К счастью для нас, MATLAB позаботится об учете перехода на летнее время. Это является большим преимуществом, особенно, когда время суток имеет значение.</p>
+
+<h2 id="настройка-формата-времени-datetime">Настройка формата времени datetime</h2>
+
+<p>В случае с Версальским договором время не играет особенной роли. Так как нас интересует только дата, следует изменить форматирование используя поле <code class="language-plaintext highlighter-rouge">Format</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'dd-MMMM-yy'</span><span class="p">;</span>
+<span class="n">Treaty_of_Versailles</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Treaty_of_Versailles = 
+  datetime
+   27-June-19
+</code></pre></div></div>
+
+<p>Теперь время не отображается. Если же мы предпочитаем более короткий формат:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'dd/MM/yy'</span><span class="p">;</span>
+<span class="n">Treaty_of_Versailles</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Treaty_of_Versailles = 
+  datetime
+   27/06/19
+</code></pre></div></div>
+
+<p>Или, может быть, еще более длинный формат:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'eeee, MMMM dd, yyyy'</span><span class="p">;</span>
+<span class="n">Treaty_of_Versailles</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Treaty_of_Versailles = 
+  datetime
+   Friday, June 27, 1919
+</code></pre></div></div>
+
+<p>Теперь мы знаем, что Версальский договор был подписан в пятницу.</p>
+
+<p>Давайте посмотрим когда был 100 летний юбилей:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span> <span class="o">+</span> <span class="nb">years</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  datetime
+   Wednesday, June 26, 2019
+</code></pre></div></div>
+
+<p>Годовщина должна быть 27-го, но почему-то мы получили 26 июня.</p>
+
+<p>Почему наши расчеты отличаются на один день? Все дело в високосных годах, когда в календарь вводится дополнительный день — 29 февраля. В то же время функция <code class="language-plaintext highlighter-rouge">years</code> предполагает, что в каждом году ровно <code class="language-plaintext highlighter-rouge">365.2425</code> дней.</p>
+
+<h2 id="работа-с-календарными-промежутками-времени">Работа с календарными промежутками времени</h2>
+
+<p>К счастью, MATLAB предлагает способ решить и эту проблему. Для достижения точного соответствия используйте функцию <code class="language-plaintext highlighter-rouge">calyears</code>, что означает “календарные годы” (calendar years). Эта функция учитывает график високосных лет.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Treaty_of_Versailles</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  datetime
+   Thursday, June 27, 2019
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">calyears</code> является функцией возвращающей тип данных <code class="language-plaintext highlighter-rouge">calendarDuration</code>.</p>
+
+<p>Тип данных <code class="language-plaintext highlighter-rouge">calendarDuration</code> используется, когда требуется вариативный промежуток времени. Например, продолжительность 1 месяца может составлять 28, 30 или 31 день. Функции <code class="language-plaintext highlighter-rouge">caldays</code>, <code class="language-plaintext highlighter-rouge">calweeks</code>, <code class="language-plaintext highlighter-rouge">calmonths</code>, <code class="language-plaintext highlighter-rouge">calquarters</code>, <code class="language-plaintext highlighter-rouge">calyears</code> возвращают тип данных <code class="language-plaintext highlighter-rouge">calendarDuration</code>.</p>
+
+<h2 id="различия-между-схожими-по-названию-функциями">Различия между схожими по названию функциями</h2>
+
+<p>Обратим внимание на функции <code class="language-plaintext highlighter-rouge">year</code>, <code class="language-plaintext highlighter-rouge">month</code>, <code class="language-plaintext highlighter-rouge">week</code>, <code class="language-plaintext highlighter-rouge">day</code>, <code class="language-plaintext highlighter-rouge">hour</code>, <code class="language-plaintext highlighter-rouge">minute</code>, <code class="language-plaintext highlighter-rouge">second</code>, и <code class="language-plaintext highlighter-rouge">quarter</code>, которые не следует путать с их множественными аналогами. Зачем они нужны и что они делают?</p>
+
+<p>Эти функции появились за много лет до введения типов данных <code class="language-plaintext highlighter-rouge">datetime</code> и <code class="language-plaintext highlighter-rouge">duration</code> в 2014 году. Изначально они были частью библиотеки для решения финансовых задач, что представляет собой одно из ключевых направлений использования MATLAB.</p>
+
+<p>После добавления новых типов данных, старые функции были обновлены, чтобы принимать новые типы данных <code class="language-plaintext highlighter-rouge">datetime</code> и <code class="language-plaintext highlighter-rouge">duration</code>. В связи с необходимостью новой функциональности были введены отдельные функции <code class="language-plaintext highlighter-rouge">years</code>, <code class="language-plaintext highlighter-rouge">days</code>, <code class="language-plaintext highlighter-rouge">hours</code>, <code class="language-plaintext highlighter-rouge">minutes</code> и другие, названные иначе, чтобы обеспечить совместимость с предыдущими версиями MATLAB. Эти новые функции получили имена во множественном числе для отличия от оригинальных.</p>
+
+<p>Давайте рассмотрим, что делают старые функции:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">year</span><span class="p">(</span><span class="n">Treaty_of_Versailles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+        1919
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">month</span><span class="p">(</span><span class="n">Treaty_of_Versailles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     6
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">day</span><span class="p">(</span><span class="n">Treaty_of_Versailles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    27
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">hour</span><span class="p">(</span><span class="n">Treaty_of_Versailles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    12
+</code></pre></div></div>
+
+<p>Эти функции разделяют дату на части. Вы даже можете определить к какому кварталу года относится дата.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">quarter</span><span class="p">(</span><span class="n">Treaty_of_Versailles</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+     2
+</code></pre></div></div>
+
+<p>Есть и другой способ разделения информации - с помощью точечной нотации:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">Armistice_WWI</span><span class="o">.</span><span class="n">Year</span><span class="p">,</span> <span class="n">Armistice_WWI</span><span class="o">.</span><span class="n">Day</span><span class="p">,</span> <span class="n">Armistice_WWI</span><span class="o">.</span><span class="n">Hour</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+        1918
+
+ans =
+    11
+
+ans =
+    11
+</code></pre></div></div>
+
+<p>Также можно воспользоваться распаковкой значений, функциями <code class="language-plaintext highlighter-rouge">yms</code> и <code class="language-plaintext highlighter-rouge">hms</code>:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">mo</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="nb">ymd</span><span class="p">(</span><span class="n">Armistice_WWI</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>y =
+        1918
+
+mo =
+    11
+
+d =
+    11
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">[</span><span class="n">h</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="nb">hms</span><span class="p">(</span><span class="n">Armistice_WWI</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>h =
+    11
+
+min =
+     0
+
+s =
+     0
+</code></pre></div></div>
+
+<p>В каждом случае значения, которые мы получили в результате этих многочисленных операций извлечения, будут типа <code class="language-plaintext highlighter-rouge">double</code> . Ни одна из них не вернет нам объект типа <code class="language-plaintext highlighter-rouge">duration</code>.</p>
+
+<p>Чтобы получить объект типа <code class="language-plaintext highlighter-rouge">duration</code> необходимо использовать функции, именованные во множественном числе, такие как <code class="language-plaintext highlighter-rouge">years</code> и <code class="language-plaintext highlighter-rouge">days</code>. Однако существует еще одна функция, которая также может вернуть <code class="language-plaintext highlighter-rouge">duration</code>, и запомнить ее название довольно легко — <code class="language-plaintext highlighter-rouge">duration</code> (длительность).</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">long_movie</span> <span class="o">=</span> <span class="nb">duration</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">43</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>long_movie = 
+  duration
+   03:07:43
+</code></pre></div></div>
+
+<p>Входные параметры функции <code class="language-plaintext highlighter-rouge">duration</code> работают аналогично входным данным функции <code class="language-plaintext highlighter-rouge">datetime</code>, за исключением того, что начинаются с часов, а не с лет. Эти входные данные составляют <code class="language-plaintext highlighter-rouge">3</code> часа, <code class="language-plaintext highlighter-rouge">7</code> минут и <code class="language-plaintext highlighter-rouge">43</code> секунды. Выходные данные также похожи, но вместо запятых значения разделяются двоеточиями.</p>
+
+<p>Можно также указать четвертый аргумент для <code class="language-plaintext highlighter-rouge">duration</code>, если необходима большая точность времени.</p>
+
+<h2 id="операции-с-типом-duration">Операции с типом duration</h2>
+
+<p>Что возможно с объектом <code class="language-plaintext highlighter-rouge">duration</code>? Например, с ним можно производить арифметические операции. Предположим, мы хотим узнать середину длительности фильма.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">half_movie</span> <span class="o">=</span> <span class="n">long_movie</span><span class="p">/</span><span class="mi">2</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>half_movie = 
+  duration
+   01:33:51
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="mi">2</span> <span class="o">*</span> <span class="n">half_movie</span></code></pre></figure>
+
+<p>Давайте умножим половину длительности на два, ожидаемо мы получим исходную длительность:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   03:07:43
+</code></pre></div></div>
+
+<p>Вычитание тоже работает:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">long_movie</span> <span class="o">-</span> <span class="n">half_movie</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   01:33:51
+</code></pre></div></div>
+
+<p>Что случится в случае добавления единицы?</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">long_movie</span> <span class="o">+</span> <span class="mi">1</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   27:07:43
+</code></pre></div></div>
+
+<p>Неожиданно фильм стал действительно очень длинным. Напомним, что числа по умолчанию являются типом <code class="language-plaintext highlighter-rouge">double</code>. Этот пример смешанной арифметики особенно интересен, при добавление 1 к продолжительности она увеличивается на  24 часа, что предполагает, что основная единица измерения продолжительности - день, аналогично системе дат в Microsoft Excel.</p>
+
+<p>Тем не менее, напрямую перевести продолжительность в тип <code class="language-plaintext highlighter-rouge">double</code> не получится:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">double</span><span class="p">(</span><span class="n">long_movie</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error using duration/double (line 1104)
+Undefined function 'double' for input arguments of type 'duration'. To convert from durations to numeric, use the SECONDS, MINUTES, HOURS, DAYS,
+or YEARS functions.
+</code></pre></div></div>
+
+<p>Поскольку MATLAB не может знать, в каких единицах времени мы хотим получить ответ, он не выполнит преобразование. Вместо этого необходимо использовать функции <code class="language-plaintext highlighter-rouge">seconds</code>, <code class="language-plaintext highlighter-rouge">minutes</code>, <code class="language-plaintext highlighter-rouge">hours</code>, <code class="language-plaintext highlighter-rouge">days</code>, устраняя неоднозначность намерений.</p>
+
+<p>Рассмотрим пример, посчитаем продолжительность семи летней войны:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">start_7_years_war</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">1756</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
+<span class="n">end_7_years_war</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">1763</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
+<span class="n">duration_7_years_war</span> <span class="o">=</span> <span class="n">end_7_years_war</span> <span class="o">-</span> <span class="n">start_7_years_war</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>duration_7_years_war = 
+  duration
+   59160:00:00
+</code></pre></div></div>
+
+<p>Теперь мы знаем, что семи летняя война длилась 59 160 часов. Переведем продолжительность в годы:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">year_count</span> <span class="o">=</span> <span class="nb">years</span><span class="p">(</span><span class="n">duration_7_years_war</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>year_count =
+    6.7489
+</code></pre></div></div>
+
+<p>Неполные 7 лет, узнаем насколько меньше в днях:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">missing_days</span> <span class="o">=</span> <span class="nb">days</span><span class="p">(</span><span class="n">start_7_years_war</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">-</span> <span class="n">end_7_years_war</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>missing_days =
+    91
+</code></pre></div></div>
+
+<p>Важно отметить, что такое вычитание учитывает вариативное количество дней в каждом месяце.</p>
+
+<p>Представим, что война началась и закончилась на год позже:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">missing_days</span> <span class="o">=</span> <span class="nb">days</span><span class="p">((</span><span class="n">start_7_years_war</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="k">...</span>
+                    <span class="p">(</span><span class="n">end_7_years_war</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>missing_days =
+    92
+</code></pre></div></div>
+
+<p>На день больше. 1764 год был високосным, так что в феврале было 29 дней.</p>
+
+<p>Но есть, что-то еще более интересное в результате, он неожиданно не содержит единицы измерения, хотя ранее мы говорили, что тип <code class="language-plaintext highlighter-rouge">duration</code> указывает, например, часы, минуты или недели.</p>
+
+<h2 id="полиморфизм-функций-years-days-hours-minutes">Полиморфизм функций years, days, hours, minutes…</h2>
+
+<p>Дело в том, что <code class="language-plaintext highlighter-rouge">days</code> не возвращает <code class="language-plaintext highlighter-rouge">duration</code>, а возвращает <code class="language-plaintext highlighter-rouge">double</code>, в случае передачи входного аргумента типа <code class="language-plaintext highlighter-rouge">duration</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c1">% missing_days = days(start_7_years_war + calyears(7) - end_7_years_war)</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">start_7_years_war</span> <span class="o">+</span> <span class="nb">calyears</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">-</span> <span class="n">end_7_years_war</span><span class="p">)</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">missing_days</span><span class="p">)</span> </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+    'duration'
+ans =
+    'double'
+</code></pre></div></div>
+
+<p>С другой стороны при передачи типа <code class="language-plaintext highlighter-rouge">double</code> вернется тип <code class="language-plaintext highlighter-rouge">duration</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">days</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+  duration
+   2.5 days
+</code></pre></div></div>
+
+<p>Каким образом функция может вести себя по-разному от одного вызова к другому? Дело в полиморфизме. Полиморфизм - это способность функции обрабатывать данные разных типов. Эта функция и её «родственники» — <code class="language-plaintext highlighter-rouge">years</code>, <code class="language-plaintext highlighter-rouge">minutes</code> и так далее — полиморфны. В нашем случае тип их вывода зависит от типа их ввода.</p>
+
+<p>Такое решение делает функции универсальными, контекстно-интеллектуальными и на самом деле более интуитивными. При передаче в эти функции типа <code class="language-plaintext highlighter-rouge">duration</code>, выводится тип <code class="language-plaintext highlighter-rouge">double</code>, и это закладывает основу для выполнения арифметических действий (поскольку числовые значения по умолчанию <code class="language-plaintext highlighter-rouge">double</code>). Если мы передаем длительность (тип <code class="language-plaintext highlighter-rouge">duration</code>) в функцию <code class="language-plaintext highlighter-rouge">days</code> мы спрашиваем: «сколько дней составляет эта длительность?». Следовательно, возврат числа (тип <code class="language-plaintext highlighter-rouge">doudle</code>) имеет смысл. Если же мы наоборот передадим в функцию <code class="language-plaintext highlighter-rouge">days</code> число (тип <code class="language-plaintext highlighter-rouge">doudle</code>), логично ожидать продолжительность (тип <code class="language-plaintext highlighter-rouge">duration</code>), поскольку вы указываете «столько-то дней».</p>
+
+<p>Во многом функции <code class="language-plaintext highlighter-rouge">years</code>, <code class="language-plaintext highlighter-rouge">days</code>, <code class="language-plaintext highlighter-rouge">hours</code>, <code class="language-plaintext highlighter-rouge">minutes</code>, <code class="language-plaintext highlighter-rouge">seconds</code>, и <code class="language-plaintext highlighter-rouge">milliseconds</code>, следует воспринимать,  в первую очередь, как конверсию (перевод) между <code class="language-plaintext highlighter-rouge">duration</code> и <code class="language-plaintext highlighter-rouge">double</code>, и только во вторую очередь, как функции конверсии между единицами измерения времени. Полиморфизм обеспечивает возможность выполнения 12 конверсий шестью функциями.</p>
+
+<h2 id="сравнение-между-временными-точками">Сравнение между временными точками</h2>
+
+<p>В MATLAB возможно сравнивать точки во времени с помощью операторов сравнения. Давайте рассмотрим пример. Прежде всего, давайте определим пару новых точек во времени.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">catholic_christmas</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="n">orhtodox_christmas</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">01</span><span class="p">,</span> <span class="mi">07</span><span class="p">);</span>
+<span class="n">catholic_christmas</span> <span class="o">&lt;</span> <span class="n">orthodox_christmas</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans =
+  logical
+   1
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="nb">string</span><span class="p">(</span><span class="nb">ans</span><span class="p">)</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = 
+    "true"
+</code></pre></div></div>
+
+<p>Мы получили истинность выражения <code class="language-plaintext highlighter-rouge">catholic_christmas &lt; orthodox_christmas</code>, действительно, католическое рождество наступает раньше православного.</p>
+
+    </section>
+
+    <!-- <hr class="stylish"/> -->
+
+    <!-- <aside class="featured-posts">
+  <h3></h3>
+  <ul>
+    
+  </ul>
+</aside>
+ -->
+
+    <!-- <hr class="stylish"/> -->
+
+    <section class="pagination">
+      
+      <a class="prev" href="/matlab_course/2023-09-11-strings.html">&laquo; Строки</a>
+      
+      
+      <a class="next" href="/matlab_course/2023-09-25-control-structures.html">Управление потоком исполнения &raquo;</a>
+      
+    </section>
+
+  </article>
+
+</main>
+
+</div>
+<footer>
+  <hr class="stylish"/>
+  <nav class="top-nav">
+  <a class="nav-item" href='/'>Главная</a>
+  | <a class="nav-item" href='/tags'>Теги</a>
+  | <a class="nav-item dark-light-switch" href="#" style="text-decoration: none;"></a>
+</nav>
+
+  <div>
+    <br>
+    David Prowse &copy; 2024
+  </div>
+</footer>
+
+  <script src="/assets/main.js"></script>
+
+</body>
+</html>
