@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="description" content="При использовании MATLAB для вычислений важно помнить, что числа с которыми мы работаем не эквивалентны вещественным числам в математики. В математике вещест..." />
-  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-11-numeric-types.html" />
+  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-09-11-numeric-types.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -21,14 +21,14 @@
         "author": "",
         "datePublished": "2023-09-11T10:00:00+03:00",
         "headline": "Численные типы данных",
-        "url": "http://localhost:4000/matlab_course/2023-09-11-numeric-types.html",
+        "url": "https://davidprowse.github.io/matlab_course/2023-09-11-numeric-types.html",
         "inLanguage": "en-US",
         "isFamilyFriendly": "true",
         "keywords": "MATLAB",
-        "image": "http://localhost:4000/favicon.ico",
+        "image": "https://davidprowse.github.io/favicon.ico",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http://localhost:4000/matlab_course/2023-09-11-numeric-types.html"
+          "@id": "https://davidprowse.github.io/matlab_course/2023-09-11-numeric-types.html"
        }
       }
     </script>
@@ -82,7 +82,11 @@
   <article>
 
     <section class="content">
-      <p>При использовании MATLAB для вычислений важно помнить, что числа с которыми мы работаем не эквивалентны вещественным числам в математики. В математике вещественные числа могут быть бесконечно большими, и у них бесконечно высокое разрешение, то есть разница между двумя разными числами может быть бесконечно малой.</p>
+      
+
+      
+
+<p>При использовании MATLAB для вычислений важно помнить, что числа с которыми мы работаем не эквивалентны вещественным числам в математики. В математике вещественные числа могут быть бесконечно большими, и у них бесконечно высокое разрешение, то есть разница между двумя разными числами может быть бесконечно малой.</p>
 
 <p>Компьютеры имеют ограниченный объем памяти. Поэтому существует и предел того, насколько большим может быть число, представленное в памяти. Также существует и ограничение на то, насколько малым может быть абсолютное значение ненулевого числа.</p>
 
@@ -318,8 +322,7 @@
     'char'
 </code></pre></div></div>
 
-<p>В MATLAB при присваивании переменной значения нового типа она автоматически принимает этот тип. Во многих других языках программирования ситуация отличается: переменная объявляется с определённым типом и сохраняет его на протяжении всего времени использования. В таких языках программирования если бы мы попытались присвоить значение переменной типа <code class="language-plaintext highlighter-rouge">char</code> другой переменной, например <code class="language-plaintext highlighter-rouge">k</code>, это могло бы привести к ошибке, или было бы выполнено неявное преобразование типа прямо в момент присваивания.</p>
-
+<p>В MATLAB переменная автоматически принимает тип присваиваемого значения. Во многих других языках программирования переменные объявляются с фиксированным типом, который сохраняется на всё время использования. В таких языках программирования попытка присвоить значение переменной типа <code class="language-plaintext highlighter-rouge">char</code> другой переменной, например <code class="language-plaintext highlighter-rouge">k</code>, может привести к ошибке или вызвать неявное преобразование типа при присваивании.</p>
     </section>
 
     <!-- <hr class="stylish"/> -->

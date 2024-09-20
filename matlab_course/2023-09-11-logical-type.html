@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="description" content="Множество значений логического типа logical содержит всего два элемента - true (истина) и false (ложь). Эти константы определены так, что true равняется 1, f..." />
-  <link rel="canonical" href="http://localhost:4000/matlab_course/2023-09-11-logical-type.html" />
+  <link rel="canonical" href="https://davidprowse.github.io/matlab_course/2023-09-11-logical-type.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/assets/fonts/open-sans-v17-latin-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -21,14 +21,14 @@
         "author": "",
         "datePublished": "2023-09-11T09:00:00+03:00",
         "headline": "Логический тип данных",
-        "url": "http://localhost:4000/matlab_course/2023-09-11-logical-type.html",
+        "url": "https://davidprowse.github.io/matlab_course/2023-09-11-logical-type.html",
         "inLanguage": "en-US",
         "isFamilyFriendly": "true",
         "keywords": "MATLAB",
-        "image": "http://localhost:4000/favicon.ico",
+        "image": "https://davidprowse.github.io/favicon.ico",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http://localhost:4000/matlab_course/2023-09-11-logical-type.html"
+          "@id": "https://davidprowse.github.io/matlab_course/2023-09-11-logical-type.html"
        }
       }
     </script>
@@ -82,10 +82,13 @@
   <article>
 
     <section class="content">
-      <p>Множество значений логического типа <code class="language-plaintext highlighter-rouge">logical</code> содержит всего два элемента - <code class="language-plaintext highlighter-rouge">true</code> (истина) и <code class="language-plaintext highlighter-rouge">false</code> (ложь). Эти константы определены так, что <code class="language-plaintext highlighter-rouge">true</code> равняется <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">false</code> равняется <code class="language-plaintext highlighter-rouge">0</code> и <code class="language-plaintext highlighter-rouge">true &gt; false</code>.</p>
+      
+
+      
+
+<p>Множество значений логического типа <code class="language-plaintext highlighter-rouge">logical</code> содержит всего два элемента - <code class="language-plaintext highlighter-rouge">true</code> (истина) и <code class="language-plaintext highlighter-rouge">false</code> (ложь). Эти константы определены так, что <code class="language-plaintext highlighter-rouge">true</code> равняется <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">false</code> равняется <code class="language-plaintext highlighter-rouge">0</code> и <code class="language-plaintext highlighter-rouge">true &gt; false</code>.</p>
 
 <p>Значения логического типа обычно получаются в результате сравнения с использованием следующих операторов:</p>
-
 <ul>
   <li><code class="language-plaintext highlighter-rouge">==</code>: равенство. Например, <code class="language-plaintext highlighter-rouge">a == b</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">a</code> равно <code class="language-plaintext highlighter-rouge">b</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">~=</code>: неравенство. Например, <code class="language-plaintext highlighter-rouge">x ~= y</code> возвращает <code class="language-plaintext highlighter-rouge">1</code>, если <code class="language-plaintext highlighter-rouge">x</code> не равно <code class="language-plaintext highlighter-rouge">y</code>.</li>
@@ -111,65 +114,106 @@
   <li><code class="language-plaintext highlighter-rouge">||</code> - логическое ИЛИ</li>
 </ul>
 
+<p>Например, <code class="language-plaintext highlighter-rouge">x &gt; 0 &amp;&amp; x &lt; 10</code> истинно только в том случае, если <code class="language-plaintext highlighter-rouge">x</code> больше <code class="language-plaintext highlighter-rouge">0</code> и одновременно меньше <code class="language-plaintext highlighter-rouge">10</code>. Обычно мы бы сказали, что <code class="language-plaintext highlighter-rouge">x</code> находится между <code class="language-plaintext highlighter-rouge">0</code> и <code class="language-plaintext highlighter-rouge">10</code>, не включая конечные значения.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">);</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+0
+0
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">mod(n, 2) == 0 || mod(n, 3) == 0</code> истинно, если выполняется хотя бы одно из условий, то есть если число делится на 2 или на 3. В этом случае одна или другая часть (или обе) должны быть истинными, чтобы результат был истинным.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">mod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+1
+1
+</code></pre></div></div>
+
+<p>Наконец, оператор отрицания <code class="language-plaintext highlighter-rouge">~</code> инвертирует булево выражение, поэтому <code class="language-plaintext highlighter-rouge">~ x &gt; y</code> будет истинным, если <code class="language-plaintext highlighter-rouge">x &gt; y</code> ложно, то есть если <code class="language-plaintext highlighter-rouge">x</code> меньше или равно <code class="language-plaintext highlighter-rouge">y</code>.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">));</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
 <p>Приведем таблицы результатов этих логических операций для всех возможных значений операндов (в алгебре логики такие такие таблицы называются таблицами истинности).</p>
 
-<table>
-  <thead>
-    <tr>
-      <th><code class="language-plaintext highlighter-rouge">x</code></th>
-      <th><code class="language-plaintext highlighter-rouge">~x</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
+
+    <table>
+      <thead>
+          <tr>
+              <th colspan="1" data-nth-cell="1" align="center"><code class="language-plaintext highlighter-rouge">x</code></th>
+              <th colspan="1" data-nth-cell="2" align="center"><code class="language-plaintext highlighter-rouge">~x</code></th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="3" align="center">1</td>
+              <td colspan="1" rowspan="1" data-nth-cell="4" align="center">0</td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="5" align="center">0</td>
+              <td colspan="1" rowspan="1" data-nth-cell="6" align="center">1</td>
+          </tr>
+        </tbody>
+    </table>
+
+<p><br /></p>
+
+<table cellpadding="5" cellspacing="0" style="border-collapse: collapse; text-align: center;">
+  <tr>
+    <th><code>x</code></th>
+    <th><code>y</code></th>
+    <th><code>x &amp;&amp; y</code></th>
+    <th><code>x || y</code></th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+  </tr>
 </table>
 
 <p><br /></p>
 
-<table>
-  <thead>
-    <tr>
-      <th><code class="language-plaintext highlighter-rouge">x</code></th>
-      <th><code class="language-plaintext highlighter-rouge">y</code></th>
-      <th><code class="language-plaintext highlighter-rouge">x &amp;&amp; y</code></th>
-      <th><code class="language-plaintext highlighter-rouge">x || y</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong><em>Замечание</em></strong>. Часто допускают ошибки при написании булевых выражений. Например, запись <code class="language-plaintext highlighter-rouge">number == 5 || 6 || 7</code> в MATLAB некорректна, так как оператор <code class="language-plaintext highlighter-rouge">||</code> должен соединять булевы выражения. Правильный вариант: <code class="language-plaintext highlighter-rouge">(number == 5) || (number == 6) || (number == 7)</code>. Хотя это кажется громоздким, это необходимо; нельзя использовать сокращения. Аналогично, выражение <code class="language-plaintext highlighter-rouge">a &lt; b &lt; c</code> интерпретируется как <code class="language-plaintext highlighter-rouge">(a &lt; b) &lt; c</code>. Чтобы проверить <code class="language-plaintext highlighter-rouge">a &lt; b &lt; c</code> математически, следует писать <code class="language-plaintext highlighter-rouge">(a &lt; b) &amp;&amp; (b &lt; c)</code>.</p>
 
 <p>В логических выражениях могут встречаться как арифметические операции, так и логические. Порядок выполнения операций определяется их приоритетом (в других языках программирования приоритеты операций могут быть другими):</p>
 
@@ -187,7 +231,8 @@
 
 <p>При вычислении булевских выражений их значение может стать известным еще до конца вычисления всего выражения. Например:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">h_plus</span> <span class="o">=</span> <span class="mf">10e-8</span><span class="p">;</span> <span class="c1">% molar concetrations of H+</span>
+<figure class="highlight"></code></pre><pre><code class="language-matlab" data-lang="matlab"><span class="n">h_plus</span> <span class="o">=</span> <span class="mf">10e-8</span><span class="p">;</span> <span class="c1">% молярная концентрация H+</span>
+<span class="c1">% Вычисление кислотности раствора PH</span>
 <span class="n">is_water</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_plus</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mf">6.5</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">log10</span><span class="p">(</span><span class="n">h_plus</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">-</span><span class="nb">log10</span><span class="p">(</span><span class="n">h_plus</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">8.5</span><span class="p">)</span></code></pre></figure>
 
 <p>В случае, если бы <code class="language-plaintext highlighter-rouge">h_plus = 0</code>, уже после первого операнда операции <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> ясно, что результат всего выражения - ложь <code class="language-plaintext highlighter-rouge">0</code> (<code class="language-plaintext highlighter-rouge">false</code>), поэтому второй операнд вычисляться не будет. Если бы первый операнд отсутсвовал, то формула была бы ошибочна при неккоректном входном аргументе <code class="language-plaintext highlighter-rouge">h_plus</code>.</p>
@@ -202,6 +247,95 @@
 
 <p>Последние два тождества известны как законы де Моргана.</p>
 
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="o">~</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">~</span><span class="n">y</span><span class="p">)</span>
+<span class="o">~</span><span class="p">(</span><span class="n">x</span> <span class="o">||</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">y</span><span class="p">)</span></code></pre></figure>
+
+<p>Следует иметь ввиду отрицания операторов отношения:</p>
+
+
+    <table>
+      <thead>
+          <tr>
+              <th colspan="1" data-nth-cell="1" align="center">Оператор</th>
+              <th colspan="1" data-nth-cell="2" align="center">Определение</th>
+              <th colspan="1" data-nth-cell="3" align="center">Логические противоположности</th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="4" align="center"><code class="language-plaintext highlighter-rouge">==</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="5" align="center">Равно</td>
+              <td colspan="1" rowspan="1" data-nth-cell="6" align="center"><code class="language-plaintext highlighter-rouge">~=</code></td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="7" align="center"><code class="language-plaintext highlighter-rouge">~=</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="8" align="center">Не равно</td>
+              <td colspan="1" rowspan="1" data-nth-cell="9" align="center"><code class="language-plaintext highlighter-rouge">==</code></td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="10" align="center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="11" align="center">Меньше</td>
+              <td colspan="1" rowspan="1" data-nth-cell="12" align="center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="13" align="center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="14" align="center">Меньше или равно</td>
+              <td colspan="1" rowspan="1" data-nth-cell="15" align="center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="16" align="center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="17" align="center">Больше</td>
+              <td colspan="1" rowspan="1" data-nth-cell="18" align="center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+          </tr>
+        <tr>
+              <td colspan="1" rowspan="1" data-nth-cell="19" align="center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+              <td colspan="1" rowspan="1" data-nth-cell="20" align="center">Больше или равно</td>
+              <td colspan="1" rowspan="1" data-nth-cell="21" align="center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+          </tr>
+        </tbody>
+    </table>
+
+<p>Понимание логических противоположностей позволяет нам иногда избавляться от операторов отрицания <code class="language-plaintext highlighter-rouge">~</code>. Они часто усложняют чтение кода, и без них наши намерения становятся яснее.</p>
+
+<p>Например, если бы мы написали следующий код на MATLAB:</p>
+
+<figure class="highlight"></code></pre><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="o">~</span><span class="p">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">17</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Вы слишком молоды, чтобы получить водительские права!"</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Следовало бы упростить и написать вместо этого:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">17</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Вы слишком молоды, чтобы получить водительские права!"</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Законы де Моргана также могут облегчить понимание условий. Рассмотрим пример:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="o">~</span><span class="p">((</span><span class="n">phone_charge</span> <span class="o">&gt;=</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">phone_storage</span> <span class="o">&gt;=</span> <span class="mf">0.15</span><span class="p">))</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Вы не можете перезагрузить телефон. Низкий заряд батареи или недостаточно свободного места."</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Идет обновление... Может потребоваться несколько перезагрузок."</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>После преобразования:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="p">(</span><span class="n">phone_charge</span> <span class="o">&lt;</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">phone_storage</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Вы не можете перезагрузить телефон. Низкий заряд батареи или недостаточно свободного места."</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Идет обновление... Может потребоваться несколько перезагрузок."</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Вместо применения законов Де Моргана, можно было избавиться от оператора отрицания <code class="language-plaintext highlighter-rouge">~</code>, поменяв местами логические части «тогда» и «иначе» в условии:</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="p">(</span><span class="n">phone_charge</span> <span class="o">&gt;=</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">phone_storage</span> <span class="o">&gt;=</span> <span class="mf">0.15</span><span class="p">)</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Идет обновление... Может потребоваться несколько перезагрузок."</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s2">"Вы не можете перезагрузить телефон. Низкий заряд батареи или недостаточно свободного места."</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Эта версия, вероятно, лучшая из трех, потому что она очень точно соответствует первоначальному логическому утверждению.</p>
+
+<p>В программировании почти всегда существует несколько способов решить любую задачу. Хорошие программы спроектированы, делая выбор в пользу ясности, простоты и изящности.</p>
     </section>
 
     <!-- <hr class="stylish"/> -->
